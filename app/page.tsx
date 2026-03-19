@@ -1,65 +1,109 @@
-import Image from "next/image";
+import type { Metadata } from "next";
+import CharacterCounter from "./components/CharacterCounter";
+import AdSpace from "./components/AdSpace";
+
+export const metadata: Metadata = {
+  title: "文字数カウンター - 無料テキスト解析ツール",
+  description:
+    "テキストの文字数・単語数・行数を瞬時に計測できる無料のオンラインツールです。コピー機能付きでスマホにも対応。ブログ・SNS・レポートなどの文字数確認にご活用ください。",
+};
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <div className="flex flex-col min-h-screen">
+      {/* ヘッダー */}
+      <header className="bg-white border-b border-gray-200 shadow-sm">
+        <div className="max-w-4xl mx-auto px-4 py-4 sm:py-5">
+          <div className="flex items-center gap-3">
+            <div className="bg-blue-500 text-white w-9 h-9 rounded-lg flex items-center justify-center text-lg font-bold flex-shrink-0">
+              文
+            </div>
+            <div>
+              <h1 className="text-lg sm:text-xl font-bold text-gray-900 leading-tight">
+                文字数カウンター
+              </h1>
+              <p className="text-xs text-gray-500">無料テキスト解析ツール</p>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      {/* ヘッダー下 広告スペース */}
+      <div className="bg-white border-b border-gray-100">
+        <div className="max-w-4xl mx-auto px-4 py-3">
+          <AdSpace label="スポンサー" />
+        </div>
+      </div>
+
+      {/* メインコンテンツ */}
+      <main className="flex-1 max-w-4xl mx-auto w-full px-4 py-6 sm:py-8">
+        {/* ページ説明 */}
+        <div className="mb-6">
+          <h2 className="text-base sm:text-lg font-semibold text-gray-700 mb-1">
+            テキストを入力して文字数を確認
+          </h2>
+          <p className="text-sm text-gray-500">
+            文字数・単語数・行数・バイト数をリアルタイムで計測します。ブログ、SNS投稿、レポート作成などにご活用ください。
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+
+        {/* カウンターコンポーネント */}
+        <CharacterCounter />
+
+        {/* 使い方ガイド */}
+        <section className="mt-10 bg-white border border-gray-200 rounded-xl p-5 sm:p-6">
+          <h3 className="text-base font-semibold text-gray-800 mb-4">使い方</h3>
+          <ol className="space-y-3 text-sm text-gray-600">
+            <li className="flex gap-3">
+              <span className="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">1</span>
+              <span>上のテキストエリアに文章を入力またはペーストします。</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">2</span>
+              <span>文字数・単語数・行数・バイト数がリアルタイムで表示されます。</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">3</span>
+              <span>「テキストをコピー」ボタンでクリップボードにコピーできます。</span>
+            </li>
+          </ol>
+        </section>
+
+        {/* よくある用途 */}
+        <section className="mt-6 bg-white border border-gray-200 rounded-xl p-5 sm:p-6">
+          <h3 className="text-base font-semibold text-gray-800 mb-4">よくある使用シーン</h3>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+            {[
+              { icon: "📝", label: "ブログ記事" },
+              { icon: "📱", label: "SNS投稿" },
+              { icon: "📄", label: "レポート" },
+              { icon: "✉️", label: "メール作成" },
+            ].map((item) => (
+              <div key={item.label} className="bg-gray-50 rounded-lg p-3 text-center text-sm text-gray-600">
+                <div className="text-2xl mb-1">{item.icon}</div>
+                {item.label}
+              </div>
+            ))}
+          </div>
+        </section>
       </main>
+
+      {/* コンテンツ下 広告スペース */}
+      <div className="bg-white border-t border-gray-100">
+        <div className="max-w-4xl mx-auto px-4 py-4">
+          <AdSpace label="スポンサー" />
+        </div>
+      </div>
+
+      {/* フッター */}
+      <footer className="bg-white border-t border-gray-200 mt-auto">
+        <div className="max-w-4xl mx-auto px-4 py-5 text-center text-sm text-gray-500">
+          <p>&copy; {new Date().getFullYear()} 文字数カウンター - 無料テキスト解析ツール</p>
+          <p className="mt-1 text-xs text-gray-400">
+            ブログ・SNS・レポートなどの文字数確認にご活用ください。
+          </p>
+        </div>
+      </footer>
     </div>
   );
 }
