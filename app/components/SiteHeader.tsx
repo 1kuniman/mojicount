@@ -16,20 +16,20 @@ export default function SiteHeader() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-30 bg-white/90 backdrop-blur border-b border-pink-100">
+    <header className="sticky top-0 z-30 bg-cream/90 backdrop-blur border-b border-brand-light/40">
       <div className="max-w-5xl mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* ロゴ */}
           <Link href="/" className="flex items-center gap-2.5 group" onClick={() => setOpen(false)}>
-            <span className="bg-gradient-to-br from-pink-400 to-rose-400 text-white w-9 h-9 rounded-full flex items-center justify-center text-lg shadow-sm">
+            <span className="bg-gradient-to-br from-brand to-brand-light text-white w-10 h-10 rounded-full flex items-center justify-center text-lg shadow-sm">
               🌸
             </span>
             <span className="leading-tight">
-              <span className="block text-lg font-bold text-pink-600 group-hover:text-pink-500 transition-colors">
+              <span className="block text-xl font-serif font-bold text-brand-deep group-hover:text-brand transition-colors">
                 美容すすめ
               </span>
-              <span className="block text-[10px] text-gray-400 tracking-wide">
-                美容医療を本音で比較
+              <span className="block text-[10px] text-gray-400 tracking-widest">
+                BEAUTY MEDIA
               </span>
             </span>
           </Link>
@@ -40,7 +40,7 @@ export default function SiteHeader() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="hover:text-pink-500 transition-colors"
+                className="relative hover:text-brand-deep transition-colors after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:w-0 after:bg-brand after:transition-all hover:after:w-full"
               >
                 {link.label}
               </Link>
@@ -53,7 +53,7 @@ export default function SiteHeader() {
             onClick={() => setOpen((v) => !v)}
             aria-label="メニューを開く"
             aria-expanded={open}
-            className="md:hidden p-2 -mr-2 text-pink-500"
+            className="md:hidden p-2 -mr-2 text-brand-deep"
           >
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
               {open ? (
@@ -75,14 +75,14 @@ export default function SiteHeader() {
 
       {/* モバイルナビ */}
       {open && (
-        <nav className="md:hidden border-t border-pink-100 bg-white">
+        <nav className="md:hidden border-t border-brand-light/40 bg-white">
           <div className="max-w-5xl mx-auto px-4 py-2 flex flex-col">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 onClick={() => setOpen(false)}
-                className="py-3 text-sm font-medium text-gray-700 border-b border-pink-50 last:border-0 hover:text-pink-500 transition-colors"
+                className="py-3 text-sm font-medium text-gray-700 border-b border-brand-light/20 last:border-0 hover:text-brand-deep transition-colors"
               >
                 {link.label}
               </Link>

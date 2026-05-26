@@ -1,18 +1,20 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #3f3f46;
-  --brand: #f472b6;
-  --brand-soft: #fdf2f8;
+  --background: #fff7f9;
+  --foreground: #1f2937;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-brand: var(--brand);
-  --color-brand-soft: var(--brand-soft);
+  /* ブランドパレット */
+  --color-brand: #e879a0;        /* メイン：ローズピンク */
+  --color-brand-light: #f9a8d4;  /* サブ：ライトピンク */
+  --color-brand-deep: #be185d;   /* アクセント：ディープローズ */
+  --color-cream: #fff7f9;        /* 背景：極薄ピンク */
   --font-sans: var(--font-noto-sans-jp), "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+  --font-serif: var(--font-noto-serif-jp), "Hiragino Mincho ProN", "Yu Mincho", "YuMincho", serif;
 }
 
 html {
@@ -20,9 +22,30 @@ html {
 }
 
 body {
-  background:
-    radial-gradient(1200px 480px at 50% -10%, var(--brand-soft), transparent),
-    var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: var(--font-noto-sans-jp), "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+  font-family: var(--font-sans);
+}
+
+/* 見出しは明朝体で上品・女性らしい印象に */
+h1,
+h2,
+h3 {
+  font-family: var(--font-serif);
+}
+
+/* 装飾的な区切り（花のモチーフ） */
+.flower-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  color: var(--color-brand-light);
+}
+.flower-divider::before,
+.flower-divider::after {
+  content: "";
+  height: 1px;
+  flex: 1;
+  background: linear-gradient(to right, transparent, var(--color-brand-light), transparent);
 }

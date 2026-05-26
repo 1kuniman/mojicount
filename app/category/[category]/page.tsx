@@ -45,9 +45,9 @@ export default async function CategoryPage({
   return (
     <main className="flex-1">
       {/* カテゴリヘッダー */}
-      <section className="text-center px-4 pt-12 pb-10 bg-gradient-to-b from-pink-50 to-transparent">
+      <section className="text-center px-4 pt-12 pb-10 bg-gradient-to-b from-brand-light/25 to-transparent">
         <div className="text-5xl mb-3">{cat.emoji}</div>
-        <h1 className="text-2xl sm:text-3xl font-extrabold text-gray-800">{cat.name}</h1>
+        <h1 className="font-serif text-2xl sm:text-3xl font-bold text-gray-800">{cat.name}</h1>
         <p className="mt-3 text-sm text-gray-600 max-w-2xl mx-auto leading-relaxed">
           {cat.description}
         </p>
@@ -58,7 +58,7 @@ export default async function CategoryPage({
 
         {/* 記事一覧 */}
         <section>
-          <h2 className="text-xl font-extrabold text-gray-800 mb-5">{cat.name}の記事</h2>
+          <h2 className="font-serif text-xl font-bold text-gray-800 mb-5">{cat.name}の記事</h2>
           {categoryArticles.length > 0 ? (
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {categoryArticles.map((a) => (
@@ -74,8 +74,8 @@ export default async function CategoryPage({
         {services.length > 0 && (
           <section>
             <div className="flex items-end justify-between mb-5">
-              <h2 className="text-xl font-extrabold text-gray-800">{cat.name}おすすめ</h2>
-              <Link href="/ranking" className="text-sm font-medium text-pink-500 hover:text-pink-600">
+              <h2 className="font-serif text-xl font-bold text-gray-800">{cat.name}おすすめ</h2>
+              <Link href="/ranking" className="text-sm font-medium text-brand-deep hover:text-brand">
                 ランキングを見る →
               </Link>
             </div>

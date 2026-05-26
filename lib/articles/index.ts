@@ -10,6 +10,17 @@ import futaeSeikeiHiyou from "./futae-seikei-hiyou";
 import hanaSeikeiRanking2026 from "./hana-seikei-ranking-2026";
 import biyouHifukaRanking from "./biyou-hifuka-ranking";
 import biyouIryouBeginnerGuide from "./biyou-iryou-beginner-guide";
+// 2026年5月 追加分
+import manjaro202605 from "./manjaro-2026-05";
+import shonanDatsumoReview from "./shonan-datsumo-review";
+import gorillaClinicReview from "./gorilla-clinic-review";
+import iryouDatsumoHikaku2026 from "./iryou-datsumo-hikaku-2026";
+import shimiLaserHikaku2026 from "./shimi-laser-hikaku-2026";
+import hyaluronicAcid2026 from "./hyaluronic-acid-2026";
+import botoxHikaku2026 from "./botox-hikaku-2026";
+import iryouSoushinRanking2026 from "./iryou-soushin-ranking-2026";
+import futaeMaibotsu2026 from "./futae-maibotsu-2026";
+import biyouHifukaMenu from "./biyou-hifuka-menu";
 
 /** 公開記事一覧（新しい順） */
 export const articles: Article[] = [
@@ -23,6 +34,16 @@ export const articles: Article[] = [
   hanaSeikeiRanking2026,
   biyouHifukaRanking,
   biyouIryouBeginnerGuide,
+  manjaro202605,
+  shonanDatsumoReview,
+  gorillaClinicReview,
+  iryouDatsumoHikaku2026,
+  shimiLaserHikaku2026,
+  hyaluronicAcid2026,
+  botoxHikaku2026,
+  iryouSoushinRanking2026,
+  futaeMaibotsu2026,
+  biyouHifukaMenu,
 ].sort((a, b) => (a.date < b.date ? 1 : -1));
 
 export function getArticle(slug: string): Article | undefined {
@@ -34,6 +55,25 @@ export function getArticlesByCategory(category: CategorySlug): Article[] {
 }
 
 export const popularArticles: Article[] = articles.filter((a) => a.popular);
+
+/** 「先月人気だった記事 TOP5」: monthlyRank 指定を優先し、足りなければ人気・新着で補完 */
+export function getMonthlyTop5(): Article[] {
+  const ranked = articles
+    .filter((a) => typeof a.monthlyRank === "number")
+    .sort((a, b) => (a.monthlyRank ?? 99) - (b.monthlyRank ?? 99));
+  const rest = articles.filter((a) => typeof a.monthlyRank !== "number");
+  const ordered = [...ranked, ...rest.filter((a) => a.popular), ...rest];
+  // 重複除去して5件
+  const seen = new Set<string>();
+  const result: Article[] = [];
+  for (const a of ordered) {
+    if (seen.has(a.slug)) continue;
+    seen.add(a.slug);
+    result.push(a);
+    if (result.length === 5) break;
+  }
+  return result;
+}
 
 /** 同じカテゴリを優先しつつ、足りなければ他カテゴリから補って関連記事を返す */
 export function getRelatedArticles(slug: string, limit = 3): Article[] {

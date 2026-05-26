@@ -12,6 +12,22 @@ export type Block =
   | { type: "note"; title?: string; text: string }
   | { type: "table"; caption?: string; headers: string[]; rows: string[][] };
 
+/** 口コミ風セクション。あくまで一般的な声のイメージ例（実在の個人の感想ではない）。 */
+export interface Review {
+  nickname: string;
+  age: string;
+  rating: number;
+  text: string;
+}
+
+export interface Author {
+  id: string;
+  name: string;
+  role: string;
+  emoji: string;
+  bio: string;
+}
+
 export interface Article {
   slug: string;
   title: string;
@@ -24,6 +40,20 @@ export interface Article {
   updated?: string;
   /** 一覧で目立たせる人気記事フラグ */
   popular?: boolean;
+  /** 先月人気ランキング用の順位（1〜5） */
+  monthlyRank?: number;
+  /** 執筆者 ID（lib/authors.ts） */
+  author?: string;
+  /** 「この記事でわかること」 */
+  summary?: string[];
+  /** 「編集部の結論」 */
+  conclusion?: string;
+  /** 「こんな人におすすめ」 */
+  bestFor?: string[];
+  /** 「関連する施術・クリニック」で表示するカテゴリ（省略時は category） */
+  relatedServiceCategory?: CategorySlug;
+  /** 口コミ風セクション（イメージ例） */
+  reviews?: Review[];
   blocks: Block[];
 }
 
@@ -48,7 +78,18 @@ export interface Service {
   rating: number;
   priceFrom: string;
   features: string[];
+  /** おすすめポイント（3つ） */
   pros: string[];
   cons: string[];
   recommendedFor: string;
+}
+
+/** トップページ「あなたの悩みから探す」用 */
+export interface Concern {
+  id: string;
+  label: string;
+  emoji: string;
+  description: string;
+  /** リンク先カテゴリ */
+  category: CategorySlug;
 }

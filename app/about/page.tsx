@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { authors } from "@/lib/authors";
+import { AuthorCard } from "../components/AuthorBadge";
 
 export const metadata: Metadata = {
   title: "運営者情報",
   description:
-    "美容医療比較メディア「美容すすめ」の運営者情報です。サイトの運営方針・編集方針・連絡先についてご案内しています。",
+    "美容医療比較メディア「美容すすめ」の運営者情報・編集部とライターの紹介・監修と編集方針についてご案内しています。",
   alternates: { canonical: "/about" },
 };
 
@@ -15,7 +17,7 @@ const rows: { label: string; value: React.ReactNode }[] = [
   {
     label: "お問い合わせ",
     value: (
-      <a href="mailto:dora06290@gmail.com" className="text-pink-600 hover:underline">
+      <a href="mailto:dora06290@gmail.com" className="text-brand-deep hover:underline">
         dora06290@gmail.com
       </a>
     ),
@@ -27,17 +29,17 @@ export default function AboutPage() {
   return (
     <main className="flex-1">
       <article className="max-w-3xl mx-auto px-4 py-10">
-        <h1 className="text-2xl sm:text-3xl font-extrabold text-gray-800 mb-8">運営者情報</h1>
+        <h1 className="font-serif text-2xl sm:text-3xl font-bold text-gray-800 mb-8">運営者情報</h1>
 
-        <div className="rounded-2xl border border-pink-100 overflow-hidden mb-10">
+        <div className="rounded-2xl border border-brand-light/40 overflow-hidden mb-10">
           <table className="w-full text-sm sm:text-base">
             <tbody>
               {rows.map((row, i) => (
-                <tr key={i} className={i % 2 === 0 ? "bg-pink-50/50" : "bg-white"}>
-                  <th className="text-left px-5 py-4 font-medium text-gray-600 w-32 sm:w-44 border-b border-pink-50 align-top">
+                <tr key={i} className={i % 2 === 0 ? "bg-cream" : "bg-white"}>
+                  <th className="text-left px-5 py-4 font-medium text-gray-600 w-32 sm:w-44 border-b border-brand-light/20 align-top">
                     {row.label}
                   </th>
-                  <td className="px-5 py-4 text-gray-800 border-b border-pink-50">{row.value}</td>
+                  <td className="px-5 py-4 text-gray-800 border-b border-brand-light/20">{row.value}</td>
                 </tr>
               ))}
             </tbody>
@@ -52,13 +54,33 @@ export default function AboutPage() {
           </p>
         </Section>
 
-        <Section title="編集方針">
+        {/* 編集部・ライター紹介 */}
+        <Section title="編集部・ライター紹介">
+          <p>当サイトの記事は、以下の編集部・ライターが執筆・編集しています。</p>
+          <div className="not-prose space-y-4 mt-4">
+            {authors.map((a) => (
+              <AuthorCard key={a.id} id={a.id} />
+            ))}
+          </div>
+        </Section>
+
+        {/* 監修・編集方針について */}
+        <Section title="当サイトの監修・編集方針について">
+          <p>
+            当サイトの記事は、各クリニックの公式発表や一般に公開されている情報をもとに、
+            編集部が事実関係を確認しながら作成しています。美容医療は健康にかかわる分野であるため、
+            次の方針を大切にしています。
+          </p>
           <ul>
-            <li>メリットだけでなく、リスク・副作用・費用も併せてお伝えします。</li>
-            <li>医療に関する情報は、一般的に公開されている情報をもとに分かりやすく整理します。</li>
-            <li>ランキングや比較は編集部の基準に基づくものであり、特定の医療機関の優劣を保証するものではありません。</li>
-            <li>最終的な判断は必ず医師の診察を受けたうえで行っていただくようご案内します。</li>
+            <li>効果やメリットだけでなく、リスク・副作用・ダウンタイム・費用も併せて記載する</li>
+            <li>料金や施術内容は変動するため「目安」として示し、最新情報は公式での確認を促す</li>
+            <li>ランキングや比較は編集部独自の基準によるものであることを明記する</li>
+            <li>診断・治療を行うものではなく、最終判断は必ず医師に相談いただくようご案内する</li>
           </ul>
+          <p>
+            なお、本サイトの記事は医師による医療監修を受けたものではありません。個別の症状や治療の適否については、
+            必ず医療機関で医師の診察を受けてご判断ください。今後、専門家による監修体制の導入を検討しています。
+          </p>
         </Section>
 
         <Section title="広告・アフィリエイトについて">
@@ -75,20 +97,20 @@ export default function AboutPage() {
             当サイトは医療行為を行うものではなく、掲載情報は一般的な参考情報です。
             効果・副作用には個人差があり、内容の正確性・完全性を保証するものではありません。
             詳しくは
-            <Link href="/disclaimer" className="text-pink-600 hover:underline">
+            <Link href="/disclaimer" className="text-brand-deep hover:underline">
               免責事項
             </Link>
             をご覧ください。
           </p>
         </Section>
 
-        <div className="bg-pink-50 border border-pink-100 rounded-2xl p-6 text-center">
+        <div className="bg-brand-light/15 border border-brand-light/40 rounded-2xl p-6 text-center">
           <p className="text-gray-700 text-sm mb-3">
             サイトに関するご意見・ご要望はお気軽にお寄せください。
           </p>
           <Link
             href="/contact"
-            className="inline-block bg-gradient-to-r from-pink-400 to-rose-400 text-white text-sm font-bold px-6 py-2.5 rounded-full hover:shadow-md transition-all"
+            className="inline-block bg-gradient-to-r from-brand to-brand-deep text-white text-sm font-bold px-6 py-2.5 rounded-full hover:shadow-md transition-all"
           >
             お問い合わせはこちら
           </Link>
@@ -101,7 +123,7 @@ export default function AboutPage() {
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <section className="mb-8">
-      <h2 className="text-lg font-bold text-gray-800 mb-3 pb-2 border-b-2 border-pink-200">
+      <h2 className="font-serif text-lg font-bold text-gray-800 mb-3 pb-2 border-b-2 border-brand-light/50">
         {title}
       </h2>
       <div className="text-gray-700 leading-relaxed space-y-3 text-sm sm:text-base [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:space-y-1.5">

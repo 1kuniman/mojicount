@@ -17,7 +17,7 @@ export default function ArticlesPage() {
     <main className="flex-1">
       <div className="max-w-5xl mx-auto px-4 py-10">
         <header className="text-center mb-8">
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-gray-800">記事一覧</h1>
+          <h1 className="font-serif text-2xl sm:text-3xl font-bold text-gray-800">記事一覧</h1>
           <p className="mt-2 text-sm text-gray-500">
             医療ダイエット・脱毛・美容クリニックの比較記事をまとめています。
           </p>
@@ -29,7 +29,7 @@ export default function ArticlesPage() {
             <Link
               key={c.slug}
               href={`/category/${c.slug}`}
-              className="text-sm text-pink-600 bg-pink-50 border border-pink-100 rounded-full px-4 py-1.5 hover:bg-pink-100 transition-colors"
+              className="text-sm text-brand-deep bg-white border border-brand-light rounded-full px-4 py-1.5 hover:bg-cream transition-colors"
             >
               {c.emoji} {c.name}
             </Link>
