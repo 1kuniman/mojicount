@@ -1,33 +1,26 @@
-"use client";
-
-interface AdSpaceProps {
-  slot?: string;
-  className?: string;
-  label?: string;
-}
-
+/**
+ * アフィリエイト／広告バナー枠のプレースホルダー。
+ * 実運用では中身を提携広告のリンク・バナー、または Google AdSense の
+ * <ins class="adsbygoogle"> ユニットに差し替えてください。
+ */
 export default function AdSpace({
-  slot = "xxxxxxxxxx",
-  className = "",
-  label = "広告",
-}: AdSpaceProps) {
+  label = "スポンサーリンク",
+  variant = "banner",
+}: {
+  label?: string;
+  variant?: "banner" | "rect";
+}) {
+  const minH = variant === "rect" ? "min-h-[250px]" : "min-h-[90px]";
   return (
-    <div className={`w-full ${className}`}>
-      <div className="text-xs text-gray-400 text-center mb-1">{label}</div>
-      {/* Google AdSense: 本番環境では以下のコメントアウトを解除し、data-ad-client と data-ad-slot を設定してください */}
-      {/*
-      <ins
-        className="adsbygoogle"
-        style={{ display: "block" }}
-        data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
-        data-ad-slot={slot}
-        data-ad-format="auto"
-        data-full-width-responsive="true"
-      />
-      */}
-      {/* 開発用プレースホルダー */}
-      <div className="w-full bg-gray-100 border border-dashed border-gray-300 rounded-lg flex items-center justify-center text-gray-400 text-sm py-6 min-h-[90px]">
-        広告スペース (728×90 / レスポンシブ)
+    <div className="w-full">
+      <div className="text-[10px] text-gray-400 text-center mb-1 tracking-wide">{label}</div>
+      <div
+        className={`w-full ${minH} rounded-xl border border-dashed border-pink-300 bg-gradient-to-br from-pink-50 to-rose-50 flex flex-col items-center justify-center text-center px-4 py-6`}
+      >
+        <span className="text-pink-400 text-sm font-medium">広告・アフィリエイトバナー枠</span>
+        <span className="text-[11px] text-gray-400 mt-1">
+          ここに提携サービスのバナーを掲載できます
+        </span>
       </div>
     </div>
   );

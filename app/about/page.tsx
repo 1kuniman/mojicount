@@ -1,124 +1,112 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import PageLayout from "../components/PageLayout";
 
 export const metadata: Metadata = {
-  title: "運営者情報 | 文字数カウンター",
+  title: "運営者情報",
   description:
-    "文字数カウンターの運営者情報ページです。サイトの運営者・目的・連絡先についてご案内しています。",
+    "美容医療比較メディア「美容すすめ」の運営者情報です。サイトの運営方針・編集方針・連絡先についてご案内しています。",
+  alternates: { canonical: "/about" },
 };
+
+const rows: { label: string; value: React.ReactNode }[] = [
+  { label: "サイト名", value: "美容すすめ" },
+  { label: "サイトURL", value: "https://www.mojimojicount.com" },
+  { label: "運営者", value: "Kunimoto Ikkei" },
+  {
+    label: "お問い合わせ",
+    value: (
+      <a href="mailto:dora06290@gmail.com" className="text-pink-600 hover:underline">
+        dora06290@gmail.com
+      </a>
+    ),
+  },
+  { label: "ジャンル", value: "美容医療（医療ダイエット・脱毛・美容クリニック）の比較情報" },
+];
 
 export default function AboutPage() {
   return (
-    <PageLayout>
-      <article>
-        <h1 className="text-2xl font-bold text-gray-900 mb-8">運営者情報</h1>
+    <main className="flex-1">
+      <article className="max-w-3xl mx-auto px-4 py-10">
+        <h1 className="text-2xl sm:text-3xl font-extrabold text-gray-800 mb-8">運営者情報</h1>
 
-        {/* 運営者情報テーブル */}
-        <div className="bg-white border border-gray-200 rounded-xl overflow-hidden mb-10">
+        <div className="rounded-2xl border border-pink-100 overflow-hidden mb-10">
           <table className="w-full text-sm sm:text-base">
             <tbody>
-              {[
-                { label: "サイト名", value: "文字数カウンター - 無料テキスト解析ツール" },
-                { label: "サイトURL", value: "https://mojicount.vercel.app" },
-                { label: "運営者名", value: "Kunimoto Ikkei" },
-                {
-                  label: "メールアドレス",
-                  value: (
-                    <a href="mailto:dora06290@gmail.com" className="text-blue-600 hover:underline">
-                      dora06290@gmail.com
-                    </a>
-                  ),
-                },
-                { label: "開設年", value: "2025年" },
-              ].map((row, i) => (
-                <tr key={i} className={i % 2 === 0 ? "bg-gray-50" : "bg-white"}>
-                  <th className="text-left px-5 py-4 font-medium text-gray-600 w-36 sm:w-44 border-b border-gray-100 align-top">
+              {rows.map((row, i) => (
+                <tr key={i} className={i % 2 === 0 ? "bg-pink-50/50" : "bg-white"}>
+                  <th className="text-left px-5 py-4 font-medium text-gray-600 w-32 sm:w-44 border-b border-pink-50 align-top">
                     {row.label}
                   </th>
-                  <td className="px-5 py-4 text-gray-800 border-b border-gray-100">
-                    {row.value}
-                  </td>
+                  <td className="px-5 py-4 text-gray-800 border-b border-pink-50">{row.value}</td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
 
-        {/* サイト概要 */}
-        <section className="mb-8">
-          <h2 className="text-lg font-bold text-gray-800 mb-3 pb-2 border-b border-gray-200">
-            サイトについて
-          </h2>
-          <div className="text-gray-700 leading-relaxed space-y-3 text-sm sm:text-base">
-            <p>
-              「文字数カウンター」は、テキストの文字数・単語数・行数をリアルタイムで計測できる
-              無料のオンラインツールです。
-            </p>
-            <p>
-              ブログ記事・SNS投稿・レポート・メールなど、さまざまな場面での文字数確認にご活用いただけます。
-              入力されたテキストはサーバーへ送信されず、すべてブラウザ上で処理されるため、
-              機密性の高い文章でも安心してご利用いただけます。
-            </p>
-            <p>
-              スマートフォン・タブレット・PCなど、あらゆるデバイスに対応したレスポンシブデザインを採用しています。
-            </p>
-          </div>
-        </section>
+        <Section title="サイトについて">
+          <p>
+            「美容すすめ」は、医療ダイエット・脱毛・美容クリニックといった美容医療の情報を、
+            効果・副作用・費用の観点からできるだけ中立的に比較・解説するメディアです。
+            これから美容医療を検討する方が、納得して一歩を踏み出せるようサポートすることを目的としています。
+          </p>
+        </Section>
 
-        {/* 主な機能 */}
-        <section className="mb-8">
-          <h2 className="text-lg font-bold text-gray-800 mb-3 pb-2 border-b border-gray-200">
-            主な機能
-          </h2>
-          <ul className="space-y-2 text-sm sm:text-base text-gray-700">
-            {[
-              "文字数のリアルタイム計測（スペース込み・スペース除く）",
-              "単語数のリアルタイム計測",
-              "行数のリアルタイム計測",
-              "UTF-8バイト数の表示",
-              "テキストのコピー機能",
-              "スマートフォン対応のレスポンシブデザイン",
-              "完全無料・会員登録不要",
-            ].map((item, i) => (
-              <li key={i} className="flex items-start gap-2">
-                <span className="text-blue-500 mt-0.5 flex-shrink-0">✓</span>
-                <span>{item}</span>
-              </li>
-            ))}
+        <Section title="編集方針">
+          <ul>
+            <li>メリットだけでなく、リスク・副作用・費用も併せてお伝えします。</li>
+            <li>医療に関する情報は、一般的に公開されている情報をもとに分かりやすく整理します。</li>
+            <li>ランキングや比較は編集部の基準に基づくものであり、特定の医療機関の優劣を保証するものではありません。</li>
+            <li>最終的な判断は必ず医師の診察を受けたうえで行っていただくようご案内します。</li>
           </ul>
-        </section>
+        </Section>
 
-        {/* 免責事項 */}
-        <section className="mb-8">
-          <h2 className="text-lg font-bold text-gray-800 mb-3 pb-2 border-b border-gray-200">
-            免責事項
-          </h2>
-          <div className="text-gray-700 leading-relaxed space-y-3 text-sm sm:text-base">
-            <p>
-              当サイトの情報は可能な限り正確を期していますが、その正確性・完全性を保証するものではありません。
-              当サイトの利用によって生じたいかなる損害についても、運営者は責任を負いかねます。
-            </p>
-            <p>
-              当サイトは予告なく内容の変更・追加・削除、またはサービスの停止・終了をする場合があります。
-              あらかじめご了承ください。
-            </p>
-          </div>
-        </section>
+        <Section title="広告・アフィリエイトについて">
+          <p>
+            当サイトは、Google AdSense をはじめとする第三者配信の広告サービス、
+            およびアフィリエイトプログラムを利用しています。掲載される広告やリンクを経由して
+            サービスの申込みが行われた場合、当サイトが紹介料を受け取ることがあります。
+            ただし、紹介料の有無が記事の内容や評価に影響を与えないよう努めています。
+          </p>
+        </Section>
 
-        {/* お問い合わせリンク */}
-        <div className="bg-blue-50 border border-blue-100 rounded-xl p-5 text-center">
+        <Section title="免責事項">
+          <p>
+            当サイトは医療行為を行うものではなく、掲載情報は一般的な参考情報です。
+            効果・副作用には個人差があり、内容の正確性・完全性を保証するものではありません。
+            詳しくは
+            <Link href="/disclaimer" className="text-pink-600 hover:underline">
+              免責事項
+            </Link>
+            をご覧ください。
+          </p>
+        </Section>
+
+        <div className="bg-pink-50 border border-pink-100 rounded-2xl p-6 text-center">
           <p className="text-gray-700 text-sm mb-3">
-            サイトに関するご意見・ご要望・ご質問はお気軽にどうぞ。
+            サイトに関するご意見・ご要望はお気軽にお寄せください。
           </p>
           <Link
             href="/contact"
-            className="inline-block bg-blue-500 hover:bg-blue-600 text-white text-sm font-medium px-6 py-2.5 rounded-lg transition-colors"
+            className="inline-block bg-gradient-to-r from-pink-400 to-rose-400 text-white text-sm font-bold px-6 py-2.5 rounded-full hover:shadow-md transition-all"
           >
             お問い合わせはこちら
           </Link>
         </div>
       </article>
-    </PageLayout>
+    </main>
+  );
+}
+
+function Section({ title, children }: { title: string; children: React.ReactNode }) {
+  return (
+    <section className="mb-8">
+      <h2 className="text-lg font-bold text-gray-800 mb-3 pb-2 border-b-2 border-pink-200">
+        {title}
+      </h2>
+      <div className="text-gray-700 leading-relaxed space-y-3 text-sm sm:text-base [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:space-y-1.5">
+        {children}
+      </div>
+    </section>
   );
 }

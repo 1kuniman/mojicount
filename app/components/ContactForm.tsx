@@ -35,7 +35,7 @@ export default function ContactForm() {
     setFormState("submitting");
 
     // mailto リンクで送信（静的サイト向けシンプル実装）
-    const subject = encodeURIComponent(`【文字数カウンター】お問い合わせ: ${name}`);
+    const subject = encodeURIComponent(`【美容すすめ】お問い合わせ: ${name}`);
     const body = encodeURIComponent(
       `お名前: ${name}\nメールアドレス: ${email}\n\n【お問い合わせ内容】\n${message}`
     );
@@ -80,7 +80,7 @@ export default function ContactForm() {
           value={name}
           onChange={(e) => setName(e.target.value)}
           placeholder="山田 太郎"
-          className={`w-full px-4 py-3 border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-400 transition
+          className={`w-full px-4 py-3 border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-pink-400 transition
             ${errors.name ? "border-red-400 bg-red-50" : "border-gray-300 bg-white"}`}
         />
         {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name}</p>}
@@ -96,7 +96,7 @@ export default function ContactForm() {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="example@email.com"
-          className={`w-full px-4 py-3 border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-400 transition
+          className={`w-full px-4 py-3 border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-pink-400 transition
             ${errors.email ? "border-red-400 bg-red-50" : "border-gray-300 bg-white"}`}
         />
         {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}
@@ -112,7 +112,7 @@ export default function ContactForm() {
           onChange={(e) => setMessage(e.target.value)}
           placeholder="ご意見・ご要望・不具合報告など、お気軽にご記入ください。"
           rows={6}
-          className={`w-full px-4 py-3 border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-400 transition resize-y
+          className={`w-full px-4 py-3 border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-pink-400 transition resize-y
             ${errors.message ? "border-red-400 bg-red-50" : "border-gray-300 bg-white"}`}
         />
         {errors.message && <p className="text-red-500 text-xs mt-1">{errors.message}</p>}
@@ -123,7 +123,7 @@ export default function ContactForm() {
       <button
         type="submit"
         disabled={formState === "submitting"}
-        className="w-full bg-blue-500 hover:bg-blue-600 active:scale-[0.99] text-white font-medium py-3 rounded-lg transition-all text-sm shadow-sm disabled:opacity-60 disabled:cursor-not-allowed"
+        className="w-full bg-gradient-to-r from-pink-400 to-rose-400 hover:shadow-md active:scale-[0.99] text-white font-bold py-3 rounded-full transition-all text-sm shadow-sm disabled:opacity-60 disabled:cursor-not-allowed"
       >
         {formState === "submitting" ? "送信中..." : "送信する（メールアプリが開きます）"}
       </button>

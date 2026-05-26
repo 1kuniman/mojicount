@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { Noto_Sans_JP } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
+import SiteHeader from "./components/SiteHeader";
+import SiteFooter from "./components/SiteFooter";
+import { siteUrl, siteName, siteDescription } from "@/lib/site";
 
 const notoSansJP = Noto_Sans_JP({
   variable: "--font-noto-sans-jp",
@@ -9,37 +12,51 @@ const notoSansJP = Noto_Sans_JP({
   weight: ["400", "500", "700"],
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://mojicount.example.com";
-
 export const metadata: Metadata = {
-  title: "文字数カウンター - 無料テキスト解析ツール",
-  description:
-    "テキストの文字数・単語数・行数を瞬時に計測できる無料のオンラインツールです。コピー機能付きでスマホにも対応。ブログ・SNS・レポートなどの文字数確認にご活用ください。",
-  keywords: ["文字数カウンター", "文字数カウント", "文字数確認", "テキスト解析", "無料ツール"],
-  authors: [{ name: "文字数カウンター" }],
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: siteName,
+    template: "%s｜美容すすめ",
+  },
+  description: siteDescription,
+  keywords: [
+    "美容医療",
+    "医療ダイエット",
+    "マンジャロ",
+    "医療脱毛",
+    "脱毛サロン",
+    "美容クリニック",
+    "二重整形",
+    "鼻整形",
+    "美容皮膚科",
+    "比較",
+    "ランキング",
+  ],
+  authors: [{ name: "美容すすめ編集部" }],
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     type: "website",
     locale: "ja_JP",
     url: siteUrl,
-    siteName: "文字数カウンター - 無料テキスト解析ツール",
-    title: "文字数カウンター - 無料テキスト解析ツール",
-    description:
-      "テキストの文字数・単語数・行数を瞬時に計測できる無料のオンラインツールです。コピー機能付きでスマホにも対応。",
+    siteName,
+    title: siteName,
+    description: siteDescription,
     images: [
       {
-        url: `${siteUrl}/og-image.png`,
+        url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "文字数カウンター - 無料テキスト解析ツール",
+        alt: siteName,
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "文字数カウンター - 無料テキスト解析ツール",
-    description:
-      "テキストの文字数・単語数・行数を瞬時に計測できる無料のオンラインツールです。",
-    images: [`${siteUrl}/og-image.png`],
+    title: siteName,
+    description: siteDescription,
+    images: ["/og-image.png"],
   },
   robots: {
     index: true,
@@ -56,8 +73,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ja" className={`${notoSansJP.variable}`}>
+    <html lang="ja" className={notoSansJP.variable}>
       <head>
+        {/* Google AdSense */}
         <Script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8297663476934392"
@@ -65,8 +83,10 @@ export default function RootLayout({
           strategy="afterInteractive"
         />
       </head>
-      <body className="min-h-screen bg-gray-50 text-gray-800 antialiased">
-        {children}
+      <body className="min-h-screen flex flex-col antialiased text-gray-700">
+        <SiteHeader />
+        <div className="flex-1 flex flex-col">{children}</div>
+        <SiteFooter />
       </body>
     </html>
   );
