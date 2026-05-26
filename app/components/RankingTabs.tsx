@@ -1,31 +1,31 @@
 "use client";
 
 import { useState } from "react";
-import type { CategorySlug, Service } from "@/lib/types";
+import type { Service, ServiceGroup } from "@/lib/types";
 import RankingCard from "./RankingCard";
 
-const tabs: { key: "all" | CategorySlug; label: string; emoji: string }[] = [
+const tabs: { key: "all" | ServiceGroup; label: string; emoji: string }[] = [
   { key: "all", label: "全体", emoji: "🌸" },
-  { key: "medical-diet", label: "ダイエット", emoji: "💉" },
-  { key: "datsumo", label: "脱毛", emoji: "✨" },
-  { key: "clinic", label: "美容クリニック", emoji: "🌷" },
+  { key: "datsumo-women", label: "医療脱毛（女性）", emoji: "✨" },
+  { key: "datsumo-men", label: "男性脱毛", emoji: "🧔" },
+  { key: "diet", label: "医療ダイエット・マンジャロ", emoji: "💉" },
 ];
 
-const groupMeta: Record<CategorySlug, string> = {
-  "medical-diet": "医療ダイエット",
-  datsumo: "脱毛",
-  clinic: "美容クリニック",
-  guide: "ガイド",
+const groupMeta: Record<ServiceGroup, string> = {
+  "datsumo-women": "医療脱毛（女性）",
+  "datsumo-men": "男性脱毛",
+  diet: "医療ダイエット・マンジャロ",
 };
 
+const allGroups: ServiceGroup[] = ["datsumo-women", "datsumo-men", "diet"];
+
 export default function RankingTabs({ services }: { services: Service[] }) {
-  const [active, setActive] = useState<"all" | CategorySlug>("all");
+  const [active, setActive] = useState<"all" | ServiceGroup>("all");
 
-  const groups: CategorySlug[] =
-    active === "all" ? ["medical-diet", "datsumo", "clinic"] : [active];
+  const groups: ServiceGroup[] = active === "all" ? allGroups : [active];
 
-  const byCategory = (cat: CategorySlug) =>
-    services.filter((s) => s.category === cat).sort((a, b) => a.rank - b.rank);
+  const byGroup = (g: ServiceGroup) =>
+    services.filter((s) => s.group === g).sort((a, b) => a.rank - b.rank);
 
   return (
     <div>
@@ -48,13 +48,13 @@ export default function RankingTabs({ services }: { services: Service[] }) {
       </div>
 
       <div className="space-y-12">
-        {groups.map((cat) => (
-          <section key={cat} id={cat} className="scroll-mt-20">
+        {groups.map((g) => (
+          <section key={g} id={g} className="scroll-mt-20">
             <h2 className="font-serif text-xl sm:text-2xl font-bold text-gray-800 mb-5">
-              {groupMeta[cat]}ランキング
+              {groupMeta[g]}ランキング
             </h2>
             <div className="space-y-5">
-              {byCategory(cat).map((s) => (
+              {byGroup(g).map((s) => (
                 <RankingCard key={s.id} service={s} />
               ))}
             </div>

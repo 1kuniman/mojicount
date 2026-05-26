@@ -68,13 +68,19 @@ export interface Category {
   primary: boolean;
 }
 
+/** ランキングのタブ分類 */
+export type ServiceGroup = "datsumo-women" | "datsumo-men" | "diet";
+
 export interface Service {
   id: string;
   name: string;
+  /** カテゴリページ・関連施術の紐付け用 */
   category: CategorySlug;
+  /** ランキングのタブ分類 */
+  group: ServiceGroup;
   rank: number;
   catchphrase: string;
-  /** 5 点満点 */
+  /** 5 点満点（編集部の独自評価） */
   rating: number;
   priceFrom: string;
   features: string[];
@@ -82,6 +88,8 @@ export interface Service {
   pros: string[];
   cons: string[];
   recommendedFor: string;
+  /** 公式サイトURL（アフィリエイト承認後にリンクを差し替え） */
+  url: string;
 }
 
 /** トップページ「あなたの悩みから探す」用 */

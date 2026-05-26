@@ -82,16 +82,18 @@ export default function RankingCard({ service }: { service: Service }) {
           </p>
         )}
 
-        {/* アフィリエイトCTA枠（実運用では提携先リンクに差し替え） */}
-        <div
-          className="block w-full text-center bg-gradient-to-r from-brand to-brand-deep text-white font-bold py-3 rounded-full shadow-sm select-none"
-          role="note"
+        {/* CTA：公式サイトへのリンク（アフィリエイト承認後に広告リンクへ差し替え） */}
+        <a
+          href={service.url}
+          target="_blank"
+          rel="nofollow noopener"
+          className="block w-full text-center bg-gradient-to-r from-brand to-brand-deep text-white font-bold py-3 rounded-full shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all"
         >
           無料カウンセリングを予約 ＋
           <span className="block text-[10px] font-normal opacity-90">
-            ※ ここに提携サービスのリンクを設定します
+            公式サイトへ（PR）
           </span>
-        </div>
+        </a>
       </div>
     </article>
   );

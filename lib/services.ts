@@ -1,232 +1,235 @@
-import type { CategorySlug, Service } from "./types";
+import type { CategorySlug, Service, ServiceGroup } from "./types";
 
 /**
- * ランキングに掲載するサービスデータ。
- * 掲載名・価格・評価はすべて「編集部の比較基準に基づく構成例」であり、
- * 実在の特定クリニックの公式情報ではありません。実際の運用時は提携先の
- * 正式な情報・アフィリエイトリンクに差し替えてご利用ください。
+ * ランキングに掲載する実在クリニックのデータ。
+ *
+ * - クリニック名・特徴・公式URLは実在のものです。
+ * - ★評価は「編集部の独自評価」であり、第三者の集計レビューではありません。
+ * - 料金はあくまで目安です。プラン・キャンペーンにより変動するため、
+ *   最新かつ正確な料金は各公式サイトでご確認ください。
+ * - url は現状は公式サイトへのリンクです。アフィリエイト提携の承認後に
+ *   各ASPの広告リンクへ差し替えてください。リンクは rel="nofollow" で出力します。
  */
 export const services: Service[] = [
-  // ── 医療ダイエット ──────────────────────────────
+  // ── 医療脱毛（女性） ────────────────────────────
   {
-    id: "md-1",
-    name: "リズム メディカルダイエット",
-    category: "medical-diet",
+    id: "regina",
+    name: "レジーナクリニック",
+    category: "datsumo",
+    group: "datsumo-women",
     rank: 1,
-    catchphrase: "オンライン診療対応・GLP-1の定番プラン",
+    catchphrase: "全身脱毛に特化した女性専用の医療脱毛",
     rating: 4.7,
-    priceFrom: "月々 9,800円〜",
-    features: ["オンライン診療OK", "全国配送", "管理栄養士サポート"],
+    priceFrom: "全身脱毛5回 約150,000円〜（目安）",
+    features: ["医療脱毛", "全身特化", "女性専用"],
     pros: [
-      "スマホ完結で通院不要、薬は自宅へ配送",
-      "初回カウンセリングが無料で相談しやすい",
-      "医師による定期的なフォローがある",
+      "全身脱毛に特化したプラン構成で選びやすい",
+      "女性専用クリニックで通いやすい",
+      "医療レーザーでしっかり脱毛効果を狙える",
     ],
-    cons: ["対面診察を希望する人には不向き", "人気のため予約が取りにくい時期がある"],
-    recommendedFor: "忙しくて通院時間が取れない、まず手軽に始めたい方",
+    cons: [],
+    recommendedFor: "全身脱毛をしたい女性",
+    url: "https://www.reginaclinic.jp/",
   },
   {
-    id: "md-2",
-    name: "スリムライン クリニック",
-    category: "medical-diet",
+    id: "freya",
+    name: "フレイアクリニック",
+    category: "datsumo",
+    group: "datsumo-women",
     rank: 2,
-    catchphrase: "対面診療で薬剤を細かく調整したい人に",
-    rating: 4.5,
-    priceFrom: "月々 12,000円〜",
-    features: ["対面診療", "複数薬剤を比較", "血液検査つき"],
-    pros: [
-      "医師と対面で副作用を相談しやすい",
-      "マンジャロ等の複数薬剤から選べる",
-      "定期的な血液検査で安全管理",
-    ],
-    cons: ["通院の手間がかかる", "オンラインより費用はやや高め"],
-    recommendedFor: "副作用が心配で、対面でしっかり相談したい方",
-  },
-  {
-    id: "md-3",
-    name: "ファイン ダイエット外来",
-    category: "medical-diet",
-    rank: 3,
-    catchphrase: "費用重視・続けやすい料金設定",
-    rating: 4.2,
-    priceFrom: "月々 7,900円〜",
-    features: ["低価格スタート", "縛りなし", "都度購入OK"],
-    pros: [
-      "業界でも始めやすい価格帯",
-      "解約金・契約縛りがない",
-      "都度購入で気軽に試せる",
-    ],
-    cons: ["サポート体制はシンプル", "店舗数が限られる"],
-    recommendedFor: "とにかく費用を抑えて続けたい方",
-  },
-  {
-    id: "md-4",
-    name: "ボディデザイン 美容内科",
-    category: "medical-diet",
-    rank: 4,
-    catchphrase: "脂肪溶解注射など施術も組み合わせたい人に",
-    rating: 4.1,
-    priceFrom: "脂肪溶解1部位 9,000円〜",
-    features: ["脂肪溶解注射", "部分痩せ相談", "施術プラン豊富"],
-    pros: [
-      "注射と内服を組み合わせた提案ができる",
-      "気になる部分のピンポイント相談に対応",
-      "施術メニューが豊富で選びやすい",
-    ],
-    cons: ["施術の追加で費用が上がりやすい", "ダウンタイムが出る施術もある"],
-    recommendedFor: "全身の体重だけでなく部分痩せも相談したい方",
-  },
-
-  // ── 脱毛 ────────────────────────────────────────
-  {
-    id: "dt-1",
-    name: "シエル 医療脱毛クリニック",
-    category: "datsumo",
-    rank: 1,
-    catchphrase: "全身＋VIO＋顔がそろう医療脱毛",
-    rating: 4.8,
-    priceFrom: "全身5回 98,000円〜",
-    features: ["医療脱毛", "全身+VIO+顔", "麻酔クリーム対応"],
-    pros: [
-      "出力の高い医療レーザーで少ない回数を狙える",
-      "痛みに配慮した麻酔オプションあり",
-      "全身・VIO・顔のセットプランが充実",
-    ],
-    cons: ["サロンより1回あたりの料金は高め", "肌状態によっては施術不可の場合あり"],
-    recommendedFor: "回数を抑えてしっかり脱毛効果を得たい方",
-  },
-  {
-    id: "dt-2",
-    name: "ピュアラ 脱毛サロン",
-    category: "datsumo",
-    rank: 2,
-    catchphrase: "痛みが少なく通いやすい光脱毛",
-    rating: 4.4,
-    priceFrom: "全身12回 132,000円〜",
-    features: ["光（IPL）脱毛", "痛みが少ない", "予約が取りやすい"],
-    pros: [
-      "医療脱毛より痛みが穏やか",
-      "1回あたりの料金が手頃",
-      "店舗数が多く通いやすい",
-    ],
-    cons: ["効果実感まで回数が必要", "医療行為ではないため脱毛完了の保証はない"],
-    recommendedFor: "痛みが苦手で、まず気軽に始めたい方",
-  },
-  {
-    id: "dt-3",
-    name: "ルミエ VIO脱毛",
-    category: "datsumo",
-    rank: 3,
-    catchphrase: "デリケートゾーン特化・女性スタッフ対応",
-    rating: 4.3,
-    priceFrom: "VIO5回 48,000円〜",
-    features: ["VIO特化", "女性スタッフ", "プライバシー配慮"],
-    pros: [
-      "VIOの形・量を細かく相談できる",
-      "完全個室・女性スタッフ対応で安心",
-      "デリケートゾーンの痛みに配慮",
-    ],
-    cons: ["VIO以外のプランは選択肢が少ない", "院数が都市部中心"],
-    recommendedFor: "VIOだけを重点的にケアしたい方",
-  },
-  {
-    id: "dt-4",
-    name: "メンズグロウ 医療脱毛",
-    category: "datsumo",
-    rank: 4,
-    catchphrase: "ヒゲ・全身に対応する男性専門",
-    rating: 4.4,
-    priceFrom: "ヒゲ3部位5回 29,800円〜",
-    features: ["男性専門", "ヒゲ脱毛", "全身対応"],
-    pros: [
-      "男性の濃い毛質に合わせた照射に対応",
-      "ヒゲのデザイン脱毛も相談できる",
-      "男性専用空間で通いやすい",
-    ],
-    cons: ["女性の利用はできない", "濃い毛は回数が必要なことがある"],
-    recommendedFor: "ヒゲや全身を整えたい男性",
-  },
-
-  // ── 美容クリニック ──────────────────────────────
-  {
-    id: "cl-1",
-    name: "サクラ 美容クリニック",
-    category: "clinic",
-    rank: 1,
-    catchphrase: "二重・鼻・輪郭まで総合対応の大手系",
+    catchphrase: "痛みに配慮した女性専用の医療脱毛",
     rating: 4.6,
-    priceFrom: "二重埋没 29,000円〜",
-    features: ["症例数が豊富", "保証制度あり", "カウンセリング無料"],
+    priceFrom: "全身脱毛5回 約128,000円〜（目安）",
+    features: ["医療脱毛", "痛みに配慮", "女性専用"],
     pros: [
-      "二重・鼻・輪郭など幅広いメニュー",
-      "施術後の保証・アフターケアが手厚い",
-      "症例写真が豊富で仕上がりを確認しやすい",
+      "痛みに配慮した施術で続けやすい",
+      "女性専用で安心して通える",
+      "全身脱毛のプランが用意されている",
     ],
-    cons: ["人気院は予約が混み合う", "オプションで費用が上がりやすい"],
-    recommendedFor: "まず総合的に相談して比較検討したい方",
+    cons: [],
+    recommendedFor: "痛みが不安な方・全身脱毛をしたい女性",
+    url: "https://frey-a.jp/",
   },
   {
-    id: "cl-2",
-    name: "アネモネ 美容外科",
-    category: "clinic",
-    rank: 2,
-    catchphrase: "鼻・輪郭などの整形を得意とする",
-    rating: 4.4,
-    priceFrom: "鼻ヒアルロン酸 19,800円〜",
-    features: ["デザイン重視", "症例カウンセリング", "切らない施術も豊富"],
-    pros: [
-      "プチ整形から本格施術まで対応",
-      "シミュレーションで仕上がりを共有",
-      "切らない施術の選択肢も豊富",
-    ],
-    cons: ["難度の高い施術は費用が高額", "院数は都市部中心"],
-    recommendedFor: "鼻や輪郭のデザインにこだわりたい方",
-  },
-  {
-    id: "cl-3",
-    name: "ルクシア 美容皮膚科",
-    category: "clinic",
+    id: "rize",
+    name: "リゼクリニック",
+    category: "datsumo",
+    group: "datsumo-women",
     rank: 3,
-    catchphrase: "シミ・ニキビ・毛穴の肌悩みに",
+    catchphrase: "全国展開で通いやすい女性専用の医療脱毛",
     rating: 4.5,
-    priceFrom: "シミ取りレーザー 5,500円〜",
-    features: ["美容皮膚科", "肌診断つき", "ダウンタイム短め"],
+    priceFrom: "全身脱毛5回 約138,000円〜（目安）",
+    features: ["医療脱毛", "全国展開", "女性専用"],
     pros: [
-      "シミ・ニキビ・毛穴を肌診断から提案",
-      "切らない施術が中心で続けやすい",
-      "ダウンタイムが短い施術が多い",
+      "全国に院があり通いやすい",
+      "女性専用で相談しやすい",
+      "全身脱毛のプランが選べる",
     ],
-    cons: ["肌質改善は継続が前提", "保険適用外の自由診療"],
-    recommendedFor: "メスを使わず肌悩みをケアしたい方",
+    cons: [],
+    recommendedFor: "通いやすさを重視する女性",
+    url: "https://lize-clinic.jp/",
   },
   {
-    id: "cl-4",
-    name: "オーロラ 美容クリニック",
-    category: "clinic",
+    id: "sbc-datsumo",
+    name: "湘南美容クリニック（脱毛）",
+    category: "datsumo",
+    group: "datsumo-women",
     rank: 4,
-    catchphrase: "ヒアルロン酸・ボトックスなど注入が得意",
-    rating: 4.3,
-    priceFrom: "ボトックス 5,940円〜",
-    features: ["注入治療", "切らないリフト", "短時間施術"],
+    catchphrase: "全国最大級・脱毛から美容整形まで対応",
+    rating: 4.4,
+    priceFrom: "全身脱毛5回 約99,000円〜（目安）",
+    features: ["全国最大級", "脱毛＋美容", "幅広いメニュー"],
     pros: [
-      "ヒアルロン酸・ボトックスの注入実績が豊富",
-      "切らないたるみ治療の相談ができる",
-      "短時間・ダウンタイム少なめの施術が中心",
+      "全国に院が多く通いやすい",
+      "脱毛以外の美容施術も相談できる",
+      "比較的始めやすい料金プランがある",
     ],
-    cons: ["効果は永続でなく定期的な施術が前提", "デザインの相性は医師による"],
-    recommendedFor: "切らずにシワ・たるみをケアしたい方",
+    cons: [],
+    recommendedFor: "脱毛と他の美容施術もあわせて検討したい方",
+    url: "https://www.s-b-c.net/",
+  },
+
+  // ── 男性脱毛 ────────────────────────────────────
+  {
+    id: "gorilla",
+    name: "ゴリラクリニック",
+    category: "datsumo",
+    group: "datsumo-men",
+    rank: 1,
+    catchphrase: "ヒゲ脱毛に強い男性専用の医療脱毛",
+    rating: 4.7,
+    priceFrom: "ヒゲ脱毛5回 約50,000円〜（目安）",
+    features: ["男性専用", "ヒゲ脱毛に強い", "医療脱毛"],
+    pros: [
+      "ヒゲ脱毛のメニュー・デザイン相談が充実",
+      "男性専用で通いやすい",
+      "全身脱毛にも対応している",
+    ],
+    cons: [],
+    recommendedFor: "ヒゲ・全身脱毛をしたい男性",
+    url: "https://gorilla-clinic.com/",
+  },
+  {
+    id: "mens-rize",
+    name: "メンズリゼ",
+    category: "datsumo",
+    group: "datsumo-men",
+    rank: 2,
+    catchphrase: "全国展開の男性専用医療脱毛",
+    rating: 4.5,
+    priceFrom: "全身脱毛5回 約150,000円〜（目安）",
+    features: ["男性専用", "全国展開", "医療脱毛"],
+    pros: [
+      "全国に院があり通いやすい",
+      "ヒゲ・全身など幅広いプランに対応",
+      "男性専用で相談しやすい",
+    ],
+    cons: [],
+    recommendedFor: "全身脱毛をしたい男性",
+    url: "https://mens.lize-clinic.jp/",
+  },
+  {
+    id: "regina-homme",
+    name: "レジーナクリニックオム",
+    category: "datsumo",
+    group: "datsumo-men",
+    rank: 3,
+    catchphrase: "女性スタッフ対応の男性専用医療脱毛",
+    rating: 4.4,
+    priceFrom: "全身脱毛5回 約150,000円〜（目安）",
+    features: ["男性専用", "女性スタッフ対応", "医療脱毛"],
+    pros: [
+      "女性スタッフによる施術に対応",
+      "男性専用で落ち着いて通える",
+      "全身脱毛のプランが用意されている",
+    ],
+    cons: [],
+    recommendedFor: "女性スタッフに施術してほしい男性",
+    url: "https://reginaclinic-homme.jp/",
+  },
+
+  // ── 医療ダイエット・マンジャロ ──────────────────
+  {
+    id: "actually",
+    name: "Actually,（アクチュアリー）",
+    category: "medical-diet",
+    group: "diet",
+    rank: 1,
+    catchphrase: "国内最安値水準でマンジャロ処方・オンライン診療",
+    rating: 4.6,
+    priceFrom: "マンジャロ0.5mg 約8,000円〜（目安）",
+    features: ["オンライン診療", "低価格水準", "マンジャロ処方"],
+    pros: [
+      "マンジャロを始めやすい価格帯で処方",
+      "オンライン診療で通院不要",
+      "費用を抑えて医療ダイエットを始められる",
+    ],
+    cons: [],
+    recommendedFor: "マンジャロを安く始めたい方",
+    url: "https://actually-clinic.com/",
+  },
+  {
+    id: "leva",
+    name: "レバクリ",
+    category: "medical-diet",
+    group: "diet",
+    rank: 2,
+    catchphrase: "待ち時間なしのオンライン医療ダイエット",
+    rating: 4.4,
+    priceFrom: "オンライン診療対応（料金は要確認）",
+    features: ["オンライン診療", "待ち時間なし", "医療ダイエット"],
+    pros: [
+      "オンライン完結で待ち時間が少ない",
+      "忙しくても自宅で受診できる",
+      "通院の手間をかけずに続けやすい",
+    ],
+    cons: [],
+    recommendedFor: "忙しくてクリニックに行けない方",
+    url: "https://leva.clinic/",
+  },
+  {
+    id: "mona",
+    name: "Mona Clinic（モナクリニック）",
+    category: "medical-diet",
+    group: "diet",
+    rank: 3,
+    catchphrase: "マンジャロ即日発送・オンライン診療",
+    rating: 4.3,
+    priceFrom: "マンジャロ処方対応（料金は要確認）",
+    features: ["オンライン診療", "即日発送", "マンジャロ処方"],
+    pros: [
+      "条件により即日発送に対応",
+      "オンライン診療で手軽に始められる",
+      "思い立ったときにすぐ相談できる",
+    ],
+    cons: [],
+    recommendedFor: "できるだけ早く始めたい方",
+    url: "https://mona-clinic.jp/",
   },
 ];
+
+/** カテゴリページ・関連施術用（グループ順→ランク順で並べる） */
+const groupOrder: Record<ServiceGroup, number> = {
+  "datsumo-women": 0,
+  "datsumo-men": 1,
+  diet: 2,
+};
 
 export function getServicesByCategory(category: CategorySlug): Service[] {
   return services
     .filter((s) => s.category === category)
+    .sort((a, b) => groupOrder[a.group] - groupOrder[b.group] || a.rank - b.rank);
+}
+
+export function getServicesByGroup(group: ServiceGroup): Service[] {
+  return services
+    .filter((s) => s.group === group)
     .sort((a, b) => a.rank - b.rank);
 }
 
-/** トップページ用の注目サービス TOP3（各カテゴリ1位を1つずつ） */
+/** トップページ用の注目サービス TOP3（女性脱毛・男性脱毛・医療ダイエットから1つずつ） */
 export const featuredTop3: Service[] = [
-  services.find((s) => s.id === "cl-1")!,
-  services.find((s) => s.id === "dt-1")!,
-  services.find((s) => s.id === "md-1")!,
+  services.find((s) => s.id === "regina")!,
+  services.find((s) => s.id === "gorilla")!,
+  services.find((s) => s.id === "actually")!,
 ];

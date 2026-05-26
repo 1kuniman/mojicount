@@ -110,7 +110,7 @@ export default function Home() {
             ))}
           </div>
           <p className="mt-3 text-xs text-gray-400 text-center">
-            ※ 掲載内容は編集部による比較構成例です。最新情報は各公式サイトをご確認ください。
+            ※ ★評価は編集部の独自評価です。料金は目安のため、最新情報は各公式サイトをご確認ください（リンクはPR）。
           </p>
         </section>
 

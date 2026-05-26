@@ -12,7 +12,7 @@ export default function RelatedServices({ category }: { category: CategorySlug }
     <section className="mt-10">
       <h2 className="font-serif text-xl font-bold text-gray-800 mb-1">関連する施術・クリニック</h2>
       <p className="text-[11px] text-gray-400 mb-4">
-        ※ 編集部の比較構成例です。「無料カウンセリング予約」は提携サービスへのリンク枠（PR）として設置します。
+        ※ ★評価は編集部の独自評価です。料金は目安のため最新は各公式サイトでご確認ください（リンクはPR）。
       </p>
       <div className="space-y-3">
         {list.map((s) => (
@@ -29,12 +29,14 @@ export default function RelatedServices({ category }: { category: CategorySlug }
                 <span className="text-gray-400 ml-2">料金目安 {s.priceFrom}</span>
               </p>
             </div>
-            <span
-              role="note"
-              className="bg-gradient-to-r from-brand to-brand-light text-white text-sm font-bold px-5 py-2.5 rounded-full shadow-sm select-none whitespace-nowrap"
+            <a
+              href={s.url}
+              target="_blank"
+              rel="nofollow noopener"
+              className="bg-gradient-to-r from-brand to-brand-light text-white text-sm font-bold px-5 py-2.5 rounded-full shadow-sm hover:shadow-md transition-all whitespace-nowrap"
             >
               無料カウンセリングを予約 ＋
-            </span>
+            </a>
           </div>
         ))}
       </div>
