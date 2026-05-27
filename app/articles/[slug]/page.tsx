@@ -17,6 +17,7 @@ import AdSpace from "@/app/components/AdSpace";
 import MedicalDisclaimer from "@/app/components/MedicalDisclaimer";
 import ReviewsSection from "@/app/components/ReviewsSection";
 import RelatedServices from "@/app/components/RelatedServices";
+import PriceCompareTable from "@/app/components/PriceCompareTable";
 import { AuthorBadge, AuthorCard } from "@/app/components/AuthorBadge";
 
 export function generateStaticParams() {
@@ -66,6 +67,18 @@ export default async function ArticlePage({
   const related = getRelatedArticles(slug);
   const minutes = estimateReadingMinutes(article.blocks);
   const relatedServiceCategory = article.relatedServiceCategory ?? article.category;
+
+  // 記事カテゴリ・タグに応じて料金比較表を出し分ける
+  const isManjaroArticle =
+    article.category === "medical-diet" &&
+    (article.tags.some((t) => t.includes("マンジャロ")) ||
+      article.title.includes("マンジャロ"));
+  const isDatsumoArticle = article.category === "datsumo";
+  const priceTableType = isManjaroArticle
+    ? ("manjaro" as const)
+    : isDatsumoArticle
+      ? ("datsumo" as const)
+      : null;
 
   return (
     <main className="flex-1">
@@ -147,6 +160,28 @@ export default async function ArticlePage({
         <div className="mt-4">
           <ArticleBody blocks={article.blocks} />
         </div>
+
+        {/* 料金比較表（カテゴリに応じて自動表示） */}
+        {priceTableType && (
+          <section className="mt-10 rounded-2xl border border-brand-light/40 bg-white p-5 sm:p-6">
+            <PriceCompareTable
+              type={priceTableType}
+              heading={
+                priceTableType === "manjaro"
+                  ? "マンジャロ 料金比較【2026年5月】"
+                  : "医療脱毛 料金比較【2026年5月】"
+              }
+            />
+            <div className="mt-3 text-center">
+              <Link
+                href="/compare"
+                className="text-sm font-medium text-brand-deep hover:text-brand"
+              >
+                料金比較ページで詳しく見る →
+              </Link>
+            </div>
+          </section>
+        )}
 
         {/* こんな人におすすめ */}
         {article.bestFor && article.bestFor.length > 0 && (

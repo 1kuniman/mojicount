@@ -21,6 +21,17 @@ import botoxHikaku2026 from "./botox-hikaku-2026";
 import iryouSoushinRanking2026 from "./iryou-soushin-ranking-2026";
 import futaeMaibotsu2026 from "./futae-maibotsu-2026";
 import biyouHifukaMenu from "./biyou-hifuka-menu";
+// 2026年5月 料金比較・口コミ強化分
+import iryouDatsumoRyoukinSouba2026 from "./iryou-datsumo-ryoukin-souba-2026";
+import reginaClinicReview2026 from "./regina-clinic-review-2026";
+import freyaClinicReview2026 from "./freya-clinic-review-2026";
+import rizeClinicReview2026 from "./rize-clinic-review-2026";
+import shonanDatsumoReview2026 from "./shonan-datsumo-review-2026";
+import manjaroKoukaFukusayou2026 from "./manjaro-kouka-fukusayou-2026";
+import actuallyClinicReview from "./actually-clinic-review";
+import iryouVsSalonDatsumo2026 from "./iryou-vs-salon-datsumo-2026";
+import datsumoSalonOsusume2026 from "./datsumo-salon-osusume-2026";
+import biyouIryouHajimeruMae from "./biyou-iryou-hajimeru-mae";
 
 /** 公開記事一覧（新しい順） */
 export const articles: Article[] = [
@@ -44,6 +55,16 @@ export const articles: Article[] = [
   iryouSoushinRanking2026,
   futaeMaibotsu2026,
   biyouHifukaMenu,
+  iryouDatsumoRyoukinSouba2026,
+  reginaClinicReview2026,
+  freyaClinicReview2026,
+  rizeClinicReview2026,
+  shonanDatsumoReview2026,
+  manjaroKoukaFukusayou2026,
+  actuallyClinicReview,
+  iryouVsSalonDatsumo2026,
+  datsumoSalonOsusume2026,
+  biyouIryouHajimeruMae,
 ].sort((a, b) => (a.date < b.date ? 1 : -1));
 
 export function getArticle(slug: string): Article | undefined {

@@ -26,13 +26,18 @@ const rankBadge: Record<number, string> = {
 export default function RankingCard({ service }: { service: Service }) {
   return (
     <article className="relative rounded-2xl border border-brand-light/40 bg-white shadow-sm overflow-hidden">
+      {/* PR表示（目立つ位置） */}
+      <span className="absolute top-2 right-2 z-10 text-[10px] font-bold text-brand-deep bg-white/90 border border-brand-light/60 rounded-full px-2 py-0.5 shadow-sm">
+        PR
+      </span>
+
       <div className="flex items-center gap-3 border-b border-brand-light/20 bg-gradient-to-r from-brand-light/20 to-cream px-4 py-3">
         <span
           className={`${rankBadge[service.rank] ?? "bg-brand"} text-white font-extrabold w-10 h-10 rounded-full flex items-center justify-center shadow-sm flex-shrink-0`}
         >
           {service.rank}
         </span>
-        <div className="min-w-0">
+        <div className="min-w-0 pr-8">
           <h3 className="font-bold text-gray-800 truncate">{service.name}</h3>
           <p className="text-xs text-gray-500 truncate">{service.catchphrase}</p>
         </div>
@@ -58,6 +63,9 @@ export default function RankingCard({ service }: { service: Service }) {
           ))}
         </div>
 
+        {/* 編集部による詳しい紹介 */}
+        <p className="text-[13px] leading-7 text-gray-600">{service.description}</p>
+
         {/* おすすめポイント3つ */}
         <div>
           <p className="text-xs font-semibold text-brand-deep mb-2">おすすめポイント</p>
@@ -74,6 +82,14 @@ export default function RankingCard({ service }: { service: Service }) {
         <div className="rounded-lg bg-cream p-3 text-xs">
           <span className="font-semibold text-gray-600">こんな人におすすめ：</span>
           <span className="text-gray-600">{service.recommendedFor}</span>
+        </div>
+
+        {/* こんな人には向かない（正直な注意点） */}
+        <div className="rounded-lg border border-amber-200 bg-amber-50/60 p-3 text-xs">
+          <p className="font-semibold text-amber-700 mb-1 flex items-center gap-1">
+            <span aria-hidden>⚠️</span> こんな人には向かない
+          </p>
+          <p className="text-gray-600 leading-6">{service.notRecommendedFor}</p>
         </div>
 
         {service.cons.length > 0 && (

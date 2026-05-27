@@ -83,11 +83,15 @@ export interface Service {
   /** 5 点満点（編集部の独自評価） */
   rating: number;
   priceFrom: string;
+  /** 詳細な紹介文（300字以上。ランキングカードに表示） */
+  description: string;
   features: string[];
   /** おすすめポイント（3つ） */
   pros: string[];
   cons: string[];
   recommendedFor: string;
+  /** 「こんな人には向かない」（正直な注意点） */
+  notRecommendedFor: string;
   /** 公式サイトURL（アフィリエイト承認後にリンクを差し替え） */
   url: string;
 }

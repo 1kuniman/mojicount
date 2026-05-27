@@ -8,6 +8,7 @@ const navLinks = [
   { href: "/category/medical-diet", label: "医療ダイエット" },
   { href: "/category/datsumo", label: "脱毛" },
   { href: "/category/clinic", label: "美容クリニック" },
+  { href: "/compare", label: "料金比較" },
   { href: "/ranking", label: "ランキング" },
   { href: "/articles", label: "記事一覧" },
 ];
