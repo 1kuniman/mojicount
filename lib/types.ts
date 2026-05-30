@@ -92,6 +92,8 @@ export interface Service {
   recommendedFor: string;
   /** 「こんな人には向かない」（正直な注意点） */
   notRecommendedFor: string;
+  /** 編集部が調査してわかったこと（公式・口コミ・カウンセリング情報からの所感） */
+  editorialFindings?: string;
   /** 公式サイトURL（アフィリエイト承認後にリンクを差し替え） */
   url: string;
 }

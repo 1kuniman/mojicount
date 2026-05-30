@@ -91,6 +91,13 @@ export default function SiteHeader() {
           </div>
         </nav>
       )}
+
+      {/* PR / アフィリエイト表示（全ページ共通） */}
+      <div className="bg-brand-light/15 border-t border-brand-light/30">
+        <p className="max-w-5xl mx-auto px-4 py-1.5 text-[11px] text-gray-600 text-center leading-snug">
+          ＜PR＞当サイトはアフィリエイト広告（プロモーション）を含みます。
+        </p>
+      </div>
     </header>
   );
 }

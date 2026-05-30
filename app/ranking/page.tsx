@@ -40,7 +40,7 @@ export default function RankingPage() {
             <span aria-hidden>🔍</span> 編集部の選定基準
           </h2>
           <p className="text-sm text-gray-700 leading-7">
-            当サイトでは編集部が実際に各クリニックの公式サイトを調査し、料金・実績・口コミ・アクセスのしやすさを基準に評価しています。
+            当サイトでは編集部が各クリニックの公式サイト・口コミサイト・カウンセリング内容を調査し、料金・実績・口コミ・アクセスのしやすさを基準に評価しています。
             メリットだけでなく、注意点や「向かない人」もできるだけ正直に記載することを心がけています。
           </p>
           <dl className="mt-4 grid gap-3 sm:grid-cols-2">
@@ -49,8 +49,8 @@ export default function RankingPage() {
               <dd className="text-sm text-gray-700 mt-0.5">2025年1月〜2026年5月</dd>
             </div>
             <div className="rounded-xl bg-cream border border-brand-light/30 px-4 py-3">
-              <dt className="text-xs font-semibold text-brand-deep">評価方法</dt>
-              <dd className="text-sm text-gray-700 mt-0.5">公式サイト・公開情報をもとに編集部が独自評価</dd>
+              <dt className="text-xs font-semibold text-brand-deep">調査対象</dt>
+              <dd className="text-sm text-gray-700 mt-0.5">公式サイト・口コミサイト・カウンセリング内容</dd>
             </div>
           </dl>
           <div className="mt-4">
@@ -58,10 +58,10 @@ export default function RankingPage() {
             <ol className="grid gap-2 sm:grid-cols-2">
               {[
                 "① 料金（総額・わかりやすさ）",
-                "② 脱毛機器・施術内容",
-                "③ 口コミ・評判の傾向",
+                "② 脱毛機器・技術",
+                "③ 口コミ評価",
                 "④ 通いやすさ（院数・予約）",
-                "⑤ 保証・アフター制度",
+                "⑤ 保証制度",
               ].map((c) => (
                 <li
                   key={c}

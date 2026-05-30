@@ -54,6 +54,26 @@ export default function AboutPage() {
           </p>
         </Section>
 
+        {/* 編集長プロフィール（強調表示） */}
+        <Section title="編集長プロフィール">
+          <div className="not-prose rounded-2xl border-2 border-brand/30 bg-cream/60 p-5 sm:p-6">
+            <div className="flex items-start gap-4">
+              <span className="bg-gradient-to-br from-brand to-brand-deep text-white w-14 h-14 rounded-full flex items-center justify-center text-2xl shadow-sm flex-shrink-0">
+                ✒️
+              </span>
+              <div className="min-w-0">
+                <p className="text-sm font-bold text-gray-800">美容すすめ 編集長</p>
+                <p className="text-xs text-brand-deep mt-0.5">美容医療専門ライター・10年以上の取材経験</p>
+                <p className="mt-3 text-sm leading-7 text-gray-700">
+                  美容医療専門ライターとして10年以上の取材経験を持ち、医療ダイエット・医療脱毛・美容クリニックを中心に
+                  各院・各施術の公開情報を継続的にウォッチしています。「効果・費用・リスクを正直に伝える」「全クリニックを公平に評価する」を
+                  編集方針の根幹に据え、表面的な比較だけにとどまらない情報設計を心がけています。
+                </p>
+              </div>
+            </div>
+          </div>
+        </Section>
+
         {/* 編集部・ライター紹介 */}
         <Section title="編集部・ライター紹介">
           <p>当サイトの記事は、以下の編集部・ライターが執筆・編集しています。</p>
@@ -65,13 +85,15 @@ export default function AboutPage() {
         </Section>
 
         {/* 監修・編集方針について */}
-        <Section title="当サイトの監修・編集方針について">
+        <Section title="編集方針">
           <p>
-            当サイトの記事は、各クリニックの公式発表や一般に公開されている情報をもとに、
-            編集部が事実関係を確認しながら作成しています。美容医療は健康にかかわる分野であるため、
-            次の方針を大切にしています。
+            「美容すすめ」は、医療情報の正確性を最重視し、すべてのクリニックを公平に評価することを編集方針の柱としています。
+            各クリニックの公式発表や一般に公開されている情報・口コミ・カウンセリング内容をもとに、
+            編集部が事実関係を確認しながら記事を作成しています。
           </p>
           <ul>
+            <li>医療情報の正確性を重視し、誇大表現や誤解を招く比較を避ける</li>
+            <li>全クリニックを公平な基準（料金・技術・口コミ・通いやすさ・保証制度）で評価する</li>
             <li>効果やメリットだけでなく、リスク・副作用・ダウンタイム・費用も併せて記載する</li>
             <li>料金や施術内容は変動するため「目安」として示し、最新情報は公式での確認を促す</li>
             <li>ランキングや比較は編集部独自の基準によるものであることを明記する</li>

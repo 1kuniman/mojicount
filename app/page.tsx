@@ -11,7 +11,6 @@ export default function Home() {
   const latest = articles.slice(0, 6);
   const popular = (popularArticles.length ? popularArticles : latest).slice(0, 6);
   const monthlyTop5 = getMonthlyTop5();
-  const articleCount = articles.length;
 
   return (
     <main className="flex-1">
@@ -68,8 +67,8 @@ export default function Home() {
       {/* 統計数字 */}
       <section className="bg-white border-b border-brand-light/30">
         <div className="max-w-5xl mx-auto px-4 py-6 grid grid-cols-3 gap-4 text-center">
-          <Stat value="50院以上" label="比較クリニック数" />
-          <Stat value="30記事以上" label="掲載記事数" sub={`（現在${articleCount}記事を公開中）`} />
+          <Stat value="10院以上" label="比較クリニック数" />
+          <Stat value="30記事以上" label="掲載記事数" />
           <Stat value="毎月" label="情報を更新" />
         </div>
       </section>

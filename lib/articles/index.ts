@@ -32,6 +32,27 @@ import actuallyClinicReview from "./actually-clinic-review";
 import iryouVsSalonDatsumo2026 from "./iryou-vs-salon-datsumo-2026";
 import datsumoSalonOsusume2026 from "./datsumo-salon-osusume-2026";
 import biyouIryouHajimeruMae from "./biyou-iryou-hajimeru-mae";
+// 2026年5月末 追加分（口コミ・徹底比較・部位別ガイド・選び方）
+import freyaClinicKuchikomi2026 from "./freya-clinic-kuchikomi-2026";
+import rizeClinicKuchikomi2026 from "./rize-clinic-kuchikomi-2026";
+import mensRizeKuchikomi2026 from "./mens-rize-kuchikomi-2026";
+import gorillaClinicKuchikomi2026 from "./gorilla-clinic-kuchikomi-2026";
+import actuallyClinicManjaroKuchikomi from "./actually-clinic-manjaro-kuchikomi";
+import levaClinicReview from "./leva-clinic-review";
+import monaClinicReview from "./mona-clinic-review";
+import shonanDatsumoKuchikomi2026 from "./shonan-datsumo-kuchikomi-2026";
+import iryouVsSalonDatsumoTetteihikaku2026 from "./iryou-vs-salon-datsumo-tetteihikaku-2026";
+import vioDatsumoOsusume2026 from "./vio-datsumo-osusume-2026";
+import kaoDatsumoOsusume2026 from "./kao-datsumo-osusume-2026";
+import higeDatsumoOsusume2026 from "./hige-datsumo-osusume-2026";
+import manjaroVsOzempic2026 from "./manjaro-vs-ozempic-2026";
+import glp1DietToha from "./glp1-diet-toha";
+import shibouYoukaiOsusume2026 from "./shibou-youkai-osusume-2026";
+import iryouDietShuruiHikaku2026 from "./iryou-diet-shurui-hikaku-2026";
+import biyouClinicCounselingFlow from "./biyou-clinic-counseling-flow";
+import iryouDatsumoKaisuuMeyasu from "./iryou-datsumo-kaisuu-meyasu";
+import datsumoSalonOsusumeRanking2026 from "./datsumo-salon-osusume-ranking-2026";
+import biyouIryouErabikata2026 from "./biyou-iryou-erabikata-2026";
 
 /** 公開記事一覧（新しい順） */
 export const articles: Article[] = [
@@ -65,6 +86,26 @@ export const articles: Article[] = [
   iryouVsSalonDatsumo2026,
   datsumoSalonOsusume2026,
   biyouIryouHajimeruMae,
+  freyaClinicKuchikomi2026,
+  rizeClinicKuchikomi2026,
+  mensRizeKuchikomi2026,
+  gorillaClinicKuchikomi2026,
+  actuallyClinicManjaroKuchikomi,
+  levaClinicReview,
+  monaClinicReview,
+  shonanDatsumoKuchikomi2026,
+  iryouVsSalonDatsumoTetteihikaku2026,
+  vioDatsumoOsusume2026,
+  kaoDatsumoOsusume2026,
+  higeDatsumoOsusume2026,
+  manjaroVsOzempic2026,
+  glp1DietToha,
+  shibouYoukaiOsusume2026,
+  iryouDietShuruiHikaku2026,
+  biyouClinicCounselingFlow,
+  iryouDatsumoKaisuuMeyasu,
+  datsumoSalonOsusumeRanking2026,
+  biyouIryouErabikata2026,
 ].sort((a, b) => (a.date < b.date ? 1 : -1));
 
 export function getArticle(slug: string): Article | undefined {

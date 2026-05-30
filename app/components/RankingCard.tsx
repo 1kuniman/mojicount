@@ -66,6 +66,16 @@ export default function RankingCard({ service }: { service: Service }) {
         {/* 編集部による詳しい紹介 */}
         <p className="text-[13px] leading-7 text-gray-600">{service.description}</p>
 
+        {/* 編集部が調査してわかったこと */}
+        {service.editorialFindings && (
+          <div className="rounded-lg border border-brand-light/40 bg-brand-light/10 p-3 text-xs">
+            <p className="font-semibold text-brand-deep mb-1 flex items-center gap-1">
+              <span aria-hidden>🔍</span> 編集部が調査してわかったこと
+            </p>
+            <p className="text-gray-700 leading-6">{service.editorialFindings}</p>
+          </div>
+        )}
+
         {/* おすすめポイント3つ */}
         <div>
           <p className="text-xs font-semibold text-brand-deep mb-2">おすすめポイント</p>
