@@ -63,6 +63,56 @@ export default function RankingCard({ service }: { service: Service }) {
           ))}
         </div>
 
+        {/* 使用機器・満足度（編集部調査） */}
+        {(service.machine || service.surveySatisfaction) && (
+          <dl className="grid gap-2 sm:grid-cols-2">
+            {service.machine && (
+              <div className="rounded-lg bg-cream border border-brand-light/30 px-3 py-2">
+                <dt className="text-[10px] font-semibold text-brand-deep">使用脱毛機器</dt>
+                <dd className="text-xs text-gray-700 mt-0.5 leading-5">{service.machine}</dd>
+              </div>
+            )}
+            {service.surveySatisfaction && (
+              <div className="rounded-lg bg-cream border border-brand-light/30 px-3 py-2">
+                <dt className="text-[10px] font-semibold text-brand-deep">満足度（編集部アンケート）</dt>
+                <dd className="text-sm font-bold text-brand-deep mt-0.5">
+                  {service.surveySatisfaction}
+                  <span className="text-[10px] font-normal text-gray-400 ml-1">／回答者300名</span>
+                </dd>
+              </div>
+            )}
+          </dl>
+        )}
+
+        {/* 編集部の本音（良い点・気になる点） */}
+        {(service.honestGood || service.honestConcern) && (
+          <div className="rounded-xl border-2 border-brand/30 bg-white p-3">
+            <p className="text-xs font-bold text-brand-deep mb-2 flex items-center gap-1">
+              <span aria-hidden>💬</span> 編集部の本音
+            </p>
+            {service.honestGood && (
+              <p className="flex gap-2 text-xs text-gray-700 leading-6 mb-1.5">
+                <span className="text-brand font-bold flex-shrink-0">◎ 良い点</span>
+                <span>{service.honestGood}</span>
+              </p>
+            )}
+            {service.honestConcern && (
+              <p className="flex gap-2 text-xs text-gray-700 leading-6">
+                <span className="text-amber-600 font-bold flex-shrink-0">△ 気になる点</span>
+                <span>{service.honestConcern}</span>
+              </p>
+            )}
+          </div>
+        )}
+
+        {/* こんな人には向かない（目立つ位置・正直な注意点） */}
+        <div className="rounded-xl border-2 border-amber-300 bg-amber-50 p-3">
+          <p className="text-xs font-bold text-amber-700 mb-1 flex items-center gap-1">
+            <span aria-hidden>⚠️</span> こんな人には向かない
+          </p>
+          <p className="text-xs text-gray-700 leading-6">{service.notRecommendedFor}</p>
+        </div>
+
         {/* 編集部による詳しい紹介 */}
         <p className="text-[13px] leading-7 text-gray-600">{service.description}</p>
 
@@ -92,14 +142,6 @@ export default function RankingCard({ service }: { service: Service }) {
         <div className="rounded-lg bg-cream p-3 text-xs">
           <span className="font-semibold text-gray-600">こんな人におすすめ：</span>
           <span className="text-gray-600">{service.recommendedFor}</span>
-        </div>
-
-        {/* こんな人には向かない（正直な注意点） */}
-        <div className="rounded-lg border border-amber-200 bg-amber-50/60 p-3 text-xs">
-          <p className="font-semibold text-amber-700 mb-1 flex items-center gap-1">
-            <span aria-hidden>⚠️</span> こんな人には向かない
-          </p>
-          <p className="text-gray-600 leading-6">{service.notRecommendedFor}</p>
         </div>
 
         {service.cons.length > 0 && (

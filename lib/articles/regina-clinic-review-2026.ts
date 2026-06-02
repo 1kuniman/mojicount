@@ -2,7 +2,7 @@ import type { Article } from "../types";
 
 const article: Article = {
   slug: "regina-clinic-review-2026",
-  title: "レジーナクリニックの口コミ・評判【2026年最新】",
+  title: "レジーナクリニックはぶっちゃけどう？本音の口コミ・評判【2026年】",
   description:
     "レジーナクリニックの医療脱毛について、特徴・料金プランの目安・良い評判と気になる評判の傾向を2026年最新でフラットに解説。他クリニックとの比較や「向かない人」までまとめ、自分に合うかの判断材料を提供します。",
   category: "datsumo",

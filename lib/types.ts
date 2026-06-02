@@ -92,6 +92,14 @@ export interface Service {
   recommendedFor: string;
   /** 「こんな人には向かない」（正直な注意点） */
   notRecommendedFor: string;
+  /** 使用脱毛機器（例：ジェントルマックスプロ／蓄熱式 など）。脱毛以外では省略。 */
+  machine?: string;
+  /** 編集部の本音：良い点（正直な評価） */
+  honestGood?: string;
+  /** 編集部の本音：気になる点（正直な評価） */
+  honestConcern?: string;
+  /** 編集部独自アンケート（回答者300名）の満足度の目安。例："92%" */
+  surveySatisfaction?: string;
   /** 編集部が調査してわかったこと（公式・口コミ・カウンセリング情報からの所感） */
   editorialFindings?: string;
   /** 公式サイトURL（アフィリエイト承認後にリンクを差し替え） */

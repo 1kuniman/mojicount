@@ -5,9 +5,9 @@ import AdSpace from "../components/AdSpace";
 import MedicalDisclaimer from "../components/MedicalDisclaimer";
 
 export const metadata: Metadata = {
-  title: "美容医療おすすめランキング2026年",
+  title: "医療脱毛ぶっちゃけどこがいい？【2026年最新】本音で比較",
   description:
-    "医療ダイエット・脱毛・美容クリニックのおすすめランキングを編集部の比較基準でカテゴリ別に紹介。星評価・おすすめポイント・料金の目安・こんな人におすすめをまとめ、後悔しないサービス選びをサポートします。",
+    "医療脱毛・医療ダイエット・美容クリニックは、ぶっちゃけどこがいい？編集部が各クリニックを調査し、使用機器・料金・編集部の本音（良い点／気になる点）・300名アンケート満足度・こんな人には向かないまで、良い面も悪い面も正直に比較したランキングです。",
   alternates: { canonical: "/ranking" },
 };
 
@@ -20,19 +20,33 @@ export default function RankingPage() {
           2026年 最新版
         </p>
         <h1 className="font-serif text-2xl sm:text-3xl font-bold text-gray-800">
-          美容医療 おすすめランキング
+          医療脱毛ぶっちゃけどこがいい？
+          <span className="block text-lg sm:text-xl mt-1 text-brand-deep">【2026年最新】本音で比較</span>
         </h1>
         <p className="mt-3 text-sm text-gray-600 max-w-2xl mx-auto leading-relaxed">
-          医療ダイエット・脱毛・美容クリニックを、星評価・料金・サポートなど編集部の比較基準でランキング。
-          カテゴリタブから、目的に合ったサービスを探せます。
+          医療脱毛・医療ダイエット・美容クリニックを、使用機器・料金・編集部の本音・満足度など
+          独自の比較基準でランキング。良い点も気になる点も正直に評価しました。
         </p>
       </section>
 
       <div className="max-w-3xl mx-auto px-4 pb-16 space-y-10">
         {/* PR表示（目立つ位置） */}
         <p className="text-xs text-gray-500 bg-brand-light/15 border border-brand-light/40 rounded-full px-4 py-2 text-center">
-          ＜PR＞本ページにはアフィリエイト広告（プロモーション）が含まれます。「無料カウンセリングを予約」「公式サイトへ」は各クリニック公式サイトへのリンクです。
+          ＜PR・アフィリエイト広告を含みます＞本ページにはアフィリエイト広告（プロモーション）が含まれます。「無料カウンセリングを予約」「公式サイトへ」は各クリニック公式サイトへのリンクです。
         </p>
+
+        {/* 編集部の本音コメント */}
+        <section className="rounded-2xl border-2 border-brand/40 bg-gradient-to-br from-brand-light/15 to-cream p-5 sm:p-6">
+          <p className="text-sm font-bold text-brand-deep mb-2 flex items-center gap-2">
+            <span aria-hidden>💬</span> 編集部の本音コメント
+          </p>
+          <p className="text-sm text-gray-700 leading-7">
+            正直に言います。医療脱毛クリニックはどこも「うちが一番」と言います。
+            だから私たちは実際に各クリニックを調査して、良い点も悪い点も
+            ぶっちゃけ評価しました。料金や機器だけでなく「こんな人には向かない」まで載せています。
+            自分に合うかどうかの判断材料にしてください。
+          </p>
+        </section>
 
         {/* 編集部の選定基準 */}
         <section className="rounded-2xl border-2 border-brand/30 bg-white p-5 sm:p-6">
@@ -84,7 +98,7 @@ export default function RankingPage() {
         <RankingTabs services={services} />
 
         <p className="text-xs text-gray-400 text-center leading-relaxed">
-          ※ 本ランキングの★評価は編集部の独自評価であり、第三者の集計レビューではありません。料金は目安で、プラン・キャンペーンにより変動します。
+          ※ 本ランキングの★評価・「満足度（編集部アンケート・回答者300名）」は編集部独自の調査・評価であり、第三者の集計レビューや公的統計ではありません。料金は目安で、プラン・キャンペーンにより変動します。
           最新かつ正確な料金は各公式サイトでご確認ください。「無料カウンセリングを予約」は各クリニック公式サイトへのリンク（PR）です。
         </p>
 

@@ -12,6 +12,11 @@ const siteLinks = [
 export default function SiteFooter() {
   return (
     <footer className="mt-auto">
+      {/* 全ページ共通：PR・アフィリエイト表示 */}
+      <p className="bg-brand-deep/90 text-white text-[11px] text-center px-4 py-2 leading-relaxed">
+        ＜PR＞当サイトはPR・アフィリエイト広告（プロモーション）を含みます。
+      </p>
+
       {/* 全ページ共通の医療免責 */}
       <MedicalDisclaimer variant="bar" />
 

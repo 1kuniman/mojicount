@@ -53,6 +53,22 @@ import biyouClinicCounselingFlow from "./biyou-clinic-counseling-flow";
 import iryouDatsumoKaisuuMeyasu from "./iryou-datsumo-kaisuu-meyasu";
 import datsumoSalonOsusumeRanking2026 from "./datsumo-salon-osusume-ranking-2026";
 import biyouIryouErabikata2026 from "./biyou-iryou-erabikata-2026";
+// 2026年6月 追加分（「ぶっちゃけ」本音スタイル）
+import datsumoBucchakeKaisuu2026 from "./datsumo-bucchake-kaisuu-2026";
+import datsumoBucchakeItami2026 from "./datsumo-bucchake-itami-2026";
+import datsumoKoukaiRiyuuTop52026 from "./datsumo-koukai-riyuu-top5-2026";
+import freyaBucchake2026 from "./freya-bucchake-2026";
+import rizeBucchake2026 from "./rize-bucchake-2026";
+import mensRizeBucchake2026 from "./mens-rize-bucchake-2026";
+import gorillaBucchake2026 from "./gorilla-bucchake-2026";
+import manjaroBucchakeNankiro2026 from "./manjaro-bucchake-nankiro-2026";
+import actuallyBucchake2026 from "./actually-bucchake-2026";
+import levaBucchake2026 from "./leva-bucchake-2026";
+import iryouVsHikariBucchake2026 from "./iryou-vs-hikari-bucchake-2026";
+import vioBucchakeItami2026 from "./vio-bucchake-itami-2026";
+import salonVsIryouBucchakeOtoku2026 from "./salon-vs-iryou-bucchake-otoku-2026";
+import manjaroVsWegovyBucchake2026 from "./manjaro-vs-wegovy-bucchake-2026";
+import biyouClinicBucchakeCounseling2026 from "./biyou-clinic-bucchake-counseling-2026";
 
 /** 公開記事一覧（新しい順） */
 export const articles: Article[] = [
@@ -106,6 +122,21 @@ export const articles: Article[] = [
   iryouDatsumoKaisuuMeyasu,
   datsumoSalonOsusumeRanking2026,
   biyouIryouErabikata2026,
+  datsumoBucchakeKaisuu2026,
+  datsumoBucchakeItami2026,
+  datsumoKoukaiRiyuuTop52026,
+  freyaBucchake2026,
+  rizeBucchake2026,
+  mensRizeBucchake2026,
+  gorillaBucchake2026,
+  manjaroBucchakeNankiro2026,
+  actuallyBucchake2026,
+  levaBucchake2026,
+  iryouVsHikariBucchake2026,
+  vioBucchakeItami2026,
+  salonVsIryouBucchakeOtoku2026,
+  manjaroVsWegovyBucchake2026,
+  biyouClinicBucchakeCounseling2026,
 ].sort((a, b) => (a.date < b.date ? 1 : -1));
 
 export function getArticle(slug: string): Article | undefined {

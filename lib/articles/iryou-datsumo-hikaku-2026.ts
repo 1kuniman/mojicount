@@ -2,7 +2,7 @@ import type { Article } from "../types";
 
 const article: Article = {
   slug: "iryou-datsumo-hikaku-2026",
-  title: "医療脱毛おすすめクリニック比較【2026年最新・全身・顔・VIO】",
+  title: "医療脱毛ぶっちゃけどこがいい？【2026年最新】本音比較",
   description:
     "医療脱毛のクリニック選びを2026年最新情報で解説。全身・顔・VIOそれぞれのポイント、料金相場の目安、痛みや回数の違い、後悔しない選び方までフラットに比較しました。",
   category: "datsumo",

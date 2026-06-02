@@ -21,17 +21,17 @@ export default function Home() {
           <div className="grid md:grid-cols-2 gap-8 items-center">
             <div className="text-center md:text-left">
               <p className="inline-block text-xs font-semibold text-brand-deep bg-white/80 rounded-full px-3 py-1 mb-5 shadow-sm">
-                医療ダイエット・脱毛・美容クリニックの比較メディア
+                医療ダイエット・脱毛・美容クリニックを本音で比較
               </p>
               <h1 className="font-serif text-3xl sm:text-5xl font-bold text-white leading-tight drop-shadow-sm">
-                美容医療、
+                ぶっちゃけ、
                 <br className="hidden sm:block" />
-                もっと身近に。
+                どこがいい？
               </h1>
               <p className="mt-5 text-sm sm:text-base text-white/95 leading-relaxed">
-                リアルな口コミと徹底比較で、
+                本音で比較する美容医療メディア。
                 <br className="hidden sm:block" />
-                あなたに合うクリニックが見つかる。
+                良い点も気になる点も正直に、あなたに合うクリニックが見つかる。
               </p>
               <div className="mt-7 flex flex-wrap items-center justify-center md:justify-start gap-3">
                 <Link
@@ -68,7 +68,7 @@ export default function Home() {
       <section className="bg-white border-b border-brand-light/30">
         <div className="max-w-5xl mx-auto px-4 py-6 grid grid-cols-3 gap-4 text-center">
           <Stat value="10院以上" label="比較クリニック数" />
-          <Stat value="30記事以上" label="掲載記事数" />
+          <Stat value="60記事以上" label="掲載記事数" />
           <Stat value="毎月" label="情報を更新" />
         </div>
       </section>

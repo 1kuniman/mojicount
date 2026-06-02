@@ -2,7 +2,7 @@ import type { Article } from "../types";
 
 const article: Article = {
   slug: "manjaro-kouka-fukusayou-2026",
-  title: "マンジャロの効果・副作用・費用【2026年最新】",
+  title: "マンジャロはぶっちゃけ効果ある？副作用・費用を本音で解説【2026年】",
   description:
     "マンジャロ（チルゼパチド）の効果の仕組み・期待できる変化・副作用と対処・費用相場までを2026年最新で総合的に解説。GIP/GLP-1の働き、用量のステップアップ、安全な始め方をフラットにまとめました。使用は必ず医師の診察のもとで。",
   category: "medical-diet",
