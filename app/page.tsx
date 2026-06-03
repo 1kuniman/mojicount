@@ -1,10 +1,16 @@
 import Link from "next/link";
 import { concerns } from "@/lib/concerns";
-import { popularArticles, articles, getMonthlyTop5 } from "@/lib/articles";
+import {
+  popularArticles,
+  articles,
+  getMonthlyTop5,
+  getArticlesByCategory,
+} from "@/lib/articles";
 import { featuredTop3 } from "@/lib/services";
-import { getCategory } from "@/lib/categories";
+import { getCategory, categories } from "@/lib/categories";
 import ArticleCard from "./components/ArticleCard";
 import RankingCard from "./components/RankingCard";
+import PopularRanking from "./components/PopularRanking";
 import AdSpace from "./components/AdSpace";
 
 export default function Home() {
@@ -94,6 +100,41 @@ export default function Home() {
           </div>
         </section>
 
+        {/* カテゴリから探す（内部リンク強化） */}
+        <section>
+          <SectionHeading title="カテゴリから探す" subtitle="気になる分野の記事をまとめてチェック" />
+          <div className="grid sm:grid-cols-2 gap-4">
+            {categories.map((c) => {
+              const count = getArticlesByCategory(c.slug).length;
+              return (
+                <Link
+                  key={c.slug}
+                  href={`/category/${c.slug}`}
+                  className="group flex items-start gap-4 rounded-2xl border border-brand-light/40 bg-white p-5 hover:border-brand hover:shadow-md transition-all"
+                >
+                  <span className="text-3xl flex-shrink-0">{c.emoji}</span>
+                  <span className="min-w-0">
+                    <span className="flex items-center gap-2">
+                      <span className="font-bold text-gray-800 group-hover:text-brand-deep transition-colors">
+                        {c.name}
+                      </span>
+                      <span className="text-[11px] text-brand-deep bg-brand-light/20 rounded-full px-2 py-0.5">
+                        {count}記事
+                      </span>
+                    </span>
+                    <span className="mt-1 block text-xs text-gray-500 leading-relaxed">
+                      {c.description}
+                    </span>
+                    <span className="mt-2 inline-block text-xs font-medium text-brand-deep group-hover:translate-x-0.5 transition-transform">
+                      記事を見る →
+                    </span>
+                  </span>
+                </Link>
+              );
+            })}
+          </div>
+        </section>
+
         <AdSpace label="スポンサーリンク" />
 
         {/* 編集部イチオシ */}
@@ -159,6 +200,11 @@ export default function Home() {
               <ArticleCard key={a.slug} article={a} />
             ))}
           </div>
+        </section>
+
+        {/* 人気記事ランキング TOP10（内部リンク強化） */}
+        <section className="max-w-2xl mx-auto w-full">
+          <PopularRanking limit={10} heading="人気記事ランキング TOP10" />
         </section>
 
         <AdSpace label="スポンサーリンク" variant="rect" />

@@ -20,6 +20,14 @@ export interface Review {
   text: string;
 }
 
+/** よくある質問（FAQ）。FAQPage 構造化データ（JSON-LD）の生成にも使われる。 */
+export interface Faq {
+  /** 質問 */
+  q: string;
+  /** 回答 */
+  a: string;
+}
+
 export interface Author {
   id: string;
   name: string;
@@ -54,6 +62,8 @@ export interface Article {
   relatedServiceCategory?: CategorySlug;
   /** 口コミ風セクション（イメージ例） */
   reviews?: Review[];
+  /** よくある質問（FAQ）。指定すると専用セクション＋FAQPage構造化データを出力する。 */
+  faqs?: Faq[];
   blocks: Block[];
 }
 

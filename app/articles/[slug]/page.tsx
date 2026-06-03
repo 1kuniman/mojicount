@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import {
   getArticle,
   getRelatedArticles,
+  getFaqs,
   articles,
   buildToc,
   estimateReadingMinutes,
@@ -18,6 +19,8 @@ import MedicalDisclaimer from "@/app/components/MedicalDisclaimer";
 import ReviewsSection from "@/app/components/ReviewsSection";
 import RelatedServices from "@/app/components/RelatedServices";
 import PriceCompareTable from "@/app/components/PriceCompareTable";
+import PopularRanking from "@/app/components/PopularRanking";
+import ArticleJsonLd from "@/app/components/ArticleJsonLd";
 import { AuthorBadge, AuthorCard } from "@/app/components/AuthorBadge";
 
 export function generateStaticParams() {
@@ -65,6 +68,7 @@ export default async function ArticlePage({
   const category = getCategory(article.category);
   const toc = buildToc(article.blocks);
   const related = getRelatedArticles(slug);
+  const faqs = getFaqs(article);
   const minutes = estimateReadingMinutes(article.blocks);
   const relatedServiceCategory = article.relatedServiceCategory ?? article.category;
 
@@ -82,7 +86,11 @@ export default async function ArticlePage({
 
   return (
     <main className="flex-1">
-      <article className="max-w-3xl mx-auto px-4 py-8 sm:py-10">
+      {/* 構造化データ（BlogPosting / FAQPage） */}
+      <ArticleJsonLd article={article} faqs={faqs} />
+
+      <div className="max-w-6xl mx-auto px-4 lg:flex lg:gap-8 lg:items-start">
+      <article className="w-full max-w-3xl mx-auto lg:mx-0 lg:flex-1 lg:min-w-0 py-8 sm:py-10">
         {/* パンくず */}
         <nav className="text-xs text-gray-400 mb-4 flex flex-wrap items-center gap-1.5" aria-label="パンくず">
           <Link href="/" className="hover:text-brand-deep">ホーム</Link>
@@ -200,6 +208,35 @@ export default async function ArticlePage({
           </section>
         )}
 
+        {/* よくある質問（FAQ） */}
+        {article.faqs && article.faqs.length > 0 && (
+          <section className="mt-10">
+            <h2 className="font-serif text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+              <span aria-hidden>❓</span> よくある質問（FAQ）
+            </h2>
+            <div className="space-y-3">
+              {article.faqs.map((f, i) => (
+                <details
+                  key={i}
+                  className="group rounded-xl border border-brand-light/40 bg-white overflow-hidden"
+                >
+                  <summary className="cursor-pointer list-none px-4 py-3 flex items-start gap-2 font-bold text-sm text-gray-800 hover:bg-cream transition-colors">
+                    <span className="text-brand-deep flex-shrink-0">Q.</span>
+                    <span className="flex-1">{f.q}</span>
+                    <span className="text-brand-deep flex-shrink-0 transition-transform group-open:rotate-180" aria-hidden>
+                      ▼
+                    </span>
+                  </summary>
+                  <div className="px-4 pb-4 pt-1 flex gap-2 text-sm leading-7 text-gray-700 border-t border-brand-light/20">
+                    <span className="text-brand font-bold flex-shrink-0">A.</span>
+                    <p>{f.a}</p>
+                  </div>
+                </details>
+              ))}
+            </div>
+          </section>
+        )}
+
         {/* 読者の声（イメージ例） */}
         {article.reviews && <ReviewsSection reviews={article.reviews} />}
 
@@ -232,6 +269,15 @@ export default async function ArticlePage({
           <MedicalDisclaimer variant="block" />
         </div>
       </article>
+
+      {/* サイドバー：人気記事 TOP10（内部リンク強化） */}
+      <aside className="hidden lg:block lg:w-72 lg:flex-shrink-0 py-10">
+        <div className="sticky top-20 space-y-6">
+          <PopularRanking limit={10} currentSlug={article.slug} />
+          <AdSpace label="スポンサーリンク" />
+        </div>
+      </aside>
+      </div>
 
       {/* 関連記事 */}
       {related.length > 0 && (
