@@ -7,7 +7,7 @@ import MedicalDisclaimer from "../components/MedicalDisclaimer";
 export const metadata: Metadata = {
   title: "医療脱毛ぶっちゃけどこがいい？【2026年最新】本音で比較",
   description:
-    "医療脱毛・医療ダイエット・美容クリニックは、ぶっちゃけどこがいい？編集部が各クリニックを調査し、使用機器・料金・編集部の本音（良い点／気になる点）・300名アンケート満足度・こんな人には向かないまで、良い面も悪い面も正直に比較したランキングです。",
+    "医療脱毛・医療ダイエット・美容クリニックは、ぶっちゃけどこがいい？各クリニックの公式情報や公開されている情報をもとに、使用機器・編集部の本音（良い点／気になる点）・こんな人には向かないまで、良い面も気になる面も正直に整理した比較ランキングです。料金は変動するため各公式サイトでご確認ください。",
   alternates: { canonical: "/ranking" },
 };
 
@@ -24,8 +24,8 @@ export default function RankingPage() {
           <span className="block text-lg sm:text-xl mt-1 text-brand-deep">【2026年最新】本音で比較</span>
         </h1>
         <p className="mt-3 text-sm text-gray-600 max-w-2xl mx-auto leading-relaxed">
-          医療脱毛・医療ダイエット・美容クリニックを、使用機器・料金・編集部の本音・満足度など
-          独自の比較基準でランキング。良い点も気になる点も正直に評価しました。
+          医療脱毛・医療ダイエット・美容クリニックを、使用機器・編集部の本音など
+          独自の比較基準で整理。良い点も気になる点も正直にまとめました。
         </p>
       </section>
 
@@ -42,8 +42,8 @@ export default function RankingPage() {
           </p>
           <p className="text-sm text-gray-700 leading-7">
             正直に言います。医療脱毛クリニックはどこも「うちが一番」と言います。
-            だから私たちは実際に各クリニックを調査して、良い点も悪い点も
-            ぶっちゃけ評価しました。料金や機器だけでなく「こんな人には向かない」まで載せています。
+            だから当サイトでは各クリニックの公式情報や公開されている情報をもとに、良い点も気になる点も
+            できるだけ正直に整理しました。機器や特徴だけでなく「こんな人には向かない」まで載せています。
             自分に合うかどうかの判断材料にしてください。
           </p>
         </section>
@@ -54,17 +54,17 @@ export default function RankingPage() {
             <span aria-hidden>🔍</span> 編集部の選定基準
           </h2>
           <p className="text-sm text-gray-700 leading-7">
-            当サイトでは編集部が各クリニックの公式サイト・口コミサイト・カウンセリング内容を調査し、料金・実績・口コミ・アクセスのしやすさを基準に評価しています。
+            当サイトでは各クリニックの公式サイトや公開されている情報をもとに、料金・特徴・通いやすさ・保証制度などを整理しています。
             メリットだけでなく、注意点や「向かない人」もできるだけ正直に記載することを心がけています。
           </p>
           <dl className="mt-4 grid gap-3 sm:grid-cols-2">
             <div className="rounded-xl bg-cream border border-brand-light/30 px-4 py-3">
-              <dt className="text-xs font-semibold text-brand-deep">調査期間</dt>
-              <dd className="text-sm text-gray-700 mt-0.5">2025年1月〜2026年5月</dd>
+              <dt className="text-xs font-semibold text-brand-deep">情報参照時点</dt>
+              <dd className="text-sm text-gray-700 mt-0.5">2026年5月時点</dd>
             </div>
             <div className="rounded-xl bg-cream border border-brand-light/30 px-4 py-3">
-              <dt className="text-xs font-semibold text-brand-deep">調査対象</dt>
-              <dd className="text-sm text-gray-700 mt-0.5">公式サイト・口コミサイト・カウンセリング内容</dd>
+              <dt className="text-xs font-semibold text-brand-deep">参照情報</dt>
+              <dd className="text-sm text-gray-700 mt-0.5">各クリニックの公式サイト・公開情報</dd>
             </div>
           </dl>
           <div className="mt-4">
@@ -98,7 +98,7 @@ export default function RankingPage() {
         <RankingTabs services={services} />
 
         <p className="text-xs text-gray-400 text-center leading-relaxed">
-          ※ 本ランキングの★評価・「満足度（編集部アンケート・回答者300名）」は編集部独自の調査・評価であり、第三者の集計レビューや公的統計ではありません。料金は目安で、プラン・キャンペーンにより変動します。
+          ※ 本ランキングの★評価は編集部独自の評価であり、第三者の集計レビューや公的統計ではありません。料金はプラン・キャンペーンにより変動します。
           最新かつ正確な料金は各公式サイトでご確認ください。「無料カウンセリングを予約」は各クリニック公式サイトへのリンク（PR）です。
         </p>
 

@@ -12,14 +12,6 @@ export type Block =
   | { type: "note"; title?: string; text: string }
   | { type: "table"; caption?: string; headers: string[]; rows: string[][] };
 
-/** 口コミ風セクション。あくまで一般的な声のイメージ例（実在の個人の感想ではない）。 */
-export interface Review {
-  nickname: string;
-  age: string;
-  rating: number;
-  text: string;
-}
-
 /** よくある質問（FAQ）。FAQPage 構造化データ（JSON-LD）の生成にも使われる。 */
 export interface Faq {
   /** 質問 */
@@ -60,8 +52,6 @@ export interface Article {
   bestFor?: string[];
   /** 「関連する施術・クリニック」で表示するカテゴリ（省略時は category） */
   relatedServiceCategory?: CategorySlug;
-  /** 口コミ風セクション（イメージ例） */
-  reviews?: Review[];
   /** よくある質問（FAQ）。指定すると専用セクション＋FAQPage構造化データを出力する。 */
   faqs?: Faq[];
   blocks: Block[];
@@ -92,7 +82,6 @@ export interface Service {
   catchphrase: string;
   /** 5 点満点（編集部の独自評価） */
   rating: number;
-  priceFrom: string;
   /** 詳細な紹介文（300字以上。ランキングカードに表示） */
   description: string;
   features: string[];
@@ -108,10 +97,6 @@ export interface Service {
   honestGood?: string;
   /** 編集部の本音：気になる点（正直な評価） */
   honestConcern?: string;
-  /** 編集部独自アンケート（回答者300名）の満足度の目安。例："92%" */
-  surveySatisfaction?: string;
-  /** 編集部が調査してわかったこと（公式・口コミ・カウンセリング情報からの所感） */
-  editorialFindings?: string;
   /** 公式サイトURL（アフィリエイト承認後にリンクを差し替え） */
   url: string;
 }

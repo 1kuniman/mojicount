@@ -16,7 +16,6 @@ import TableOfContents from "@/app/components/TableOfContents";
 import ArticleCard from "@/app/components/ArticleCard";
 import AdSpace from "@/app/components/AdSpace";
 import MedicalDisclaimer from "@/app/components/MedicalDisclaimer";
-import ReviewsSection from "@/app/components/ReviewsSection";
 import RelatedServices from "@/app/components/RelatedServices";
 import PriceCompareTable from "@/app/components/PriceCompareTable";
 import PopularRanking from "@/app/components/PopularRanking";
@@ -236,9 +235,6 @@ export default async function ArticlePage({
             </div>
           </section>
         )}
-
-        {/* 読者の声（イメージ例） */}
-        {article.reviews && <ReviewsSection reviews={article.reviews} />}
 
         {/* タグ */}
         {article.tags.length > 0 && (

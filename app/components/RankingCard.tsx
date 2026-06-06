@@ -46,9 +46,8 @@ export default function RankingCard({ service }: { service: Service }) {
       <div className="p-4 space-y-4">
         <div className="flex flex-wrap items-center justify-between gap-2">
           <Stars rating={service.rating} />
-          <span className="text-sm">
-            <span className="text-gray-500">料金目安 </span>
-            <span className="font-bold text-brand-deep">{service.priceFrom}</span>
+          <span className="text-xs text-gray-500">
+            料金は変動します。各公式サイトでご確認ください
           </span>
         </div>
 
@@ -63,24 +62,13 @@ export default function RankingCard({ service }: { service: Service }) {
           ))}
         </div>
 
-        {/* 使用機器・満足度（編集部調査） */}
-        {(service.machine || service.surveySatisfaction) && (
+        {/* 使用機器 */}
+        {service.machine && (
           <dl className="grid gap-2 sm:grid-cols-2">
-            {service.machine && (
-              <div className="rounded-lg bg-cream border border-brand-light/30 px-3 py-2">
-                <dt className="text-[10px] font-semibold text-brand-deep">使用脱毛機器</dt>
-                <dd className="text-xs text-gray-700 mt-0.5 leading-5">{service.machine}</dd>
-              </div>
-            )}
-            {service.surveySatisfaction && (
-              <div className="rounded-lg bg-cream border border-brand-light/30 px-3 py-2">
-                <dt className="text-[10px] font-semibold text-brand-deep">満足度（編集部アンケート）</dt>
-                <dd className="text-sm font-bold text-brand-deep mt-0.5">
-                  {service.surveySatisfaction}
-                  <span className="text-[10px] font-normal text-gray-400 ml-1">／回答者300名</span>
-                </dd>
-              </div>
-            )}
+            <div className="rounded-lg bg-cream border border-brand-light/30 px-3 py-2">
+              <dt className="text-[10px] font-semibold text-brand-deep">使用脱毛機器</dt>
+              <dd className="text-xs text-gray-700 mt-0.5 leading-5">{service.machine}</dd>
+            </div>
           </dl>
         )}
 
@@ -115,16 +103,6 @@ export default function RankingCard({ service }: { service: Service }) {
 
         {/* 編集部による詳しい紹介 */}
         <p className="text-[13px] leading-7 text-gray-600">{service.description}</p>
-
-        {/* 編集部が調査してわかったこと */}
-        {service.editorialFindings && (
-          <div className="rounded-lg border border-brand-light/40 bg-brand-light/10 p-3 text-xs">
-            <p className="font-semibold text-brand-deep mb-1 flex items-center gap-1">
-              <span aria-hidden>🔍</span> 編集部が調査してわかったこと
-            </p>
-            <p className="text-gray-700 leading-6">{service.editorialFindings}</p>
-          </div>
-        )}
 
         {/* おすすめポイント3つ */}
         <div>

@@ -12,7 +12,7 @@ export default function RelatedServices({ category }: { category: CategorySlug }
     <section className="mt-10">
       <h2 className="font-serif text-xl font-bold text-gray-800 mb-1">関連する施術・クリニック</h2>
       <p className="text-[11px] text-gray-400 mb-4">
-        ※ ★評価は編集部の独自評価です。料金は目安のため最新は各公式サイトでご確認ください（リンクはPR）。
+        ※ ★評価は編集部の独自評価です。料金は変動するため、最新は各公式サイトでご確認ください（リンクはPR）。
       </p>
       <div className="space-y-3">
         {list.map((s) => (
@@ -26,7 +26,7 @@ export default function RelatedServices({ category }: { category: CategorySlug }
               <p className="text-xs mt-1">
                 <span className="text-brand">{"★".repeat(Math.round(s.rating))}</span>
                 <span className="text-gray-500 ml-1">{s.rating.toFixed(1)}</span>
-                <span className="text-gray-400 ml-2">料金目安 {s.priceFrom}</span>
+                <span className="text-gray-400 ml-2">料金は公式サイトで要確認</span>
               </p>
             </div>
             <a

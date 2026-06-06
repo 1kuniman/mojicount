@@ -1,12 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { authors } from "@/lib/authors";
-import { AuthorCard } from "../components/AuthorBadge";
 
 export const metadata: Metadata = {
   title: "運営者情報",
   description:
-    "美容医療比較メディア「美容すすめ」の運営者情報・編集部とライターの紹介・監修と編集方針についてご案内しています。",
+    "美容医療の比較・情報サイト「美容すすめ」の運営者情報・編集方針についてご案内しています。当サイトは個人が運営しており、医師による監修は受けていません。",
   alternates: { canonical: "/about" },
 };
 
@@ -48,44 +46,14 @@ export default function AboutPage() {
 
         <Section title="サイトについて">
           <p>
-            当サイトは2025年に開設。医療脱毛・医療ダイエットを専門に比較する独立したメディアです。
-            広告掲載クリニックの選定には関与しておらず、編集部が独自に評価・ランキングしています。
+            「美容すすめ」は、個人が運営する美容医療の比較・情報サイトです。医師による監修は受けていません。
+            掲載内容は、各クリニックの公式情報や公的機関などの公開されている情報をもとに作成しています。
           </p>
           <p>
-            「美容すすめ」は、医療ダイエット・脱毛・美容クリニックといった美容医療の情報を、
-            効果・副作用・費用の観点からできるだけ中立的に、良い点も気になる点も「ぶっちゃけ」本音で比較・解説するメディアです。
-            これから美容医療を検討する方が、納得して一歩を踏み出せるようサポートすることを目的としています。
+            医療ダイエット・脱毛・美容クリニックといった美容医療の情報を、効果・副作用・費用の観点から
+            できるだけ中立的に、良い点も気になる点も整理してお伝えすることを目的としています。
+            これから美容医療を検討する方が、納得して一歩を踏み出せるようサポートできればと考えています。
           </p>
-        </Section>
-
-        {/* 編集長プロフィール（強調表示） */}
-        <Section title="編集長プロフィール">
-          <div className="not-prose rounded-2xl border-2 border-brand/30 bg-cream/60 p-5 sm:p-6">
-            <div className="flex items-start gap-4">
-              <span className="bg-gradient-to-br from-brand to-brand-deep text-white w-14 h-14 rounded-full flex items-center justify-center text-2xl shadow-sm flex-shrink-0">
-                ✒️
-              </span>
-              <div className="min-w-0">
-                <p className="text-sm font-bold text-gray-800">美容すすめ 編集長</p>
-                <p className="text-xs text-brand-deep mt-0.5">美容医療専門ライター（匿名）・10年以上の美容医療取材経験</p>
-                <p className="mt-3 text-sm leading-7 text-gray-700">
-                  美容医療専門ライターとして10年以上の取材経験を持ち、医療ダイエット・医療脱毛・美容クリニックを中心に
-                  各院・各施術の公開情報を継続的にウォッチしています。「効果・費用・リスクを正直に伝える」「全クリニックを公平に評価する」を
-                  編集方針の根幹に据え、表面的な比較だけにとどまらない情報設計を心がけています。
-                </p>
-              </div>
-            </div>
-          </div>
-        </Section>
-
-        {/* 編集部・ライター紹介 */}
-        <Section title="編集部・ライター紹介">
-          <p>当サイトの記事は、以下の編集部・ライターが執筆・編集しています。</p>
-          <div className="not-prose space-y-4 mt-4">
-            {authors.map((a) => (
-              <AuthorCard key={a.id} id={a.id} />
-            ))}
-          </div>
         </Section>
 
         {/* 監修・編集方針について */}

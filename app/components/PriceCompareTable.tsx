@@ -34,60 +34,54 @@ interface PriceTableData {
 
 const TABLES: Record<PriceTableType, PriceTableData> = {
   datsumo: {
-    title: "医療脱毛 料金比較表",
+    title: "医療脱毛 クリニック一覧",
     priceColumns: ["全身5回", "全身+VIO5回", "全身+VIO+顔5回"],
     rows: [
       {
         clinic: "レジーナクリニック",
-        prices: ["149,600円", "189,800円", "214,500円"],
+        prices: ["公式で確認", "公式で確認", "公式で確認"],
         feature: "女性専用・全国展開",
         url: "https://www.reginaclinic.jp/",
       },
       {
         clinic: "フレイアクリニック",
-        prices: ["128,000円", "168,000円", "198,000円"],
+        prices: ["公式で確認", "公式で確認", "公式で確認"],
         feature: "痛みが少ない",
         url: "https://frey-a.jp/",
       },
       {
         clinic: "リゼクリニック",
-        prices: ["138,000円", "178,000円", "208,000円"],
+        prices: ["公式で確認", "公式で確認", "公式で確認"],
         feature: "追加照射保証あり",
         url: "https://lize-clinic.jp/",
       },
       {
         clinic: "湘南美容クリニック",
-        prices: ["99,800円", "139,800円", "169,800円"],
-        feature: "全国最大級",
+        prices: ["公式で確認", "公式で確認", "公式で確認"],
+        feature: "全国展開",
         url: "https://www.s-b-c.net/",
-      },
-      {
-        clinic: "業界中央値",
-        prices: ["172,900円", "210,000円", "250,000円"],
-        feature: "参考値",
-        reference: true,
       },
     ],
   },
   manjaro: {
-    title: "マンジャロ 料金比較表",
+    title: "マンジャロ クリニック一覧",
     priceColumns: ["0.5mg", "1mg", "2.5mg"],
     rows: [
       {
         clinic: "Actually,（アクチュアリー）",
-        prices: ["8,800円〜", "12,800円〜", "18,800円〜"],
-        feature: "国内最安値水準",
+        prices: ["公式で確認", "公式で確認", "公式で確認"],
+        feature: "オンライン診療",
         url: "https://actually-clinic.com/",
       },
       {
         clinic: "レバクリ",
-        prices: ["要問い合わせ", "要問い合わせ", "要問い合わせ"],
+        prices: ["公式で確認", "公式で確認", "公式で確認"],
         feature: "待ち時間なし",
         url: "https://leva.clinic/",
       },
       {
         clinic: "Mona Clinic（モナクリニック）",
-        prices: ["要問い合わせ", "要問い合わせ", "要問い合わせ"],
+        prices: ["公式で確認", "公式で確認", "公式で確認"],
         feature: "即日発送",
         url: "https://mona-clinic.jp/",
       },
@@ -193,7 +187,7 @@ export default function PriceCompareTable({
       </div>
 
       <p className="text-xs text-gray-400 mt-2 leading-relaxed">
-        ※料金は2026年5月時点。最新情報は各公式サイトでご確認ください。「公式サイトへ」は各クリニック公式サイトへのリンク（PR）です。
+        ※料金はプラン・キャンペーンにより変動します。最新かつ正確な料金は必ず各公式サイトでご確認ください。「公式サイトへ」は各クリニック公式サイトへのリンク（PR）です。
       </p>
     </section>
   );
