@@ -23,9 +23,16 @@ export const metadata: Metadata = {
     siteName: SITE_NAME,
     title: `${SITE_NAME} | ブラウザ完結の無料文章ツール集`,
     description: SITE_DESC,
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: SITE_NAME }],
   },
-  robots: { index: true, follow: true },
+  twitter: {
+    card: "summary_large_image",
+    title: `${SITE_NAME} | ブラウザ完結の無料文章ツール集`,
+    description: SITE_DESC,
+    images: ["/og.png"],
+  },
   verification: { google: "cA-41LRoOTDuIN9IvgUqBxxrSkT5-mQsH1rlFLFp8sQ" },
+  robots: { index: true, follow: true },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
