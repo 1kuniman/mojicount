@@ -2,11 +2,11 @@ export interface Tool {
   slug: string;
   href: string;
   title: string;
-  subtitle: string;   // サイドバー用の短い説明
-  description: string; // トップ一覧の説明
-  mark: string;        // 朱印風の記号
-  accent: string;      // テーマ色
-  accentSoft: string;  // 淡い背景色
+  subtitle: string;
+  description: string;
+  mark: string;
+  accent: string;
+  accentSoft: string;
 }
 
 export const TOOLS: Tool[] = [
@@ -42,5 +42,27 @@ export const TOOLS: Tool[] = [
     mark: "整",
     accent: "#3f7256",
     accentSoft: "#dde9e1",
+  },
+  {
+    slug: "encode",
+    href: "/encode/",
+    title: "エンコード・デコード",
+    subtitle: "Base64・URLエンコード/デコード",
+    description:
+      "Base64 と URL（パーセント）エンコードの相互変換。日本語（UTF-8）もそのまま正しく処理します。",
+    mark: "符",
+    accent: "#6b4a8f",
+    accentSoft: "#e7dff0",
+  },
+  {
+    slug: "datasize",
+    href: "/datasize/",
+    title: "データサイズ変換",
+    subtitle: "B・KB・MB・GB・TB の相互換算",
+    description:
+      "バイト/KB/MB/GB/TB/PB をまとめて相互変換。1KB=1024 と 1000 の両方式に対応。",
+    mark: "量",
+    accent: "#b9742a",
+    accentSoft: "#f3e6d4",
   },
 ];

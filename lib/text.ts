@@ -176,3 +176,60 @@ export function formatText(input: string, opt: FormatOptions): string {
 
   return lines.join("\n");
 }
+
+/* ===================== エンコード / デコード ===================== */
+
+export function encodeBase64(s: string): string {
+  const bytes = new TextEncoder().encode(s);
+  let bin = "";
+  bytes.forEach((b) => (bin += String.fromCharCode(b)));
+  return btoa(bin);
+}
+
+export function decodeBase64(s: string): string {
+  const bin = atob(s.trim());
+  const bytes = Uint8Array.from(bin, (c) => c.charCodeAt(0));
+  return new TextDecoder().decode(bytes);
+}
+
+export function encodeUrl(s: string): string {
+  return encodeURIComponent(s);
+}
+
+export function decodeUrl(s: string): string {
+  return decodeURIComponent(s);
+}
+
+/* ===================== データサイズ変換 ===================== */
+
+export const SIZE_UNITS = ["B", "KB", "MB", "GB", "TB", "PB"] as const;
+export type SizeUnit = (typeof SIZE_UNITS)[number];
+
+export function toBytes(value: number, unit: SizeUnit, base: 1000 | 1024): number {
+  const i = SIZE_UNITS.indexOf(unit);
+  return value * Math.pow(base, i);
+}
+
+export function convertSize(
+  value: number,
+  unit: SizeUnit,
+  base: 1000 | 1024
+): Record<SizeUnit, number> {
+  const bytes = toBytes(value, unit, base);
+  const out = {} as Record<SizeUnit, number>;
+  SIZE_UNITS.forEach((u, i) => {
+    out[u] = bytes / Math.pow(base, i);
+  });
+  return out;
+}
+
+export function formatNumber(n: number): string {
+  if (!isFinite(n)) return "-";
+  if (n === 0) return "0";
+  // 大きすぎ/小さすぎる桁は指数、それ以外は最大6桁の小数で整える
+  if (Math.abs(n) >= 1e15 || (Math.abs(n) < 1e-6 && n !== 0)) {
+    return n.toExponential(4);
+  }
+  const rounded = Math.round(n * 1e6) / 1e6;
+  return rounded.toLocaleString("en-US", { maximumFractionDigits: 6 });
+}
