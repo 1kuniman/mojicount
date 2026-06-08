@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import FormatTool from "@/components/FormatTool";
+import ToolHeader from "@/components/ToolHeader";
 import Faq from "@/components/Faq";
 
 export const metadata: Metadata = {
@@ -11,12 +12,10 @@ export const metadata: Metadata = {
 export default function FormatPage() {
   return (
     <div className="mx-auto max-w-5xl px-5 py-10">
-      <header className="mb-8">
-        <h1 className="font-mincho text-3xl sm:text-4xl font-bold text-ink">テキスト整形</h1>
-        <p className="mt-3 text-ink-soft leading-relaxed max-w-2xl">
-          リストやログ、コピペで崩れた文章を、重複行の削除・空行の削除・前後の空白除去・連続スペースの圧縮・並び替えで一気に整えます。チェックを組み合わせると、入力と同時に結果へ反映されます。
-        </p>
-      </header>
+      <ToolHeader
+        slug="format"
+        lead="リストやログ、コピペで崩れた文章を、重複行の削除・空行の削除・前後の空白除去・連続スペースの圧縮・並び替えで一気に整えます。チェックを組み合わせると、入力と同時に結果へ反映されます。"
+      />
 
       <FormatTool />
 

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Header from "@/components/Header";
+import Sidebar from "@/components/Sidebar";
 import Footer from "@/components/Footer";
 
 const SITE_NAME = "もじもじツール";
@@ -37,11 +37,21 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Shippori+Mincho:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap"
           rel="stylesheet"
         />
+        {/* Google AdSense（審査・配信用） */}
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8297663476934392"
+          crossOrigin="anonymous"
+        />
       </head>
-      <body className="min-h-screen flex flex-col">
-        <Header />
-        <main className="flex-1 w-full">{children}</main>
-        <Footer />
+      <body className="min-h-screen">
+        <div className="flex flex-col md:flex-row min-h-screen">
+          <Sidebar />
+          <div className="flex-1 min-w-0 flex flex-col">
+            <main className="flex-1 w-full">{children}</main>
+            <Footer />
+          </div>
+        </div>
       </body>
     </html>
   );

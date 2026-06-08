@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import CounterTool from "@/components/CounterTool";
+import ToolHeader from "@/components/ToolHeader";
 import Faq from "@/components/Faq";
 
 export const metadata: Metadata = {
@@ -11,12 +12,10 @@ export const metadata: Metadata = {
 export default function CountPage() {
   return (
     <div className="mx-auto max-w-5xl px-5 py-10">
-      <header className="mb-8">
-        <h1 className="font-mincho text-3xl sm:text-4xl font-bold text-ink">文字数カウント</h1>
-        <p className="mt-3 text-ink-soft leading-relaxed max-w-2xl">
-          文章を入力・貼り付けすると、文字数や行数だけでなく、原稿用紙の枚数、バイト数、文字種別、読了時間、主要SNSの文字数制限までまとめて確認できます。処理はすべてあなたのブラウザの中で行われます。
-        </p>
-      </header>
+      <ToolHeader
+        slug="count"
+        lead="文章を入力・貼り付けすると、文字数や行数だけでなく、原稿用紙の枚数、バイト数、文字種別、読了時間、主要SNSの文字数制限までまとめて確認できます。処理はすべてあなたのブラウザの中で行われます。"
+      />
 
       <CounterTool />
 

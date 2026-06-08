@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import ConvertTool from "@/components/ConvertTool";
+import ToolHeader from "@/components/ToolHeader";
 import Faq from "@/components/Faq";
 
 export const metadata: Metadata = {
@@ -11,12 +12,10 @@ export const metadata: Metadata = {
 export default function ConvertPage() {
   return (
     <div className="mx-auto max-w-5xl px-5 py-10">
-      <header className="mb-8">
-        <h1 className="font-mincho text-3xl sm:text-4xl font-bold text-ink">全角半角・かな変換</h1>
-        <p className="mt-3 text-ink-soft leading-relaxed max-w-2xl">
-          全角と半角（英数字・記号）の相互変換、ひらがなとカタカナの相互変換、英字の大文字・小文字変換に対応。フォーム入力やデータ整理での表記ゆれをまとめて整えられます。
-        </p>
-      </header>
+      <ToolHeader
+        slug="convert"
+        lead="全角と半角（英数字・記号）の相互変換、ひらがなとカタカナの相互変換、英字の大文字・小文字変換に対応。フォーム入力やデータ整理での表記ゆれをまとめて整えられます。"
+      />
 
       <ConvertTool />
 
