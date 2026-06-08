@@ -1,98 +1,47 @@
 import type { Metadata } from "next";
-import { Noto_Sans_JP, Noto_Serif_JP } from "next/font/google";
-import Script from "next/script";
 import "./globals.css";
-import SiteHeader from "./components/SiteHeader";
-import SiteFooter from "./components/SiteFooter";
-import { siteUrl, siteName, siteDescription } from "@/lib/site";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
-const notoSansJP = Noto_Sans_JP({
-  variable: "--font-noto-sans-jp",
-  subsets: ["latin"],
-  weight: ["400", "500", "700"],
-});
-
-const notoSerifJP = Noto_Serif_JP({
-  variable: "--font-noto-serif-jp",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-});
+const SITE_NAME = "もじもじツール";
+const SITE_DESC =
+  "文字数カウント・全角半角/かな変換・テキスト整形が、すべてブラウザ内で完結する無料の文章ツール集。入力したテキストはサーバーに送信されません。";
+const SITE_URL = "https://mojimojicount.com";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
+  metadataBase: new URL(SITE_URL),
   title: {
-    default: siteName,
-    template: "%s｜美容すすめ",
+    default: `${SITE_NAME} | ブラウザ完結の無料文章ツール集`,
+    template: `%s | ${SITE_NAME}`,
   },
-  description: siteDescription,
-  keywords: [
-    "美容医療",
-    "医療ダイエット",
-    "マンジャロ",
-    "医療脱毛",
-    "脱毛サロン",
-    "美容クリニック",
-    "二重整形",
-    "鼻整形",
-    "美容皮膚科",
-    "比較",
-    "ランキング",
-  ],
-  authors: [{ name: "美容すすめ編集部" }],
-  alternates: {
-    canonical: "/",
-  },
+  description: SITE_DESC,
+  keywords: ["文字数カウント", "文字数カウンター", "全角半角変換", "ひらがなカタカナ変換", "テキスト整形", "重複行削除", "原稿用紙 換算", "SNS 文字数"],
   openGraph: {
     type: "website",
     locale: "ja_JP",
-    url: siteUrl,
-    siteName,
-    title: siteName,
-    description: siteDescription,
-    images: [
-      {
-        url: "/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: siteName,
-      },
-    ],
+    url: SITE_URL,
+    siteName: SITE_NAME,
+    title: `${SITE_NAME} | ブラウザ完結の無料文章ツール集`,
+    description: SITE_DESC,
   },
-  twitter: {
-    card: "summary_large_image",
-    title: siteName,
-    description: siteDescription,
-    images: ["/og-image.png"],
-  },
-  robots: {
-    index: true,
-    follow: true,
-  },
-  verification: {
-    google: "9hsoM-4jQQ8ck8mOn39f6Z5K9A5QZOZzd_AdUX24QPM",
-  },
+  robots: { index: true, follow: true },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="ja" className={`${notoSansJP.variable} ${notoSerifJP.variable}`}>
+    <html lang="ja">
       <head>
-        {/* Google AdSense */}
-        <Script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8297663476934392"
-          crossOrigin="anonymous"
-          strategy="afterInteractive"
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Shippori+Mincho:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap"
+          rel="stylesheet"
         />
       </head>
-      <body className="min-h-screen flex flex-col antialiased text-gray-700">
-        <SiteHeader />
-        <div className="flex-1 flex flex-col">{children}</div>
-        <SiteFooter />
+      <body className="min-h-screen flex flex-col">
+        <Header />
+        <main className="flex-1 w-full">{children}</main>
+        <Footer />
       </body>
     </html>
   );

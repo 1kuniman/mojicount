@@ -1,51 +1,37 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-:root {
-  --background: #fff7f9;
-  --foreground: #1f2937;
-}
+:root { color-scheme: light; }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  /* ブランドパレット */
-  --color-brand: #e879a0;        /* メイン：ローズピンク */
-  --color-brand-light: #f9a8d4;  /* サブ：ライトピンク */
-  --color-brand-deep: #be185d;   /* アクセント：ディープローズ */
-  --color-cream: #fff7f9;        /* 背景：極薄ピンク */
-  --font-sans: var(--font-noto-sans-jp), "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
-  --font-serif: var(--font-noto-serif-jp), "Hiragino Mincho ProN", "Yu Mincho", "YuMincho", serif;
-}
-
-html {
-  scroll-behavior: smooth;
-}
+html { -webkit-text-size-adjust: 100%; }
 
 body {
-  background-color: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-sans);
+  background-color: #f7f3ea;
+  /* ごく薄い紙のテクスチャ（CSSのみ・画像不要） */
+  background-image:
+    radial-gradient(rgba(28,24,20,0.025) 1px, transparent 1px);
+  background-size: 4px 4px;
+  color: #1c1814;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
-/* 見出しは明朝体で上品・女性らしい印象に */
-h1,
-h2,
-h3 {
-  font-family: var(--font-serif);
-}
+/* 数値表示のタブ揃え */
+.tnum { font-variant-numeric: tabular-nums; }
 
-/* 装飾的な区切り（花のモチーフ） */
-.flower-divider {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.75rem;
-  color: var(--color-brand-light);
-}
-.flower-divider::before,
-.flower-divider::after {
+::selection { background: rgba(200,64,44,0.18); }
+
+/* 朱の見出しルール */
+.rule-shu::before {
   content: "";
-  height: 1px;
-  flex: 1;
-  background: linear-gradient(to right, transparent, var(--color-brand-light), transparent);
+  display: inline-block;
+  width: 1.6rem;
+  height: 2px;
+  background: #c8402c;
+  vertical-align: middle;
+  margin-right: 0.6rem;
 }
+
+textarea { font-family: "IBM Plex Mono", "Zen Kaku Gothic New", monospace; }
