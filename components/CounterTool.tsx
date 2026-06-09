@@ -57,8 +57,8 @@ export default function CounterTool() {
 
         {/* Primary stats */}
         <div className="grid grid-cols-2 gap-3 content-start">
-          <div className="col-span-2 rounded-xl border-2 border-ink bg-ink text-paper p-5">
-            <div className="text-xs text-paper/70">文字数（空白込み）</div>
+          <div className="col-span-2 rounded-xl border-2 border-panel-strong bg-panel-strong text-on-strong p-5">
+            <div className="text-xs text-on-strong/70">文字数（空白込み）</div>
             <div className="font-mono text-5xl font-bold tnum mt-1">{r.withSpaces.toLocaleString()}</div>
           </div>
           <Stat label="空白抜き" value={r.noSpaces.toLocaleString()} />

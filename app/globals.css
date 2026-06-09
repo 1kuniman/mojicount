@@ -2,36 +2,67 @@
 @tailwind components;
 @tailwind utilities;
 
-:root { color-scheme: light; }
+/* ===== テーマ変数（RGBトリプル：Tailwindの /alpha が効く） ===== */
+:root,
+[data-theme="light"] {
+  color-scheme: light;
+  --c-paper: 247 243 234;
+  --c-paper-deep: 239 232 216;
+  --c-ink: 28 24 20;
+  --c-ink-soft: 74 68 60;
+  --c-ink-faint: 138 130 117;
+  --c-shu: 200 64 44;
+  --c-shu-deep: 168 49 31;
+  --c-line: 221 211 192;
+  --c-panel-strong: 28 24 20;
+  --c-on-strong: 247 243 234;
+  --bg-dot: rgba(28, 24, 20, 0.025);
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+  --c-paper: 16 19 28;
+  --c-paper-deep: 30 36 51;
+  --c-ink: 231 234 243;
+  --c-ink-soft: 174 182 201;
+  --c-ink-faint: 139 147 167;
+  --c-shu: 122 162 255;
+  --c-shu-deep: 95 130 224;
+  --c-line: 40 48 65;
+  --c-panel-strong: 30 36 51;
+  --c-on-strong: 231 234 243;
+  --bg-dot: rgba(122, 162, 255, 0.06);
+}
 
 html { -webkit-text-size-adjust: 100%; }
 
 body {
-  background-color: #f7f3ea;
-  /* ごく薄い紙のテクスチャ（CSSのみ・画像不要） */
-  background-image:
-    radial-gradient(rgba(28,24,20,0.025) 1px, transparent 1px);
+  background-color: rgb(var(--c-paper));
+  background-image: radial-gradient(var(--bg-dot) 1px, transparent 1px);
   background-size: 4px 4px;
-  color: #1c1814;
+  color: rgb(var(--c-ink));
   font-family: "Zen Kaku Gothic New", sans-serif;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  transition: background-color 0.35s ease, color 0.35s ease;
 }
 
-/* 数値表示のタブ揃え */
 .tnum { font-variant-numeric: tabular-nums; }
 
-::selection { background: rgba(200,64,44,0.18); }
+::selection { background: rgb(var(--c-shu) / 0.18); }
 
-/* 朱の見出しルール */
 .rule-shu::before {
   content: "";
   display: inline-block;
   width: 1.6rem;
   height: 2px;
-  background: #c8402c;
+  background: rgb(var(--c-shu));
   vertical-align: middle;
   margin-right: 0.6rem;
 }
 
 textarea { font-family: "IBM Plex Mono", "Zen Kaku Gothic New", monospace; }
+
+@media (prefers-reduced-motion: reduce) {
+  body { transition: none; }
+}

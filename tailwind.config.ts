@@ -1,18 +1,22 @@
 import type { Config } from "tailwindcss";
 
+const v = (name: string) => `rgb(var(${name}) / <alpha-value>)`;
+
 const config: Config = {
   content: ["./app/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}"],
   theme: {
     extend: {
       colors: {
-        paper: "#f7f3ea",
-        "paper-deep": "#efe8d8",
-        ink: "#1c1814",
-        "ink-soft": "#4a443c",
-        "ink-faint": "#8a8275",
-        shu: "#c8402c",       // 朱色（校正の赤）
-        "shu-deep": "#a8311f",
-        line: "#ddd3c0",
+        paper: v("--c-paper"),
+        "paper-deep": v("--c-paper-deep"),
+        ink: v("--c-ink"),
+        "ink-soft": v("--c-ink-soft"),
+        "ink-faint": v("--c-ink-faint"),
+        shu: v("--c-shu"),
+        "shu-deep": v("--c-shu-deep"),
+        line: v("--c-line"),
+        "panel-strong": v("--c-panel-strong"),
+        "on-strong": v("--c-on-strong"),
       },
       fontFamily: {
         mincho: ['"Shippori Mincho"', "serif"],
@@ -20,7 +24,7 @@ const config: Config = {
         mono: ['"IBM Plex Mono"', "monospace"],
       },
       boxShadow: {
-        card: "0 1px 0 #ddd3c0, 0 10px 30px -18px rgba(28,24,20,0.35)",
+        card: "0 1px 0 rgb(var(--c-line)), 0 10px 30px -18px rgba(0,0,0,0.35)",
       },
     },
   },

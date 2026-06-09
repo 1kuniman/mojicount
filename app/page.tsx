@@ -18,7 +18,7 @@ export default function Home() {
         <div className="mt-8 flex flex-wrap gap-3">
           <Link
             href="/count/"
-            className="px-5 py-3 rounded-lg bg-ink text-paper font-medium hover:bg-shu-deep transition-colors"
+            className="px-5 py-3 rounded-lg bg-panel-strong text-on-strong font-medium hover:bg-shu-deep transition-colors"
           >
             文字数を数える
           </Link>

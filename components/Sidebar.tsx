@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { TOOLS } from "@/lib/tools";
+import ThemeToggle from "@/components/ThemeToggle";
 
 const norm = (p: string) => p.replace(/\/+$/, "") || "/";
 
@@ -9,22 +10,22 @@ export default function Sidebar() {
   const current = norm(usePathname() || "/");
 
   return (
-    <aside className="bg-[#17130e] text-paper md:w-[260px] md:shrink-0 md:sticky md:top-0 md:h-screen">
+    <aside className="bg-[#17130e] text-[#f3efe6] md:w-[260px] md:shrink-0 md:sticky md:top-0 md:h-screen">
       <div className="flex flex-col h-full">
-        {/* ブランド */}
-        <Link
-          href="/"
-          className="flex items-center gap-2.5 px-5 h-16 shrink-0 border-b border-white/10 hover:bg-white/[0.03] transition-colors"
-        >
-          <span className="grid place-items-center w-8 h-8 rounded-[7px] bg-shu text-white font-mincho text-lg leading-none">
-            字
-          </span>
-          <span className="font-mincho text-lg font-bold tracking-tight">もじもじツール</span>
-        </Link>
+        {/* ブランド + テーマ切替 */}
+        <div className="flex items-center justify-between gap-2 px-5 h-16 shrink-0 border-b border-white/10">
+          <Link href="/" className="flex items-center gap-2.5 hover:opacity-80 transition-opacity">
+            <span className="grid place-items-center w-8 h-8 rounded-[7px] bg-shu text-white font-mincho text-lg leading-none">
+              字
+            </span>
+            <span className="font-mincho text-lg font-bold tracking-tight">もじもじツール</span>
+          </Link>
+          <ThemeToggle />
+        </div>
 
         {/* ナビ（モバイルは横スクロール / デスクトップは縦） */}
         <nav className="flex md:flex-col gap-1 p-3 overflow-x-auto md:overflow-visible">
-          <span className="hidden md:block text-[11px] uppercase tracking-wider text-paper/35 px-3 pt-1 pb-1">
+          <span className="hidden md:block text-[11px] uppercase tracking-wider text-white/35 px-3 pt-1 pb-1">
             ツール
           </span>
           {TOOLS.map((t) => {
@@ -58,7 +59,7 @@ export default function Sidebar() {
                   >
                     {t.title}
                   </span>
-                  <span className="hidden md:block text-[11px] leading-tight mt-0.5 text-paper/45">
+                  <span className="hidden md:block text-[11px] leading-tight mt-0.5 text-white/45">
                     {t.subtitle}
                   </span>
                 </span>
@@ -68,7 +69,7 @@ export default function Sidebar() {
         </nav>
 
         {/* 下部の注記（デスクトップのみ） */}
-        <div className="hidden md:block mt-auto p-5 text-[11px] text-paper/40 leading-relaxed border-t border-white/10">
+        <div className="hidden md:block mt-auto p-5 text-[11px] text-white/40 leading-relaxed border-t border-white/10">
           入力した文章はすべてブラウザ内で処理され、サーバーに送信されません。
         </div>
       </div>
