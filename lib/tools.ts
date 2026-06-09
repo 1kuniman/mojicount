@@ -65,4 +65,26 @@ export const TOOLS: Tool[] = [
     accent: "#b9742a",
     accentSoft: "#f3e6d4",
   },
+  {
+    slug: "date",
+    href: "/date/",
+    title: "日付・時間計算",
+    subtitle: "経過日数・何日後・曜日・Unix時間",
+    description:
+      "2つの日付の経過日数（年月日・週・時間）、◯日後/◯日前の日付と曜日、Unix時間⇄日時の変換に対応。",
+    mark: "暦",
+    accent: "#2f7d72",
+    accentSoft: "#d8e8e4",
+  },
+  {
+    slug: "password",
+    href: "/password/",
+    title: "パスワード生成",
+    subtitle: "強力なパスワードをブラウザ内で生成",
+    description:
+      "文字数や文字種を指定して安全なパスワードを生成。すべて端末内で生成され、どこにも送信されません。",
+    mark: "鍵",
+    accent: "#a23e5c",
+    accentSoft: "#f0dde3",
+  },
 ];
