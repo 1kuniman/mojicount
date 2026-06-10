@@ -98,4 +98,26 @@ export const TOOLS: Tool[] = [
     accent: "#c2389a",
     accentSoft: "#f4dcec",
   },
+  {
+    slug: "qr",
+    href: "/qr/",
+    title: "QRコード生成",
+    subtitle: "URL・テキストからQRを作成しDL",
+    description:
+      "URLやテキストからQRコードを生成。色やサイズ、誤り訂正レベルを調整して、PNG/SVGで保存できます。",
+    mark: "印",
+    accent: "#34506e",
+    accentSoft: "#dde3ec",
+  },
+  {
+    slug: "color",
+    href: "/color/",
+    title: "カラーコード変換",
+    subtitle: "HEX⇄RGB⇄HSL・プレビュー",
+    description:
+      "HEX・RGB・HSL を相互変換。カラーピッカーとプレビュー付きで、CSSやデザインの色指定に。",
+    mark: "彩",
+    accent: "#5b8c2a",
+    accentSoft: "#e3ecd5",
+  },
 ];
