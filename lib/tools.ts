@@ -87,4 +87,15 @@ export const TOOLS: Tool[] = [
     accent: "#a23e5c",
     accentSoft: "#f0dde3",
   },
+  {
+    slug: "fancy",
+    href: "/fancy/",
+    title: "おしゃれ文字・フォント変換",
+    subtitle: "SNS映えする装飾文字に一括変換",
+    description:
+      "入力した英数字を筆記体・袋文字・丸囲み・全角など13種の装飾フォントに一括変換。bioや投稿にコピペできます。",
+    mark: "飾",
+    accent: "#c2389a",
+    accentSoft: "#f4dcec",
+  },
 ];
