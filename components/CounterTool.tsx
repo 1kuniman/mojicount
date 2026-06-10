@@ -25,6 +25,14 @@ export default function CounterTool() {
   const r = useMemo(() => countText(text), [text]);
   const wlen = useMemo(() => weightedLength(text), [text]);
 
+  const [goalStr, setGoalStr] = useState("");
+  const goal = parseInt(goalStr, 10);
+  const validGoal = !isNaN(goal) && goal > 0;
+  const pct = validGoal ? Math.min(100, (r.withSpaces / goal) * 100) : 0;
+  const reached = validGoal && r.withSpaces >= goal;
+  const over = validGoal && r.withSpaces > goal;
+  const barColor = over ? "#e0653b" : reached ? "#3f8a5c" : "rgb(var(--c-shu))";
+
   return (
     <div>
       <div className="grid gap-5 lg:grid-cols-[1fr_360px]">
@@ -60,6 +68,66 @@ export default function CounterTool() {
           <div className="col-span-2 rounded-xl border-2 border-panel-strong bg-panel-strong text-on-strong p-5">
             <div className="text-xs text-on-strong/70">文字数（空白込み）</div>
             <div className="font-mono text-5xl font-bold tnum mt-1">{r.withSpaces.toLocaleString()}</div>
+          </div>
+
+          {/* 目標バー */}
+          <div className="col-span-2 rounded-xl border border-line bg-paper p-4">
+            <div className="flex items-center justify-between gap-2 mb-2.5 flex-wrap">
+              <span className="text-xs font-medium text-ink-soft">目標文字数</span>
+              <div className="flex items-center gap-1.5 flex-wrap">
+                {([["X 140", "140"], ["投稿 280", "280"], ["原稿 400", "400"], ["800", "800"]] as const).map(
+                  ([lbl, val]) => (
+                    <button
+                      key={val}
+                      onClick={() => setGoalStr(val)}
+                      className={`text-[11px] px-2 py-1 rounded-md border transition-colors ${
+                        goalStr === val
+                          ? "border-shu text-shu bg-shu/5"
+                          : "border-line text-ink-faint hover:text-shu hover:border-shu/40"
+                      }`}
+                    >
+                      {lbl}
+                    </button>
+                  )
+                )}
+                <input
+                  type="number"
+                  value={goalStr}
+                  onChange={(e) => setGoalStr(e.target.value)}
+                  placeholder="字数"
+                  className="w-16 text-xs rounded-md border border-line bg-paper px-2 py-1 text-ink outline-none focus:border-shu/60"
+                />
+                {goalStr && (
+                  <button onClick={() => setGoalStr("")} className="text-ink-faint hover:text-shu text-sm leading-none px-1">
+                    ×
+                  </button>
+                )}
+              </div>
+            </div>
+            {validGoal ? (
+              <>
+                <div className="h-3 rounded-full bg-paper-deep overflow-hidden">
+                  <div
+                    className="h-full rounded-full transition-all duration-300"
+                    style={{ width: `${pct}%`, backgroundColor: barColor }}
+                  />
+                </div>
+                <div className="mt-2 flex items-center justify-between text-xs">
+                  <span className="font-mono tnum text-ink-soft">
+                    {r.withSpaces.toLocaleString()} / {goal.toLocaleString()} 字
+                  </span>
+                  <span className="font-medium" style={{ color: barColor }}>
+                    {over
+                      ? `${(r.withSpaces - goal).toLocaleString()} 字オーバー`
+                      : reached
+                      ? "達成！🎉"
+                      : `あと ${(goal - r.withSpaces).toLocaleString()} 字`}
+                  </span>
+                </div>
+              </>
+            ) : (
+              <p className="text-xs text-ink-faint">目標を決めると、達成度がバーで表示されます（空白込みで判定）。</p>
+            )}
           </div>
           <Stat label="空白抜き" value={r.noSpaces.toLocaleString()} />
           <Stat label="改行抜き" value={r.noNewlines.toLocaleString()} />
