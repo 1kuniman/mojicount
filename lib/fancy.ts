@@ -100,3 +100,22 @@ export const FANCY_STYLES: FancyStyle[] = [
   { key: "underline", name: "下線", transform: combiner("\u0332") },
   { key: "flip", name: "上下反転", transform: (t) => Array.from(t).map((ch) => FLIP[ch] ?? ch).reverse().join("") },
 ];
+
+// 囲み・デコ枠（英数字以外もOK。日本語のSNS名向け）
+export interface FancyDeco {
+  key: string;
+  wrap: (t: string) => string;
+}
+
+export const FANCY_DECOS: FancyDeco[] = [
+  { key: "star", wrap: (t) => `★彡 ${t} 彡★` },
+  { key: "sparkle", wrap: (t) => `✧･ﾟ: ${t} :･ﾟ✧` },
+  { key: "heart", wrap: (t) => `｡:*♡ ${t} ♡*:｡` },
+  { key: "bracket1", wrap: (t) => `〘 ${t} 〙` },
+  { key: "bracket2", wrap: (t) => `【 ${t} 】` },
+  { key: "kao", wrap: (t) => `꒰ ${t} ꒱` },
+  { key: "wave", wrap: (t) => `～☆ ${t} ☆～` },
+  { key: "flower", wrap: (t) => `❀ ${t} ❀` },
+  { key: "dot", wrap: (t) => `•°. ${t} .°•` },
+  { key: "arrow", wrap: (t) => `→ ${t} ←` },
+];

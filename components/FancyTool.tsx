@@ -1,12 +1,16 @@
 "use client";
 import { useMemo, useState } from "react";
-import { FANCY_STYLES } from "@/lib/fancy";
+import { FANCY_STYLES, FANCY_DECOS } from "@/lib/fancy";
 import CopyButton from "@/components/CopyButton";
 
 export default function FancyTool() {
   const [text, setText] = useState("Ikkei");
   const results = useMemo(
     () => FANCY_STYLES.map((s) => ({ ...s, out: text ? s.transform(text) : "" })),
+    [text]
+  );
+  const decos = useMemo(
+    () => FANCY_DECOS.map((d) => ({ ...d, out: text ? d.wrap(text) : "" })),
     [text]
   );
 
@@ -52,6 +56,20 @@ export default function FancyTool() {
             <CopyButton text={s.out} />
           </div>
         ))}
+      </div>
+
+      <div className="mt-8">
+        <h2 className="font-mincho text-lg font-bold text-ink rule-shu mb-3">囲み・デコ枠（日本語もOK）</h2>
+        <div className="space-y-2.5">
+          {decos.map((d) => (
+            <div key={d.key} className="flex items-center gap-3 rounded-xl border border-line bg-paper p-3.5">
+              <div className="min-w-0 flex-1 text-lg text-ink break-all leading-snug min-h-[1.6em]">
+                {d.out || <span className="text-ink-faint text-sm">ここに変換結果が出ます</span>}
+              </div>
+              <CopyButton text={d.out} />
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

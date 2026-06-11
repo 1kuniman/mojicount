@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { parseHex, rgbToHex, rgbString, hslString, readableText, type RGB } from "@/lib/color";
+import { parseHex, rgbToHex, rgbString, hslString, readableText, palette, type RGB } from "@/lib/color";
 import CopyButton from "@/components/CopyButton";
 
 export default function ColorTool() {
@@ -64,6 +64,38 @@ export default function ColorTool() {
           </div>
         </div>
       </div>
+
+      {valid && (
+        <div className="mt-8">
+          <h2 className="font-mincho text-lg font-bold text-ink rule-shu mb-4">この色から作る配色</h2>
+          <div className="space-y-4">
+            {palette(rgb).map((group) => (
+              <div key={group.name}>
+                <div className="text-xs text-ink-faint mb-1.5">{group.name}</div>
+                <div className="flex flex-wrap gap-2">
+                  {group.colors.map((hexColor, i) => (
+                    <button
+                      key={hexColor + i}
+                      onClick={() => setHex(hexColor)}
+                      title={`${hexColor}（クリックで選択）`}
+                      className="group relative w-20 h-16 rounded-lg border border-line overflow-hidden"
+                      style={{ backgroundColor: hexColor }}
+                    >
+                      <span
+                        className="absolute inset-x-0 bottom-0 text-[10px] font-mono py-0.5 text-center"
+                        style={{ backgroundColor: "rgba(0,0,0,0.25)", color: "#fff" }}
+                      >
+                        {hexColor.toUpperCase()}
+                      </span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+          <p className="mt-3 text-xs text-ink-faint">色をクリックすると、その色を選び直せます。</p>
+        </div>
+      )}
     </div>
   );
 }

@@ -51,3 +51,44 @@ export function readableText({ r, g, b }: RGB): string {
   const lum = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
   return lum > 0.6 ? "#1c1814" : "#ffffff";
 }
+
+export function hslToRgb(h: number, s: number, l: number): RGB {
+  const sn = s / 100, ln = l / 100;
+  const c = (1 - Math.abs(2 * ln - 1)) * sn;
+  const hp = ((h % 360) + 360) % 360 / 60;
+  const x = c * (1 - Math.abs((hp % 2) - 1));
+  let r1 = 0, g1 = 0, b1 = 0;
+  if (hp < 1) [r1, g1, b1] = [c, x, 0];
+  else if (hp < 2) [r1, g1, b1] = [x, c, 0];
+  else if (hp < 3) [r1, g1, b1] = [0, c, x];
+  else if (hp < 4) [r1, g1, b1] = [0, x, c];
+  else if (hp < 5) [r1, g1, b1] = [x, 0, c];
+  else [r1, g1, b1] = [c, 0, x];
+  const m = ln - c / 2;
+  return {
+    r: Math.round((r1 + m) * 255),
+    g: Math.round((g1 + m) * 255),
+    b: Math.round((b1 + m) * 255),
+  };
+}
+
+// ベース色から配色を生成（hueシフト/明度バリエーション）
+export function palette(rgb: RGB): { name: string; colors: string[] }[] {
+  const { h, s, l } = rgbToHsl(rgb);
+  const hx = (hh: number, ss: number, ll: number) => rgbToHex(hslToRgb(hh, ss, ll));
+  return [
+    { name: "補色", colors: [hx(h, s, l), hx(h + 180, s, l)] },
+    { name: "類似色", colors: [hx(h - 30, s, l), hx(h, s, l), hx(h + 30, s, l)] },
+    { name: "トライアド", colors: [hx(h, s, l), hx(h + 120, s, l), hx(h + 240, s, l)] },
+    {
+      name: "明度バリエーション",
+      colors: [
+        hx(h, s, Math.min(92, l + 30)),
+        hx(h, s, Math.min(80, l + 15)),
+        hx(h, s, l),
+        hx(h, s, Math.max(20, l - 15)),
+        hx(h, s, Math.max(8, l - 30)),
+      ],
+    },
+  ];
+}
