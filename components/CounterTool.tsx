@@ -6,6 +6,7 @@ import {
   SNS_LIMITS,
   weightedLength,
 } from "@/lib/text";
+import { showToast } from "@/components/ToastHost";
 
 function Stat({ label, value, sub }: { label: string; value: string | number; sub?: string }) {
   return (
@@ -41,6 +42,26 @@ export default function CounterTool() {
           <div className="flex items-center justify-between mb-2">
             <label className="text-sm font-medium text-ink-soft">テキストを入力</label>
             <div className="flex gap-2">
+              <button
+                onClick={async () => {
+                  const summary =
+                    `文字数(空白込み): ${r.withSpaces}\n` +
+                    `文字数(空白抜き): ${r.noSpacesNoNewlines}\n` +
+                    `行数: ${r.lines}\n` +
+                    `原稿用紙: ${r.manuscriptPages}枚\n` +
+                    `読了時間: ${formatReadingTime(r.readingSeconds)}`;
+                  try {
+                    await navigator.clipboard.writeText(summary);
+                    showToast("集計結果をコピーしました");
+                  } catch {
+                    /* noop */
+                  }
+                }}
+                disabled={!text}
+                className="text-xs text-ink-faint hover:text-shu transition-colors disabled:opacity-40"
+              >
+                結果をコピー
+              </button>
               <button
                 onClick={() => setText(SAMPLE)}
                 className="text-xs text-ink-faint hover:text-shu transition-colors"

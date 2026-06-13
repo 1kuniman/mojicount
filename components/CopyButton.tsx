@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { showToast } from "@/components/ToastHost";
 
 export default function CopyButton({ text, label = "コピー" }: { text: string; label?: string }) {
   const [done, setDone] = useState(false);
@@ -10,13 +11,14 @@ export default function CopyButton({ text, label = "コピー" }: { text: string
         try {
           await navigator.clipboard.writeText(text);
           setDone(true);
+          showToast("コピーしました");
           setTimeout(() => setDone(false), 1400);
         } catch {
           /* noop */
         }
       }}
       disabled={!text}
-      className="px-3.5 py-2 rounded-md text-sm font-medium border border-line bg-paper hover:border-shu hover:text-shu disabled:opacity-40 disabled:hover:text-ink-soft disabled:hover:border-line transition-colors text-ink-soft"
+      className="px-3.5 py-2 rounded-md text-sm font-medium border border-line bg-paper hover:border-shu hover:text-shu disabled:opacity-40 disabled:hover:text-ink-soft disabled:hover:border-line transition-colors text-ink-soft shrink-0"
     >
       {done ? "コピーしました" : label}
     </button>
