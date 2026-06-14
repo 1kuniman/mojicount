@@ -15,7 +15,7 @@ export default function DataSizePage() {
     <div className="mx-auto max-w-5xl px-5 py-10">
       <ToolHeader
         slug="datasize"
-        lead="数値と単位を入力すると、バイト・KB・MB・GB・TB・PB を一度にまとめて換算します。1KB=1024バイト（2進）と1KB=1000バイト（10進）の両方式を切り替えられます。"
+        lead="数値と単位を入力すると、バイトから KB・MB・GB・TB・PB（10進）と KiB・MiB・GiB・TiB・PiB（2進）まで、一度にまとめて換算します。各値はワンクリックでコピーできます。"
       />
 
       <DataSizeTool />

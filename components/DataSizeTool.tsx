@@ -1,23 +1,40 @@
 "use client";
 import { useMemo, useState } from "react";
-import { SIZE_UNITS, convertSize, formatNumber, type SizeUnit } from "@/lib/text";
+import { UNITS, UNIT_KEYS, convertAll, formatNum } from "@/lib/datasize";
+import CopyButton from "@/components/CopyButton";
 
 export default function DataSizeTool() {
   const [value, setValue] = useState("1");
-  const [unit, setUnit] = useState<SizeUnit>("MB");
-  const [base, setBase] = useState<1000 | 1024>(1024);
+  const [unit, setUnit] = useState("GiB");
 
   const results = useMemo(() => {
     const v = parseFloat(value);
     if (isNaN(v)) return null;
-    return convertSize(v, unit, base);
-  }, [value, unit, base]);
+    return convertAll(v, unit);
+  }, [value, unit]);
+
+  const decimal = UNITS.filter((u) => u.family === "decimal");
+  const binary = UNITS.filter((u) => u.family === "binary");
+
+  const Row = ({ k }: { k: string }) => (
+    <div
+      className={`flex items-center gap-2 rounded-lg border p-3 ${
+        k === unit ? "border-shu/50 bg-shu/[0.04]" : "border-line bg-paper"
+      }`}
+    >
+      <span className="text-ink-soft font-medium w-12 shrink-0">{k}</span>
+      <span className="flex-1 font-mono text-ink tnum break-all text-right">
+        {results ? formatNum(results[k]) : "-"}
+      </span>
+      <CopyButton text={results ? String(results[k]) : ""} label="コピー" />
+    </div>
+  );
 
   return (
-    <div className="max-w-2xl">
-      <div className="rounded-xl border border-line bg-paper p-5">
+    <div>
+      <div className="rounded-xl border border-line bg-paper p-5 max-w-2xl">
         <div className="flex flex-wrap items-end gap-3">
-          <div className="flex-1 min-w-[140px]">
+          <div className="flex-1 min-w-[160px]">
             <label className="text-sm font-medium text-ink-soft mb-1.5 block">数値</label>
             <input
               type="number"
@@ -30,53 +47,39 @@ export default function DataSizeTool() {
             <label className="text-sm font-medium text-ink-soft mb-1.5 block">単位</label>
             <select
               value={unit}
-              onChange={(e) => setUnit(e.target.value as SizeUnit)}
+              onChange={(e) => setUnit(e.target.value)}
               className="rounded-lg border border-line bg-paper px-3 py-2.5 text-ink outline-none focus:border-shu/60"
             >
-              {SIZE_UNITS.map((u) => (
+              {UNIT_KEYS.map((u) => (
                 <option key={u} value={u}>{u}</option>
               ))}
             </select>
           </div>
         </div>
-
-        <div className="mt-4 pt-4 border-t border-line flex items-center gap-3 text-sm">
-          <span className="text-ink-soft">換算方式</span>
-          {([1024, 1000] as const).map((b) => (
-            <button
-              key={b}
-              onClick={() => setBase(b)}
-              className={`px-3 py-1.5 rounded-md border transition-colors ${
-                base === b
-                  ? "border-shu text-shu bg-shu/5 font-medium"
-                  : "border-line text-ink-soft hover:border-shu/40"
-              }`}
-            >
-              {b === 1024 ? "1KB = 1024 B（2進）" : "1KB = 1000 B（10進）"}
-            </button>
-          ))}
-        </div>
+        <p className="mt-3 text-xs text-ink-faint">
+          2進（KiB=1024B 系）と10進（KB=1000B 系）を正しく区別して同時換算します。
+        </p>
       </div>
 
-      <div className="mt-5 grid gap-3 sm:grid-cols-2">
-        {results &&
-          SIZE_UNITS.map((u) => (
-            <div
-              key={u}
-              className={`rounded-lg border p-4 flex items-baseline justify-between ${
-                u === unit ? "border-shu/50 bg-shu/[0.04]" : "border-line bg-paper"
-              }`}
-            >
-              <span className="text-ink-soft font-medium">{u}</span>
-              <span className="font-mono text-lg text-ink tnum break-all text-right">
-                {formatNumber(results[u])}
-              </span>
+      {results && (
+        <div className="mt-5 grid gap-5 lg:grid-cols-2 max-w-3xl">
+          <div>
+            <h2 className="font-mincho text-lg font-bold text-ink rule-shu mb-3">10進（KB・MB・GB…）</h2>
+            <div className="space-y-2">
+              <Row k="B" />
+              {decimal.map((u) => <Row key={u.key} k={u.key} />)}
             </div>
-          ))}
-        {!results && (
-          <p className="text-ink-faint text-sm">数値を入力してください。</p>
-        )}
-      </div>
+          </div>
+          <div>
+            <h2 className="font-mincho text-lg font-bold text-ink rule-shu mb-3">2進（KiB・MiB・GiB…）</h2>
+            <div className="space-y-2">
+              <Row k="bit" />
+              {binary.map((u) => <Row key={u.key} k={u.key} />)}
+            </div>
+          </div>
+        </div>
+      )}
+      {!results && <p className="mt-5 text-ink-faint text-sm">数値を入力してください。</p>}
     </div>
   );
 }
