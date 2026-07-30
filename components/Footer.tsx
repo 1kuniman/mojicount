@@ -4,14 +4,14 @@ import { TOOLS } from "@/lib/tools";
 export default function Footer() {
   return (
     <footer className="border-t border-line mt-20 bg-paper-deep/40">
-      <div className="mx-auto max-w-5xl px-5 py-10 grid gap-8 sm:grid-cols-2">
+      <div className="mx-auto max-w-5xl px-5 py-10 grid gap-8 sm:grid-cols-3">
         <div>
           <div className="font-mincho text-lg font-bold text-ink">もじもじツール</div>
           <p className="mt-2 text-sm text-ink-soft leading-relaxed max-w-sm">
             文章まわりの作業を速くする無料ツール集です。入力したテキストはすべてお使いのブラウザ内だけで処理され、サーバーには送信されません。
           </p>
         </div>
-        <div className="sm:justify-self-end">
+        <div>
           <div className="text-xs uppercase tracking-wider text-ink-faint mb-3">ツール</div>
           <ul className="space-y-2 text-sm">
             {TOOLS.map((t) => (
@@ -21,6 +21,23 @@ export default function Footer() {
                 </Link>
               </li>
             ))}
+          </ul>
+        </div>
+        <div>
+          <div className="text-xs uppercase tracking-wider text-ink-faint mb-3">サイト情報</div>
+          <ul className="space-y-2 text-sm">
+            <li>
+              <Link href="/column/" className="text-ink-soft hover:text-shu transition-colors">コラム</Link>
+            </li>
+            <li>
+              <Link href="/about/" className="text-ink-soft hover:text-shu transition-colors">運営者情報</Link>
+            </li>
+            <li>
+              <Link href="/privacy/" className="text-ink-soft hover:text-shu transition-colors">プライバシーポリシー</Link>
+            </li>
+            <li>
+              <Link href="/contact/" className="text-ink-soft hover:text-shu transition-colors">お問い合わせ</Link>
+            </li>
           </ul>
         </div>
       </div>
