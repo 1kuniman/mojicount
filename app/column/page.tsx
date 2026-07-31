@@ -8,6 +8,16 @@ export const metadata: Metadata = {
 
 const ARTICLES = [
   {
+    href: "/column/base64/",
+    title: "Base64とは何か——なぜ画像を「文字」にできるのか",
+    desc: "エンコードの仕組みと、暗号化との違い。サイズが1.33倍になる理由も解説します。",
+  },
+  {
+    href: "/column/zenkaku-hankaku/",
+    title: "全角と半角は何が違う？——「１２３」と「123」が別物として扱われる理由",
+    desc: "文字コードの観点から、フォームで弾かれる理由・検索でヒットしない理由を解説します。",
+  },
+  {
     href: "/column/genkoyoshi/",
     title: "原稿用紙の文字数の数え方——句読点・小さい「っ」はどう数える？",
     desc: "400字詰め原稿用紙のルールと、Web上の文字数カウントとの違いを整理します。",

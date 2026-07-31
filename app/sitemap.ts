@@ -10,6 +10,8 @@ const STATIC_PAGES = [
   "/column/gib-vs-gb/",
   "/column/password-safety/",
   "/column/qr-mechanism/",
+  "/column/base64/",
+  "/column/zenkaku-hankaku/",
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
