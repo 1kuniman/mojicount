@@ -16,7 +16,7 @@ const STATIC_PAGES = [
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const base = "https://mojimojicount.com";
+  const base = "https://www.mojimojicount.com";
   const now = new Date();
   return [
     { url: `${base}/`, lastModified: now, changeFrequency: "monthly", priority: 1 },

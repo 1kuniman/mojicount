@@ -7,7 +7,7 @@ import ToastHost from "@/components/ToastHost";
 const SITE_NAME = "もじもじツール";
 const SITE_DESC =
   "文字数カウント・全角半角/かな変換・テキスト整形が、すべてブラウザ内で完結する無料の文章ツール集。入力したテキストはサーバーに送信されません。";
-const SITE_URL = "https://mojimojicount.com";
+const SITE_URL = "https://www.mojimojicount.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
