@@ -8,6 +8,11 @@ export const metadata: Metadata = {
 
 const ARTICLES = [
   {
+    href: "/column/url-encode/",
+    title: "URLエンコードとは——「%20」の正体と、日本語URLが長くなる理由",
+    desc: "URLの中の%付き文字列の意味と、スペースや日本語がそのまま使えない理由を解説します。",
+  },
+  {
     href: "/column/base64/",
     title: "Base64とは何か——なぜ画像を「文字」にできるのか",
     desc: "エンコードの仕組みと、暗号化との違い。サイズが1.33倍になる理由も解説します。",

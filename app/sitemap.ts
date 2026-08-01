@@ -12,6 +12,7 @@ const STATIC_PAGES = [
   "/column/qr-mechanism/",
   "/column/base64/",
   "/column/zenkaku-hankaku/",
+  "/column/url-encode/",
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

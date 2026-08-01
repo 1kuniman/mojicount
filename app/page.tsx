@@ -68,6 +68,17 @@ export default function Home() {
         ))}
       </section>
 
+      {/* Column */}
+      <section className="pb-12">
+        <h2 className="font-mincho text-xl font-bold text-ink rule-shu mb-5">コラム</h2>
+        <p className="text-sm text-ink-soft leading-relaxed">
+          ツールにまつわる仕組みを解説しています。
+        </p>
+        <Link href="/column/" className="mt-3 inline-block text-sm text-shu hover:text-shu-deep transition-colors font-medium">
+          コラム一覧を見る →
+        </Link>
+      </section>
+
       {/* Trust row */}
       <section className="py-12 border-t border-line grid gap-6 sm:grid-cols-3 text-sm">
         {[
