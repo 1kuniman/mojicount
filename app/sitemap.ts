@@ -13,6 +13,8 @@ const STATIC_PAGES = [
   "/column/base64/",
   "/column/zenkaku-hankaku/",
   "/column/url-encode/",
+  "/column/mojibake/",
+  "/column/password-reuse/",
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

@@ -8,6 +8,16 @@ export const metadata: Metadata = {
 
 const ARTICLES = [
   {
+    href: "/column/mojibake/",
+    title: "文字化けはなぜ起きるのか——「縺薙」や「?????」の正体",
+    desc: "文字コードの不一致という原因と、CSVをExcelで開くと化ける理由・対処法を解説します。",
+  },
+  {
+    href: "/column/password-reuse/",
+    title: "パスワードの使い回しはなぜ危険か——リスト型攻撃の仕組み",
+    desc: "1か所の漏えいが全アカウントの乗っ取りにつながる理由と、現実的な対策を解説します。",
+  },
+  {
     href: "/column/url-encode/",
     title: "URLエンコードとは——「%20」の正体と、日本語URLが長くなる理由",
     desc: "URLの中の%付き文字列の意味と、スペースや日本語がそのまま使えない理由を解説します。",
