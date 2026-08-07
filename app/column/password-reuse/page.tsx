@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Breadcrumb from "@/components/Breadcrumb";
 
 export const metadata: Metadata = {
   title: "パスワードの使い回しはなぜ危険か——リスト型攻撃の仕組み",
@@ -11,6 +12,7 @@ export default function Page() {
   return (
     <article className="mx-auto max-w-3xl px-5 py-12">
       <p className="text-xs text-ink-faint font-mono tracking-widest">COLUMN</p>
+      <Breadcrumb items={[{ name: "コラム", href: "/column/" }, { name: "パスワードの使い回しはなぜ危険か" }]} />
       <h1 className="mt-2 font-mincho text-2xl sm:text-3xl font-bold text-ink leading-snug">
         パスワードの使い回しはなぜ危険か——リスト型攻撃の仕組み
       </h1>

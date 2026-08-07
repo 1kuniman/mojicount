@@ -3,6 +3,8 @@ import FormatTool from "@/components/FormatTool";
 import ToolHeader from "@/components/ToolHeader";
 import Faq from "@/components/Faq";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedColumns from "@/components/RelatedColumns";
+import Breadcrumb from "@/components/Breadcrumb";
 
 export const metadata: Metadata = {
   title: "テキスト整形｜重複行削除・空行削除・並び替え",
@@ -13,6 +15,8 @@ export const metadata: Metadata = {
 export default function FormatPage() {
   return (
     <div className="mx-auto max-w-5xl px-5 py-10">
+      <Breadcrumb items={[{ name: "ツール一覧", href: "/" }, { name: "テキスト整形" }]} />
+
       <ToolHeader
         slug="format"
         lead="リストやログ、コピペで崩れた文章を、重複行の削除・空行の削除・前後の空白除去・連続スペースの圧縮・並び替えで一気に整えます。チェックを組み合わせると、入力と同時に結果へ反映されます。"
@@ -78,6 +82,7 @@ export default function FormatPage() {
         />
       </div>
 
+      <RelatedColumns currentSlug="format" />
       <RelatedTools currentSlug="format" />
     </div>
   );

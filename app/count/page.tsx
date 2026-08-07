@@ -3,6 +3,8 @@ import CounterTool from "@/components/CounterTool";
 import ToolHeader from "@/components/ToolHeader";
 import Faq from "@/components/Faq";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedColumns from "@/components/RelatedColumns";
+import Breadcrumb from "@/components/Breadcrumb";
 
 export const metadata: Metadata = {
   title: "文字数カウント｜空白・原稿用紙・バイト数・SNS制限",
@@ -13,6 +15,8 @@ export const metadata: Metadata = {
 export default function CountPage() {
   return (
     <div className="mx-auto max-w-5xl px-5 py-10">
+      <Breadcrumb items={[{ name: "ツール一覧", href: "/" }, { name: "文字数カウント" }]} />
+
       <ToolHeader
         slug="count"
         lead="文章を入力・貼り付けすると、文字数や行数だけでなく、原稿用紙の枚数、バイト数、文字種別、読了時間、主要SNSの文字数制限までまとめて確認できます。処理はすべてあなたのブラウザの中で行われます。"
@@ -93,6 +97,7 @@ export default function CountPage() {
         />
       </div>
 
+      <RelatedColumns currentSlug="count" />
       <RelatedTools currentSlug="count" />
     </div>
   );

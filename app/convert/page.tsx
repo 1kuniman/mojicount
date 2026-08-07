@@ -3,6 +3,8 @@ import ConvertTool from "@/components/ConvertTool";
 import ToolHeader from "@/components/ToolHeader";
 import Faq from "@/components/Faq";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedColumns from "@/components/RelatedColumns";
+import Breadcrumb from "@/components/Breadcrumb";
 
 export const metadata: Metadata = {
   title: "全角半角・ひらがなカタカナ変換",
@@ -13,6 +15,8 @@ export const metadata: Metadata = {
 export default function ConvertPage() {
   return (
     <div className="mx-auto max-w-5xl px-5 py-10">
+      <Breadcrumb items={[{ name: "ツール一覧", href: "/" }, { name: "全角半角・かな変換" }]} />
+
       <ToolHeader
         slug="convert"
         lead="全角と半角（英数字・記号）の相互変換、ひらがなとカタカナの相互変換、英字の大文字・小文字変換に対応。フォーム入力やデータ整理での表記ゆれをまとめて整えられます。"
@@ -79,6 +83,7 @@ export default function ConvertPage() {
         />
       </div>
 
+      <RelatedColumns currentSlug="convert" />
       <RelatedTools currentSlug="convert" />
     </div>
   );

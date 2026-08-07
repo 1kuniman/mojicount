@@ -3,6 +3,8 @@ import PasswordTool from "@/components/PasswordTool";
 import ToolHeader from "@/components/ToolHeader";
 import Faq from "@/components/Faq";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedColumns from "@/components/RelatedColumns";
+import Breadcrumb from "@/components/Breadcrumb";
 
 export const metadata: Metadata = {
   title: "パスワード生成（強力・安全・ブラウザ内）",
@@ -13,6 +15,8 @@ export const metadata: Metadata = {
 export default function PasswordPage() {
   return (
     <div className="mx-auto max-w-5xl px-5 py-10">
+      <Breadcrumb items={[{ name: "ツール一覧", href: "/" }, { name: "パスワード生成" }]} />
+
       <ToolHeader
         slug="password"
         lead="ランダムな文字列か、覚えやすい単語をつないだパスフレーズで、推測されにくいパスワードを生成します。文字種や単語数を指定でき、強度の目安も表示。生成はすべてお使いのブラウザ内（暗号学的乱数）で行われ、できたパスワードがネットワークに送られることはありません。"
@@ -61,6 +65,7 @@ export default function PasswordPage() {
         />
       </div>
 
+      <RelatedColumns currentSlug="password" />
       <RelatedTools currentSlug="password" />
     </div>
   );

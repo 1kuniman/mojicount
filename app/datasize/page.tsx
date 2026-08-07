@@ -3,6 +3,8 @@ import DataSizeTool from "@/components/DataSizeTool";
 import ToolHeader from "@/components/ToolHeader";
 import Faq from "@/components/Faq";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedColumns from "@/components/RelatedColumns";
+import Breadcrumb from "@/components/Breadcrumb";
 
 export const metadata: Metadata = {
   title: "データサイズ変換（B・KB・MB・GB・TB）",
@@ -13,6 +15,8 @@ export const metadata: Metadata = {
 export default function DataSizePage() {
   return (
     <div className="mx-auto max-w-5xl px-5 py-10">
+      <Breadcrumb items={[{ name: "ツール一覧", href: "/" }, { name: "データサイズ変換" }]} />
+
       <ToolHeader
         slug="datasize"
         lead="数値と単位を入力すると、バイトから KB・MB・GB・TB・PB（10進）と KiB・MiB・GiB・TiB・PiB（2進）まで、一度にまとめて換算します。各値はワンクリックでコピーできます。"
@@ -84,6 +88,7 @@ export default function DataSizePage() {
         />
       </div>
 
+      <RelatedColumns currentSlug="datasize" />
       <RelatedTools currentSlug="datasize" />
     </div>
   );

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Breadcrumb from "@/components/Breadcrumb";
 
 export const metadata: Metadata = {
   title: "URLエンコードとは——「%20」の正体と、日本語URLが長くなる理由",
@@ -11,6 +12,7 @@ export default function Page() {
   return (
     <article className="mx-auto max-w-3xl px-5 py-12">
       <p className="text-xs text-ink-faint font-mono tracking-widest">COLUMN</p>
+      <Breadcrumb items={[{ name: "コラム", href: "/column/" }, { name: "URLエンコードとは" }]} />
       <h1 className="mt-2 font-mincho text-2xl sm:text-3xl font-bold text-ink leading-snug">
         URLエンコードとは——「%20」の正体と、日本語URLが長くなる理由
       </h1>

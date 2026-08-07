@@ -3,6 +3,8 @@ import QRTool from "@/components/QRTool";
 import ToolHeader from "@/components/ToolHeader";
 import Faq from "@/components/Faq";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedColumns from "@/components/RelatedColumns";
+import Breadcrumb from "@/components/Breadcrumb";
 
 export const metadata: Metadata = {
   title: "QRコード生成（URL・テキスト → PNG/SVG保存）",
@@ -13,6 +15,8 @@ export const metadata: Metadata = {
 export default function QrPage() {
   return (
     <div className="mx-auto max-w-5xl px-5 py-10">
+      <Breadcrumb items={[{ name: "ツール一覧", href: "/" }, { name: "QRコード生成" }]} />
+
       <ToolHeader
         slug="qr"
         lead="URLや任意のテキストからQRコードを生成します。色やサイズ、誤り訂正レベルを変えて、PNGまたはSVGで保存できます。生成はすべてブラウザ内で行われ、入力内容は送信されません。"
@@ -43,6 +47,7 @@ export default function QrPage() {
         />
       </div>
 
+      <RelatedColumns currentSlug="qr" />
       <RelatedTools currentSlug="qr" />
     </div>
   );

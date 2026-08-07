@@ -3,6 +3,8 @@ import FancyTool from "@/components/FancyTool";
 import ToolHeader from "@/components/ToolHeader";
 import Faq from "@/components/Faq";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedColumns from "@/components/RelatedColumns";
+import Breadcrumb from "@/components/Breadcrumb";
 
 export const metadata: Metadata = {
   title: "おしゃれ文字・フォント変換（SNS用の装飾文字）",
@@ -13,6 +15,8 @@ export const metadata: Metadata = {
 export default function FancyPage() {
   return (
     <div className="mx-auto max-w-5xl px-5 py-10">
+      <Breadcrumb items={[{ name: "ツール一覧", href: "/" }, { name: "おしゃれ文字・フォント変換" }]} />
+
       <ToolHeader
         slug="fancy"
         lead="入力した英数字を、筆記体・袋文字・丸囲み・全角・スモールキャップスなど13種類の装飾フォントに一気に変換します。気に入ったものをコピーして、SNSのプロフィールや投稿、ユーザー名にそのまま貼り付けられます。"
@@ -62,6 +66,7 @@ export default function FancyPage() {
         />
       </div>
 
+      <RelatedColumns currentSlug="fancy" />
       <RelatedTools currentSlug="fancy" />
     </div>
   );

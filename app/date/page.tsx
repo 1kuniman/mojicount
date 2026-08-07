@@ -3,6 +3,8 @@ import DateTool from "@/components/DateTool";
 import ToolHeader from "@/components/ToolHeader";
 import Faq from "@/components/Faq";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedColumns from "@/components/RelatedColumns";
+import Breadcrumb from "@/components/Breadcrumb";
 
 export const metadata: Metadata = {
   title: "日付・時間計算（経過日数・何日後・曜日・Unix時間）",
@@ -13,6 +15,8 @@ export const metadata: Metadata = {
 export default function DatePage() {
   return (
     <div className="mx-auto max-w-5xl px-5 py-10">
+      <Breadcrumb items={[{ name: "ツール一覧", href: "/" }, { name: "日付・時間計算" }]} />
+
       <ToolHeader
         slug="date"
         lead="2つの日付の間が何日あるか、ある日から◯日後／◯日前はいつか（曜日つき）、Unix時間と日時の変換——日付まわりの計算をまとめて行えます。うるう年や月またぎも自動で考慮します。"
@@ -66,6 +70,7 @@ export default function DatePage() {
         />
       </div>
 
+      <RelatedColumns currentSlug="date" />
       <RelatedTools currentSlug="date" />
     </div>
   );

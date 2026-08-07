@@ -3,6 +3,8 @@ import ColorTool from "@/components/ColorTool";
 import ToolHeader from "@/components/ToolHeader";
 import Faq from "@/components/Faq";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedColumns from "@/components/RelatedColumns";
+import Breadcrumb from "@/components/Breadcrumb";
 
 export const metadata: Metadata = {
   title: "カラーコード変換（HEX⇄RGB⇄HSL・プレビュー）",
@@ -13,6 +15,8 @@ export const metadata: Metadata = {
 export default function ColorPage() {
   return (
     <div className="mx-auto max-w-5xl px-5 py-10">
+      <Breadcrumb items={[{ name: "ツール一覧", href: "/" }, { name: "カラーコード変換" }]} />
+
       <ToolHeader
         slug="color"
         lead="色をHEX・RGB・HSLの各表記で相互に確認・変換できます。カラーピッカーで選ぶか、HEXコードを入力すると、プレビューと各形式の値がすぐに表示されます。CSSやデザインの色指定にどうぞ。"
@@ -44,6 +48,7 @@ export default function ColorPage() {
         />
       </div>
 
+      <RelatedColumns currentSlug="color" />
       <RelatedTools currentSlug="color" />
     </div>
   );

@@ -3,6 +3,8 @@ import EncodeTool from "@/components/EncodeTool";
 import ToolHeader from "@/components/ToolHeader";
 import Faq from "@/components/Faq";
 import RelatedTools from "@/components/RelatedTools";
+import RelatedColumns from "@/components/RelatedColumns";
+import Breadcrumb from "@/components/Breadcrumb";
 
 export const metadata: Metadata = {
   title: "Base64・URLエンコード/デコード",
@@ -13,6 +15,8 @@ export const metadata: Metadata = {
 export default function EncodePage() {
   return (
     <div className="mx-auto max-w-5xl px-5 py-10">
+      <Breadcrumb items={[{ name: "ツール一覧", href: "/" }, { name: "エンコード・デコード" }]} />
+
       <ToolHeader
         slug="encode"
         lead="Base64 と URL（パーセント）エンコードの相互変換ができます。日本語を含む文字列も UTF-8 として正しく処理します。処理はすべてブラウザ内で行われます。"
@@ -84,6 +88,7 @@ export default function EncodePage() {
         />
       </div>
 
+      <RelatedColumns currentSlug="encode" />
       <RelatedTools currentSlug="encode" />
     </div>
   );
