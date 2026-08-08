@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Breadcrumb from "@/components/Breadcrumb";
+import ArticleMeta from "@/components/ArticleMeta";
 
 export const metadata: Metadata = {
   title: "原稿用紙の文字数の数え方——句読点・小さい「っ」はどう数える？",
@@ -13,6 +14,12 @@ export default function Page() {
     <article className="mx-auto max-w-3xl px-5 py-12">
       <p className="text-xs text-ink-faint font-mono tracking-widest">COLUMN</p>
       <Breadcrumb items={[{ name: "コラム", href: "/column/" }, { name: "原稿用紙の文字数の数え方" }]} />
+      <ArticleMeta
+        title="原稿用紙の文字数の数え方——句読点・小さい「っ」はどう数える？"
+        description="400字詰め原稿用紙のルール（句読点・促音・拗音・改行の扱い）と、Webの文字数カウントとの違いを解説します。"
+        path="/column/genkoyoshi/"
+        publishedDate="2026-07-30"
+      />
       <h1 className="mt-2 font-mincho text-2xl sm:text-3xl font-bold text-ink leading-snug">
         原稿用紙の文字数の数え方——句読点・小さい「っ」はどう数える？
       </h1>

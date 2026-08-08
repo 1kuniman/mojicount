@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Breadcrumb from "@/components/Breadcrumb";
+import ArticleMeta from "@/components/ArticleMeta";
 
 export const metadata: Metadata = {
   title: "GiBとGBは別物——500GBのSSDが465にしか見えない理由",
@@ -13,6 +14,12 @@ export default function Page() {
     <article className="mx-auto max-w-3xl px-5 py-12">
       <p className="text-xs text-ink-faint font-mono tracking-widest">COLUMN</p>
       <Breadcrumb items={[{ name: "コラム", href: "/column/" }, { name: "GiBとGBは別物" }]} />
+      <ArticleMeta
+        title="GiBとGBは別物——500GBのSSDが465にしか見えない理由"
+        description="KB/MB/GB（10進）とKiB/MiB/GiB（2進）の違い、ストレージの容量表記が小さく見える理由を解説します。"
+        path="/column/gib-vs-gb/"
+        publishedDate="2026-07-30"
+      />
       <h1 className="mt-2 font-mincho text-2xl sm:text-3xl font-bold text-ink leading-snug">
         GiBとGBは別物——500GBのSSDが465にしか見えない理由
       </h1>

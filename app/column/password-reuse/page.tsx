@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Breadcrumb from "@/components/Breadcrumb";
+import ArticleMeta from "@/components/ArticleMeta";
 
 export const metadata: Metadata = {
   title: "パスワードの使い回しはなぜ危険か——リスト型攻撃の仕組み",
@@ -13,6 +14,12 @@ export default function Page() {
     <article className="mx-auto max-w-3xl px-5 py-12">
       <p className="text-xs text-ink-faint font-mono tracking-widest">COLUMN</p>
       <Breadcrumb items={[{ name: "コラム", href: "/column/" }, { name: "パスワードの使い回しはなぜ危険か" }]} />
+      <ArticleMeta
+        title="パスワードの使い回しはなぜ危険か——リスト型攻撃の仕組み"
+        description="パスワードを使い回すと、1か所の漏えいが全アカウントの乗っ取りにつながります。リスト型攻撃の仕組みと、現実的な対策を解説します。"
+        path="/column/password-reuse/"
+        publishedDate="2026-08-02"
+      />
       <h1 className="mt-2 font-mincho text-2xl sm:text-3xl font-bold text-ink leading-snug">
         パスワードの使い回しはなぜ危険か——リスト型攻撃の仕組み
       </h1>

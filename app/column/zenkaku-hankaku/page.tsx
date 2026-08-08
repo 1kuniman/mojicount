@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Breadcrumb from "@/components/Breadcrumb";
+import ArticleMeta from "@/components/ArticleMeta";
 
 export const metadata: Metadata = {
   title: "全角と半角は何が違う？——「１２３」と「123」が別物として扱われる理由",
@@ -13,6 +14,12 @@ export default function Page() {
     <article className="mx-auto max-w-3xl px-5 py-12">
       <p className="text-xs text-ink-faint font-mono tracking-widest">COLUMN</p>
       <Breadcrumb items={[{ name: "コラム", href: "/column/" }, { name: "全角と半角は何が違う？" }]} />
+      <ArticleMeta
+        title="全角と半角は何が違う？——「１２３」と「123」が別物として扱われる理由"
+        description="全角と半角の違いをコンピュータの文字コードの観点から解説。フォームで弾かれる理由、検索でヒットしない理由が分かります。"
+        path="/column/zenkaku-hankaku/"
+        publishedDate="2026-07-31"
+      />
       <h1 className="mt-2 font-mincho text-2xl sm:text-3xl font-bold text-ink leading-snug">
         全角と半角は何が違う？——「１２３」と「123」が別物として扱われる理由
       </h1>

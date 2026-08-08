@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Breadcrumb from "@/components/Breadcrumb";
+import ArticleMeta from "@/components/ArticleMeta";
 
 export const metadata: Metadata = {
   title: "安全なパスワードの作り方——長さ・文字種・パスフレーズ",
@@ -13,6 +14,12 @@ export default function Page() {
     <article className="mx-auto max-w-3xl px-5 py-12">
       <p className="text-xs text-ink-faint font-mono tracking-widest">COLUMN</p>
       <Breadcrumb items={[{ name: "コラム", href: "/column/" }, { name: "安全なパスワードの作り方" }]} />
+      <ArticleMeta
+        title="安全なパスワードの作り方——長さ・文字種・パスフレーズ"
+        description="推測されにくいパスワードの条件（長さ・文字種・使い回し回避）と、覚えやすさを両立するパスフレーズの考え方を解説します。"
+        path="/column/password-safety/"
+        publishedDate="2026-07-30"
+      />
       <h1 className="mt-2 font-mincho text-2xl sm:text-3xl font-bold text-ink leading-snug">
         安全なパスワードの作り方——長さ・文字種・パスフレーズ
       </h1>

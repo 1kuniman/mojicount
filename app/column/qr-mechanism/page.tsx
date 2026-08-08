@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Breadcrumb from "@/components/Breadcrumb";
+import ArticleMeta from "@/components/ArticleMeta";
 
 export const metadata: Metadata = {
   title: "QRコードはなぜ一部が欠けても読めるのか——誤り訂正の仕組み",
@@ -13,6 +14,12 @@ export default function Page() {
     <article className="mx-auto max-w-3xl px-5 py-12">
       <p className="text-xs text-ink-faint font-mono tracking-widest">COLUMN</p>
       <Breadcrumb items={[{ name: "コラム", href: "/column/" }, { name: "QRコードはなぜ欠けても読めるのか" }]} />
+      <ArticleMeta
+        title="QRコードはなぜ一部が欠けても読めるのか——誤り訂正の仕組み"
+        description="QRコードの構造（切り出しシンボル・データ領域）と、誤り訂正レベルL/M/Q/Hの意味、ロゴ入りQRが成立する理由を解説します。"
+        path="/column/qr-mechanism/"
+        publishedDate="2026-07-30"
+      />
       <h1 className="mt-2 font-mincho text-2xl sm:text-3xl font-bold text-ink leading-snug">
         QRコードはなぜ一部が欠けても読めるのか——誤り訂正の仕組み
       </h1>

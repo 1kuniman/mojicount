@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Breadcrumb from "@/components/Breadcrumb";
+import ArticleMeta from "@/components/ArticleMeta";
 
 export const metadata: Metadata = {
   title: "文字化けはなぜ起きるのか——「縺薙」や「?????」の正体",
@@ -13,6 +14,12 @@ export default function Page() {
     <article className="mx-auto max-w-3xl px-5 py-12">
       <p className="text-xs text-ink-faint font-mono tracking-widest">COLUMN</p>
       <Breadcrumb items={[{ name: "コラム", href: "/column/" }, { name: "文字化けはなぜ起きるのか" }]} />
+      <ArticleMeta
+        title="文字化けはなぜ起きるのか——「縺薙」や「?????」の正体"
+        description="文字化けの原因である文字コードの不一致を解説。UTF-8とShift_JISの違い、CSVをExcelで開くと化ける理由と対処法も紹介します。"
+        path="/column/mojibake/"
+        publishedDate="2026-08-02"
+      />
       <h1 className="mt-2 font-mincho text-2xl sm:text-3xl font-bold text-ink leading-snug">
         文字化けはなぜ起きるのか——「縺薙」や「?????」の正体
       </h1>

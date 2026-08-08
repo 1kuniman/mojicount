@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Breadcrumb from "@/components/Breadcrumb";
+import ArticleMeta from "@/components/ArticleMeta";
 
 export const metadata: Metadata = {
   title: "Base64とは何か——なぜ画像を「文字」にできるのか",
@@ -13,6 +14,12 @@ export default function Page() {
     <article className="mx-auto max-w-3xl px-5 py-12">
       <p className="text-xs text-ink-faint font-mono tracking-widest">COLUMN</p>
       <Breadcrumb items={[{ name: "コラム", href: "/column/" }, { name: "Base64とは何か" }]} />
+      <ArticleMeta
+        title="Base64とは何か——なぜ画像を「文字」にできるのか"
+        description="Base64エンコードの仕組みを図解なしでも分かるように解説。なぜデータが1.33倍になるのか、暗号化と何が違うのかも説明します。"
+        path="/column/base64/"
+        publishedDate="2026-07-31"
+      />
       <h1 className="mt-2 font-mincho text-2xl sm:text-3xl font-bold text-ink leading-snug">
         Base64とは何か——なぜ画像を「文字」にできるのか
       </h1>

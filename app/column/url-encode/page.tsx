@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Breadcrumb from "@/components/Breadcrumb";
+import ArticleMeta from "@/components/ArticleMeta";
 
 export const metadata: Metadata = {
   title: "URLエンコードとは——「%20」の正体と、日本語URLが長くなる理由",
@@ -13,6 +14,12 @@ export default function Page() {
     <article className="mx-auto max-w-3xl px-5 py-12">
       <p className="text-xs text-ink-faint font-mono tracking-widest">COLUMN</p>
       <Breadcrumb items={[{ name: "コラム", href: "/column/" }, { name: "URLエンコードとは" }]} />
+      <ArticleMeta
+        title="URLエンコードとは——「%20」の正体と、日本語URLが長くなる理由"
+        description="URLの中の%20や%E3%81%82の意味を解説。なぜスペースや日本語はそのままURLに入れられないのか、仕組みから分かります。"
+        path="/column/url-encode/"
+        publishedDate="2026-08-01"
+      />
       <h1 className="mt-2 font-mincho text-2xl sm:text-3xl font-bold text-ink leading-snug">
         URLエンコードとは——「%20」の正体と、日本語URLが長くなる理由
       </h1>
