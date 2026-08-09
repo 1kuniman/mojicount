@@ -3,6 +3,7 @@ import "./globals.css";
 import Sidebar from "@/components/Sidebar";
 import Footer from "@/components/Footer";
 import ToastHost from "@/components/ToastHost";
+import { Analytics } from "@vercel/analytics/react";
 
 const SITE_NAME = "もじもじツール";
 const SITE_DESC =
@@ -68,6 +69,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </div>
         </div>
         <ToastHost />
+        <Analytics />
       </body>
     </html>
   );

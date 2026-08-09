@@ -35,7 +35,7 @@ export default function PrivacyPage() {
         <section>
           <h2 className="font-mincho text-xl font-bold text-ink rule-shu">アクセス解析について</h2>
           <p className="mt-3">
-            当サイトは、検索エンジンからの表示状況を把握するために Google Search Console を利用しています。これにより個人が特定されることはありません。
+            当サイトは、検索エンジンからの表示状況を把握するために Google Search Console を、ページの閲覧数を計測するために Vercel Analytics を利用しています。これらにより個人が特定されることはありません。
           </p>
         </section>
 
