@@ -126,3 +126,95 @@ export function strengthFromBits(bits: number): { label: string; level: number }
 }
 
 export const WORDLIST_SIZE = WORDS.length;
+
+// ===== 強度チェック（既存パスワードの解析） =====
+export interface PwCheckResult {
+  length: number;
+  hasLower: boolean;
+  hasUpper: boolean;
+  hasDigit: boolean;
+  hasSymbol: boolean;
+  bits: number;
+  crackTime: string;
+  warnings: string[];
+}
+
+// ごく一般的な弱いパスワード（代表例のみ・小文字化して比較）
+const COMMON_PASSWORDS = [
+  "password", "123456", "12345678", "123456789", "qwerty", "abc123",
+  "111111", "1234567", "iloveyou", "admin", "letmein", "welcome",
+  "monkey", "dragon", "password1", "qwertyuiop", "1q2w3e4r",
+  "sunshine", "princess", "football", "baseball", "trustno1",
+  "000000", "121212", "654321", "123123", "qazwsx", "zaq12wsx",
+  "passw0rd", "master", "login", "starwars", "freedom", "whatever",
+];
+
+function hasSequential(pw: string, len = 3): boolean {
+  const lower = pw.toLowerCase();
+  for (let i = 0; i <= lower.length - len; i++) {
+    let asc = true, desc = true;
+    for (let j = 1; j < len; j++) {
+      const a = lower.charCodeAt(i + j) - lower.charCodeAt(i + j - 1);
+      if (a !== 1) asc = false;
+      if (a !== -1) desc = false;
+    }
+    if (asc || desc) return true;
+  }
+  return false;
+}
+
+function hasRepeated(pw: string, len = 3): boolean {
+  for (let i = 0; i <= pw.length - len; i++) {
+    if (new Set(pw.slice(i, i + len)).size === 1) return true;
+  }
+  return false;
+}
+
+// 推定：オフライン高速解析（1秒間に約100億回試行）を仮定した粗い目安
+function crackTimeFromBits(bits: number): string {
+  if (bits <= 0) return "—";
+  const guesses = Math.pow(2, bits) / 2; // 平均で半分試せば当たる
+  const perSecond = 1e10;
+  const seconds = guesses / perSecond;
+  if (seconds < 1) return "1秒未満";
+  const units: [number, string][] = [
+    [60, "秒"], [60, "分"], [24, "時間"], [365, "日"], [100, "年"], [Infinity, "100年以上"],
+  ];
+  let v = seconds;
+  for (const [div, label] of units) {
+    if (label === "100年以上") return "100年以上";
+    if (v < div) return `約${Math.max(1, Math.round(v))}${label}`;
+    v /= div;
+  }
+  return "100年以上";
+}
+
+export function checkPasswordStrength(pw: string): PwCheckResult {
+  const hasLower = /[a-z]/.test(pw);
+  const hasUpper = /[A-Z]/.test(pw);
+  const hasDigit = /[0-9]/.test(pw);
+  const hasSymbol = /[^a-zA-Z0-9]/.test(pw);
+
+  let poolSize = 0;
+  if (hasLower) poolSize += 26;
+  if (hasUpper) poolSize += 26;
+  if (hasDigit) poolSize += 10;
+  if (hasSymbol) poolSize += 33;
+
+  const bits = pw.length > 0 && poolSize > 0 ? pw.length * Math.log2(poolSize) : 0;
+
+  const warnings: string[] = [];
+  if (pw.length > 0 && pw.length < 8) warnings.push("8文字未満は短すぎます");
+  if (COMMON_PASSWORDS.includes(pw.toLowerCase())) warnings.push("非常によく使われているパスワードです");
+  if (hasSequential(pw)) warnings.push("連続した文字列が含まれています（abc・123など）");
+  if (hasRepeated(pw)) warnings.push("同じ文字の3連続以上が含まれています");
+  if (pw.length > 0 && !hasSymbol && !hasDigit) warnings.push("文字種が英字のみです");
+
+  return {
+    length: pw.length,
+    hasLower, hasUpper, hasDigit, hasSymbol,
+    bits,
+    crackTime: crackTimeFromBits(bits),
+    warnings,
+  };
+}

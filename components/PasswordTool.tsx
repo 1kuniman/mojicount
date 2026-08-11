@@ -11,11 +11,12 @@ import {
   type PassphraseOptions,
 } from "@/lib/password";
 import CopyButton from "@/components/CopyButton";
+import PasswordChecker from "@/components/PasswordChecker";
 
 const ACCENT = "#a23e5c";
 const LEVEL_COLOR = ["#cbb6ad", "#e0653b", "#d99a2b", "#3f8a5c", "#2f7d72"];
 
-type Mode = "random" | "passphrase";
+type Mode = "random" | "passphrase" | "check";
 
 export default function PasswordTool() {
   const [mode, setMode] = useState<Mode>("random");
@@ -65,8 +66,12 @@ export default function PasswordTool() {
       <div className="flex gap-2 mb-4">
         {tab("random", "ランダム文字列")}
         {tab("passphrase", "パスフレーズ")}
+        {tab("check", "強度チェック")}
       </div>
 
+      {mode === "check" ? (
+        <PasswordChecker />
+      ) : (
       <div className="rounded-xl border border-line bg-paper p-5">
         {mode === "random" ? (
           <>
@@ -139,6 +144,7 @@ export default function PasswordTool() {
           </button>
         </div>
       </div>
+      )}
 
       {list.length > 0 && (
         <div className="mt-5 space-y-2">
