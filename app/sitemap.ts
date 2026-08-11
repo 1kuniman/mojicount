@@ -17,6 +17,7 @@ const STATIC_PAGES = [
   "/column/password-reuse/",
   "/column/quishing/",
   "/column/two-factor-auth/",
+  "/column/password-manager/",
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

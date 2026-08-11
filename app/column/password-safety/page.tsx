@@ -39,7 +39,7 @@ export default function Page() {
         <section>
           <h2 className="font-mincho text-xl font-bold text-ink rule-shu">使い回しが最大の弱点</h2>
           <p className="mt-3">
-            どれだけ強いパスワードでも、複数のサービスで使い回していると、1か所の漏えいがすべてのアカウントの漏えいに直結します（漏れたIDとパスワードの組を他サービスで試す攻撃は、実際に最も多い侵入経路のひとつです）。サービスごとに別のパスワードを作り、パスワード管理アプリに保存する運用が現実解です。
+            どれだけ強いパスワードでも、複数のサービスで使い回していると、1か所の漏えいがすべてのアカウントの漏えいに直結します（漏れたIDとパスワードの組を他サービスで試す攻撃は、実際に最も多い侵入経路のひとつです）。サービスごとに別のパスワードを作り、<Link href="/column/password-manager/" className="text-shu underline underline-offset-2">パスワードマネージャー</Link>に保存する運用が現実解です。
           </p>
         </section>
 

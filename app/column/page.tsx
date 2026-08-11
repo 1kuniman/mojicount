@@ -8,6 +8,11 @@ export const metadata: Metadata = {
 
 const ARTICLES = [
   {
+    href: "/column/password-manager/",
+    title: "パスワードマネージャーとは——なぜ「覚える」をやめるべきか",
+    desc: "パスワード管理アプリの仕組みと安全性、導入の始め方を解説します。",
+  },
+  {
     href: "/column/quishing/",
     title: "QRコードを悪用したフィッシング詐欺「クイッシング」に注意",
     desc: "QRコードを使った詐欺の手口と、読み取る前に確認すべきポイントを解説します。",
