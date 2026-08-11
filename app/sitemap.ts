@@ -15,6 +15,8 @@ const STATIC_PAGES = [
   "/column/url-encode/",
   "/column/mojibake/",
   "/column/password-reuse/",
+  "/column/quishing/",
+  "/column/two-factor-auth/",
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

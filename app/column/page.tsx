@@ -8,6 +8,16 @@ export const metadata: Metadata = {
 
 const ARTICLES = [
   {
+    href: "/column/quishing/",
+    title: "QRコードを悪用したフィッシング詐欺「クイッシング」に注意",
+    desc: "QRコードを使った詐欺の手口と、読み取る前に確認すべきポイントを解説します。",
+  },
+  {
+    href: "/column/two-factor-auth/",
+    title: "二段階認証とは——パスワードだけに頼らない理由",
+    desc: "2FAの仕組みとSMS認証・認証アプリ・セキュリティキーの違いを解説します。",
+  },
+  {
     href: "/column/mojibake/",
     title: "文字化けはなぜ起きるのか——「縺薙」や「?????」の正体",
     desc: "文字コードの不一致という原因と、CSVをExcelで開くと化ける理由・対処法を解説します。",
