@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: "全角と半角は何が違う？——「１２３」と「123」が別物として扱われる理由",
   description:
     "全角と半角の違いをコンピュータの文字コードの観点から解説。フォームで弾かれる理由、検索でヒットしない理由が分かります。",
+  alternates: { canonical: "https://www.mojimojicount.com/column/zenkaku-hankaku/" },
 };
 
 export default function Page() {

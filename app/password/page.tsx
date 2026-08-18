@@ -10,6 +10,7 @@ export const metadata: Metadata = {
   title: "パスワード生成（強力・安全・ブラウザ内）",
   description:
     "文字数や文字種を指定して強力なパスワードを生成する無料ツール。すべて端末内で生成され、どこにも送信されません。",
+  alternates: { canonical: "https://www.mojimojicount.com/password/" },
 };
 
 export default function PasswordPage() {

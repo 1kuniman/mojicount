@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: "原稿用紙の文字数の数え方——句読点・小さい「っ」はどう数える？",
   description:
     "400字詰め原稿用紙のルール（句読点・促音・拗音・改行の扱い）と、Webの文字数カウントとの違いを解説します。",
+  alternates: { canonical: "https://www.mojimojicount.com/column/genkoyoshi/" },
 };
 
 export default function Page() {

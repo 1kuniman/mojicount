@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: "URLエンコードとは——「%20」の正体と、日本語URLが長くなる理由",
   description:
     "URLの中の%20や%E3%81%82の意味を解説。なぜスペースや日本語はそのままURLに入れられないのか、仕組みから分かります。",
+  alternates: { canonical: "https://www.mojimojicount.com/column/url-encode/" },
 };
 
 export default function Page() {

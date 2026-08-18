@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "パスワードマネージャーとは——なぜ「覚える」をやめるべきか",
   description:
     "パスワード管理アプリの仕組みと安全性、選び方の考え方を解説。すべてを覚えようとすることの限界と、使い回しをやめる現実的な方法を紹介します。",
+  alternates: { canonical: "https://www.mojimojicount.com/column/password-manager/" },
 };
 
 export default function Page() {

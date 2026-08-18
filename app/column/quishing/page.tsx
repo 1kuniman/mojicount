@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "QRコードを悪用したフィッシング詐欺「クイッシング」に注意",
   description:
     "QRコードを使ったフィッシング詐欺（クイッシング）の手口と見分け方を解説。読み取る前に確認すべきポイントも紹介します。",
+  alternates: { canonical: "https://www.mojimojicount.com/column/quishing/" },
 };
 
 export default function Page() {

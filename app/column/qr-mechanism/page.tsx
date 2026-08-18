@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: "QRコードはなぜ一部が欠けても読めるのか——誤り訂正の仕組み",
   description:
     "QRコードの構造（切り出しシンボル・データ領域）と、誤り訂正レベルL/M/Q/Hの意味、ロゴ入りQRが成立する理由を解説します。",
+  alternates: { canonical: "https://www.mojimojicount.com/column/qr-mechanism/" },
 };
 
 export default function Page() {

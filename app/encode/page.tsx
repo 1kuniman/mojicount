@@ -10,6 +10,7 @@ export const metadata: Metadata = {
   title: "Base64・URLエンコード/デコード",
   description:
     "Base64とURL（パーセント）エンコードの相互変換ツール。日本語（UTF-8）もそのまま正しく変換。ブラウザ内で完結し、入力はサーバーに送信されません。",
+  alternates: { canonical: "https://www.mojimojicount.com/encode/" },
 };
 
 export default function EncodePage() {

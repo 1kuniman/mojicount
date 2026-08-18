@@ -1,5 +1,10 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { TOOLS } from "@/lib/tools";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "https://www.mojimojicount.com/" },
+};
 
 const GROUPS: { title: string; slugs: string[] }[] = [
   { title: "書く・数える", slugs: ["count", "format"] },

@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: "安全なパスワードの作り方——長さ・文字種・パスフレーズ",
   description:
     "推測されにくいパスワードの条件（長さ・文字種・使い回し回避）と、覚えやすさを両立するパスフレーズの考え方を解説します。",
+  alternates: { canonical: "https://www.mojimojicount.com/column/password-safety/" },
 };
 
 export default function Page() {

@@ -10,6 +10,7 @@ export const metadata: Metadata = {
   title: "テキスト整形｜重複行削除・空行削除・並び替え",
   description:
     "重複行の削除、空行の削除、各行の前後トリム、連続スペースの圧縮、行の並び替えを組み合わせて一括クリーンアップ。ブラウザ内で完結し、テキストは送信されません。",
+  alternates: { canonical: "https://www.mojimojicount.com/format/" },
 };
 
 export default function FormatPage() {

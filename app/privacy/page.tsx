@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "プライバシーポリシー",
   description: "もじもじツールのプライバシーポリシー。入力データの扱い、Cookie、広告配信について説明します。",
+  alternates: { canonical: "https://www.mojimojicount.com/privacy/" },
 };
 
 export default function PrivacyPage() {

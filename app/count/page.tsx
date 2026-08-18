@@ -10,6 +10,7 @@ export const metadata: Metadata = {
   title: "文字数カウント｜空白・原稿用紙・バイト数・SNS制限",
   description:
     "貼り付けた瞬間に文字数（空白込み/抜き）・行数・段落・原稿用紙換算・バイト数・文字種別・読了時間・SNS文字数制限を表示。ブラウザ内で完結し、テキストは送信されません。",
+  alternates: { canonical: "https://www.mojimojicount.com/count/" },
 };
 
 export default function CountPage() {

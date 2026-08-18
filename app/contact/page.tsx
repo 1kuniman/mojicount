@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "お問い合わせ",
   description: "もじもじツールへのお問い合わせ方法。",
+  alternates: { canonical: "https://www.mojimojicount.com/contact/" },
 };
 
 export default function ContactPage() {

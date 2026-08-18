@@ -10,6 +10,7 @@ export const metadata: Metadata = {
   title: "QRコード生成（URL・テキスト → PNG/SVG保存）",
   description:
     "URLやテキストからQRコードを無料で生成。色・サイズ・誤り訂正レベルを調整してPNG/SVGで保存できます。ブラウザ内で完結します。",
+  alternates: { canonical: "https://www.mojimojicount.com/qr/" },
 };
 
 export default function QrPage() {

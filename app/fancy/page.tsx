@@ -10,6 +10,7 @@ export const metadata: Metadata = {
   title: "おしゃれ文字・フォント変換（SNS用の装飾文字）",
   description:
     "入力した文字を筆記体・袋文字・丸囲み・全角など13種の装飾フォントに一括変換。SNSのbioや投稿にそのままコピペできる無料ツール。ブラウザ内で完結します。",
+  alternates: { canonical: "https://www.mojimojicount.com/fancy/" },
 };
 
 export default function FancyPage() {

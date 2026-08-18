@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: "文字化けはなぜ起きるのか——「縺薙」や「?????」の正体",
   description:
     "文字化けの原因である文字コードの不一致を解説。UTF-8とShift_JISの違い、CSVをExcelで開くと化ける理由と対処法も紹介します。",
+  alternates: { canonical: "https://www.mojimojicount.com/column/mojibake/" },
 };
 
 export default function Page() {

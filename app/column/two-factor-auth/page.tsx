@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "二段階認証とは——パスワードだけに頼らない理由",
   description:
     "二段階認証（2FA）の仕組みと、SMS認証・認証アプリ・セキュリティキーの違いを解説。パスワード管理と合わせて設定したい理由も紹介します。",
+  alternates: { canonical: "https://www.mojimojicount.com/column/two-factor-auth/" },
 };
 
 export default function Page() {

@@ -4,6 +4,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "コラム一覧",
   description: "文字数・データサイズ・パスワード・QRコードなど、ツールにまつわる知識を解説するコラム集。",
+  alternates: { canonical: "https://www.mojimojicount.com/column/" },
 };
 
 const ARTICLES = [

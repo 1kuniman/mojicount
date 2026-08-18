@@ -10,6 +10,7 @@ export const metadata: Metadata = {
   title: "日付・時間計算（経過日数・何日後・曜日・Unix時間）",
   description:
     "2つの日付の経過日数、◯日後/◯日前の日付と曜日、Unix時間と日時の相互変換ができる無料ツール。ブラウザ内で完結します。",
+  alternates: { canonical: "https://www.mojimojicount.com/date/" },
 };
 
 export default function DatePage() {

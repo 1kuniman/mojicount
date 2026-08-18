@@ -10,6 +10,7 @@ export const metadata: Metadata = {
   title: "全角半角・ひらがなカタカナ変換",
   description:
     "全角⇄半角（英数・記号）、ひらがな⇄カタカナ、英字の大文字⇄小文字をワンクリックで相互変換。ブラウザ内で完結し、テキストは送信されません。",
+  alternates: { canonical: "https://www.mojimojicount.com/convert/" },
 };
 
 export default function ConvertPage() {

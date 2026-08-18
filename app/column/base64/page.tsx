@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: "Base64とは何か——なぜ画像を「文字」にできるのか",
   description:
     "Base64エンコードの仕組みを図解なしでも分かるように解説。なぜデータが1.33倍になるのか、暗号化と何が違うのかも説明します。",
+  alternates: { canonical: "https://www.mojimojicount.com/column/base64/" },
 };
 
 export default function Page() {

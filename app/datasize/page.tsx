@@ -10,6 +10,7 @@ export const metadata: Metadata = {
   title: "データサイズ変換（B・KB・MB・GB・TB）",
   description:
     "バイト・KB・MB・GB・TB・PB をまとめて相互変換。1KB=1024 と 1000 の両方式に対応。ブラウザ内で完結する無料のデータ容量計算ツール。",
+  alternates: { canonical: "https://www.mojimojicount.com/datasize/" },
 };
 
 export default function DataSizePage() {

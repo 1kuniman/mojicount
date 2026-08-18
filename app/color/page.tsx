@@ -10,6 +10,7 @@ export const metadata: Metadata = {
   title: "カラーコード変換（HEX⇄RGB⇄HSL・プレビュー）",
   description:
     "HEX・RGB・HSL を相互変換できる無料ツール。カラーピッカーとプレビュー付きで、CSSやデザインの色指定に。ブラウザ内で完結します。",
+  alternates: { canonical: "https://www.mojimojicount.com/color/" },
 };
 
 export default function ColorPage() {

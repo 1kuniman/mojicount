@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: "GiBとGBは別物——500GBのSSDが465にしか見えない理由",
   description:
     "KB/MB/GB（10進）とKiB/MiB/GiB（2進）の違い、ストレージの容量表記が小さく見える理由を解説します。",
+  alternates: { canonical: "https://www.mojimojicount.com/column/gib-vs-gb/" },
 };
 
 export default function Page() {

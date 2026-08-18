@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: "パスワードの使い回しはなぜ危険か——リスト型攻撃の仕組み",
   description:
     "パスワードを使い回すと、1か所の漏えいが全アカウントの乗っ取りにつながります。リスト型攻撃の仕組みと、現実的な対策を解説します。",
+  alternates: { canonical: "https://www.mojimojicount.com/column/password-reuse/" },
 };
 
 export default function Page() {

@@ -4,6 +4,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "運営者情報",
   description: "もじもじツールの運営者情報とサイトの方針について。",
+  alternates: { canonical: "https://www.mojimojicount.com/about/" },
 };
 
 export default function AboutPage() {
