@@ -555,6 +555,9 @@ function buildShelfRow(){
   idx.map((v,i)=>[v,i]).sort((a2,b2)=>b2[0]-a2[0]).forEach(([v,i])=>seq.splice(v,0,{t:"s",sp:specs[i],w:specs[i].T}));
   const total=()=>seq.reduce((s2,it)=>s2+it.w+1.2,0);
   while(total()>span-(mob?4:50)){let j=seq.length-1;while(j>=0&&seq[j].t!=="f")j--;if(j<0)break;seq.splice(j,1)}
+  // still too wide once every filler is gone: drop the small props and the pile, then shrink the titled books
+  while(total()>span-(mob?4:50)){let j=seq.length-1;while(j>=0&&seq[j].t!=="prop")j--;if(j<0)j=seq.findIndex(it=>it.t==="stack");if(j<0)break;seq.splice(j,1)}
+  if(total()>span-(mob?4:50)){const f=(span-(mob?4:50)-(total()-specs.reduce((a2,s2)=>a2+s2.T,0)))/specs.reduce((a2,s2)=>a2+s2.T,0);if(f>0&&f<1){specs.forEach(s2=>{s2.H*=f;s2.T*=f;s2.D*=f});seq.forEach(it=>{if(it.t==="s")it.w=it.sp.T})}}
   let x=L;
   for(const it of seq){
     if(it.t==="s"){placed.push({...it.sp,x});x+=it.w+gapOf();continue}
