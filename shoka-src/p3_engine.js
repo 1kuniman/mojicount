@@ -20,6 +20,7 @@ function moonLit(cx,cy,r,f){const k=Math.cos(2*Math.PI*f),rx=Math.abs(k)*r,wax=f
 /* ================= state ================= */
 let shared=false,SHR=null,S0=null,sharedParts=null,pendingJump=false;
 const SITE_URL="https://www.mojimojicount.com";
+const AFFL={url:"https://px.a8.net/svt/ejp?a8mat=4BESUD+2HWHWA+2PEO+C3BAQ",px:"https://www13.a8.net/0.gif?a8mat=4BESUD+2HWHWA+2PEO+C3BAQ",sub:"https://px.a8.net/svt/ejp?a8mat=4BESUD+2IHXI2+2PEO+1BP19U",subpx:"https://www15.a8.net/0.gif?a8mat=4BESUD+2IHXI2+2PEO+1BP19U"};
 const TAROT_SLUG=["fool","magician","high-priestess","empress","emperor","hierophant","lovers","chariot","strength","hermit","wheel-of-fortune","justice","hanged-man","death","temperance","devil","tower","star","moon","sun","judgement","world"];
 const STONE_SLUG={rose:"rose-quartz",moon:"moonstone",rhodo:"rhodochrosite",amethyst:"amethyst",labra:"labradorite",crystal:"crystal",carnelian:"carnelian",tiger:"tigers-eye",citrine:"citrine"};
 const KI_SLUG=["","ippaku-suisei","jikoku-dosei","sanpeki-mokusei","shiroku-mokusei","goou-dosei","roppaku-kinsei","shichiseki-kinsei","happaku-dosei","kyushi-kasei"];
@@ -349,7 +350,7 @@ function compose(){
   const share=encodeURIComponent(`${sh.x}\nあなたも一冊、ひらいてみて。 #宵の書架 #${B.title}`);
   const f=[{type:"cover"},{type:"endpaper",plate:true},{type:"title"},...body.map(x=>({type:"page",...x})),
     {type:"page",rh:"栞",html:`<div class="pg"><div class="chap">栞</div><h2>この頁を、<br>誰かに届ける</h2><p>Xに書き残すと、あなたの結果がひらいた状態の本へのリンクが付きます。受け取った人は、同じ頁をそのまま読めます。生年月日や名前は、リンクに含まれません。</p><div class="btns"><a class="inkbtn" href="https://twitter.com/intent/tweet?text=${share}&url=${encodeURIComponent(link)}" target="_blank" rel="noopener">Xに書き残す</a><button class="inkbtn" type="button" id="copy" data-copy="${encodeURIComponent(sh.copy+"\n"+link)}">結果とリンクを写しとる</button><button class="inkbtn" type="button" id="again">書き入れなおす</button></div></div>`},
-    {type:"page",rh:"跋",html:`<div class="pg"><div class="chap">跋</div><h2>${B.after.h}</h2><p>${B.after.p}</p><div class="btns"><a class="inkbtn solid" id="aff" href="#" rel="nofollow sponsored">鑑定を受けてみる</a><p class="fine" style="text-align:center">初回無料の鑑定があるサービスを選んでいます</p></div></div>`}];
+    {type:"page",rh:"跋",html:`<div class="pg"><div class="chap">跋</div><h2>${B.after.h}</h2><p>${B.after.p}</p><div class="btns"><a class="inkbtn solid" id="aff" href="${AFFL.url}" target="_blank" rel="sponsored noopener">ココナラの電話占いで相談する</a><img src="${AFFL.px}" width="1" height="1" alt="" style="position:absolute;width:1px;height:1px;opacity:0"><a class="afsub" href="${AFFL.sub}" target="_blank" rel="sponsored noopener">電話が苦手なら、メールで相談</a><img src="${AFFL.subpx}" width="1" height="1" alt="" style="position:absolute;width:1px;height:1px;opacity:0"><p class="fine" style="text-align:center">PR・外部サイト（ココナラ）に移動します</p></div></div>`}];
   if((f.length+3)%2)f.push({type:"page",blank:true,html:`<div class="pg blank">${FLEURON}</div>`});
   f.push({type:"colophon"},{type:"endpaper"},{type:"back"});
   return f}
@@ -470,7 +471,6 @@ book.addEventListener("click",e=>{const t=e.target;
   if(t.closest("#reshuffle")){newDraw();render(true);return}
   if(t.closest("#reveal")){const b=t.closest("#reveal");if(b.disabled)return;b.classList.remove("press");void b.offsetWidth;b.classList.add("press");S.tarot.revealed=true;render(false);
     setTimeout(()=>{const ri=F.findIndex(f=>f.rh==="ひらいた札");const vis=isMob()?[k]:[2*k-1,2*k];if(vis.includes(ri))flipVisible();else step(1)},380);return}
-  if(t.closest("#aff")){e.preventDefault();return}
 });
 stage.addEventListener("click",e=>{if(!landed||desk.classList.contains("off"))return;
   if(e.target.closest("button,a,select,input,label,.choice,.tcard,.nerr,.sw9"))return;

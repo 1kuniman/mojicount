@@ -134,3 +134,9 @@ article li::before{content:"◆";position:absolute;left:0;top:.05em;font-size:.6
 .coverw{position:relative;display:inline-block;flex:none}
 .coverw img{width:100%;height:100%;object-fit:cover;-webkit-mask:none;mask:none;border-radius:1px 4px 4px 1px;box-shadow:0 1px 0 rgba(0,0,0,.2),4px 8px 18px rgba(60,35,10,.32),inset 0 0 0 1px rgba(0,0,0,.1)}
 .coverw .ct{position:absolute;transform:translate(-50%,-50%);white-space:nowrap;font-family:var(--display);letter-spacing:.12em;line-height:1;text-shadow:0 1px 0 rgba(0,0,0,.3);pointer-events:none}
+
+.aff{position:relative;padding-top:30px}
+.aff .pr{position:absolute;top:8px;right:10px;margin:0;font-family:var(--hand);font-size:10px;letter-spacing:.1em;color:var(--ink-faint);border:1px solid rgba(110,95,80,.35);border-radius:2px;padding:0 5px}
+.aff .px{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
+.aff-sub{display:block;margin-top:12px}
+.aff .aff-sub a{background:none;color:var(--rubric);padding:0;font-family:inherit;font-size:.92em;letter-spacing:.04em;text-decoration:underline;text-underline-offset:3px}

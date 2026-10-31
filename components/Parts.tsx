@@ -150,9 +150,17 @@ export function Aff() {
   if (!AFF.url) return null;
   return (
     <aside className="aff">
+      <small className="pr">PR</small>
       <p>{AFF.note}</p>
-      <a href={AFF.url} rel="sponsored noopener" target="_blank">{AFF.name}で相談してみる</a>
-      <small>広告・PR</small>
+      <a href={AFF.url} rel="sponsored noopener" target="_blank">{AFF.label}</a>
+      <img className="px" src={AFF.pixel} width={1} height={1} alt="" />
+      {AFF.sub && (
+        <span className="aff-sub">
+          <a href={AFF.sub.url} rel="sponsored noopener" target="_blank">{AFF.sub.label}</a>
+          <img className="px" src={AFF.sub.pixel} width={1} height={1} alt="" />
+        </span>
+      )}
+      <small>外部サイト（ココナラ）に移動します・広告</small>
     </aside>
   );
 }
