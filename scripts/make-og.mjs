@@ -86,8 +86,8 @@ for (const j of jobs) {
   const h1 = strip(pick(j.html, /<h1[^>]*>([\s\S]*?)<\/h1>/));
   const kicker = strip(pick(j.html, /<p class="kicker">([\s\S]*?)<\/p>/));
   const sub = strip(pick(j.html, /<p class="badge"><span>([^<]*)<\/span><\/p>/));
-  const plate = pick(j.html, /<div class="plate[^"]*"><img[^>]*src="([^"]+)"/);
-  const cover = pick(j.html, /<div class="plate cover"><img[^>]*src="([^"]+)"/);
+  const plate = pick(j.html, /<div class="plate[^"]*">(?:<span[^>]*>)?<img[^>]*src="([^"]+)"/);
+  const cover = pick(j.html, /<div class="plate cover">(?:<span[^>]*>)?<img[^>]*src="([^"]+)"/);
   if (!plate && !cover) continue;
   const bookTitle = (/^(.の書)/.exec(kicker) || [])[1] || kicker;
   const img = j.hub || cover ? coverHtml(cover || plate, bookTitle) : `<img class="il" src="${dataUri(plate.slice(1))}">`;
