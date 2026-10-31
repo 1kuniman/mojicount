@@ -526,3 +526,26 @@ label.who{display:block}
 .mokulink{font-size:13px;letter-spacing:.16em;color:var(--cream);text-decoration:none;border-bottom:1px solid rgba(234,220,192,.4);padding-bottom:1px;opacity:.9;white-space:nowrap}
 .mokulink:hover{opacity:1;border-color:var(--foil-hi)}
 @media (max-width:640px){.mokulink{font-size:11px;letter-spacing:.08em}}
+
+/* ---------- 幸運のしるし：色の文字と小さな挿絵 ---------- */
+.luck{padding:1.8cqh 1cqw 2cqh!important;gap:.6cqh!important}
+.luck .lpic{position:relative;display:block;width:min(19cqw,12cqh);aspect-ratio:1;color:#5a4636}
+.luck .lpic svg{width:100%;height:100%;overflow:visible;display:block}
+.luck .lpic img{position:absolute;inset:-8%;width:116%;height:116%;object-fit:cover;-webkit-mask:radial-gradient(closest-side,#000 60%,transparent 100%);mask:radial-gradient(closest-side,#000 60%,transparent 100%)}
+.luck b.lcol,.lcol{font-weight:600}
+.luck b.lcol{font-size:clamp(14px,3.6cqw,18px)}
+
+/* ---------- 本を手に取ったら、その本の説明を目立たせる ---------- */
+#guide.picked .gcard:not(.on){opacity:.42;filter:saturate(.6)}
+#guide .gcard{transition:opacity .35s,filter .35s,transform .3s,border-color .3s,box-shadow .3s}
+#guide .gcard.on{opacity:1;border-color:rgba(243,220,154,.9)!important;box-shadow:0 0 0 1px rgba(243,220,154,.35),0 8px 26px rgba(0,0,0,.55),0 0 22px rgba(243,200,120,.18)}
+.gcard .w i{font-style:normal}
+@media (max-width:760px){
+  .gcard .w{display:block!important;font-size:10px!important;line-height:1.45}
+  .gcard .w b{display:block!important;font-size:11.5px!important;margin:0!important;color:var(--foil-hi)}
+  .gcard .w i{display:none}
+  .gcard.on .w i{display:block;color:var(--cream);opacity:.85;margin-top:1px}
+  .gcard .sw{grid-row:1/4!important;height:44px!important}
+  #guide{grid-auto-columns:46%!important}
+}
+.trio em{display:block;font-style:normal;font-family:var(--jp-display);font-size:1.15em;line-height:1.3}

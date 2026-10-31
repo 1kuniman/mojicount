@@ -260,7 +260,7 @@ const BOOKS={
     {rh:"第二章",html:chapter("二","恋のかたち",Z.love)},
     {rh:"第三章",html:chapter("三","仕事と才能",Z.work)},
     {rh:"第四章",html:`<div class="pg"><div class="chap">第四章</div><h2>響き合う星座</h2><div class="mates">${mates.map(o=>`<div class="mate">${illus("hoshi-"+o.x.k,motConst(o.x.stars),{cls:"mini"})}<span>${o.x.jp}</span></div>`).join("")}</div><p>${Z.el}の星座と${ZMATCH[Z.el][1]}の星座は、物事を感じる温度が近く、自然に分かり合える組み合わせです。違う星座との関係も、お互いの足りないところを補う縁になります。</p></div>`},
-    {rh:"第五章",html:`<div class="pg"><div class="chap">第五章</div><h2>幸運のしるし</h2><div class="lucks">${["色","時間","もの"].map((t,i)=>`<div class="luck"><span class="lt2">${t}</span><b>${Z.luck[i]}</b></div>`).join("")}</div>${RULE}<p>迷ったときは、${Z.luck[0]}のものを身につけてみてください。星のことばは、背中を押してほしいときにそっと寄り添ってくれます。</p></div>`}]},
+    {rh:"第五章",html:`<div class="pg"><div class="chap">第五章</div><h2>幸運のしるし</h2><div class="lucks">${["色","時間","もの"].map((t,i)=>luckBox(t,Z.luck[i],`${Z.k}-${i}`,i,(LUCK_COL[Z.luck[0]]||{}).w||(LUCK_COL[Z.luck[0]]||{}).c||"#d9c7e8")).join("")}</div>${RULE}<p>迷ったときは、${luckWord(Z.luck[0])}のものを身につけてみてください。星のことばは、背中を押してほしいときにそっと寄り添ってくれます。</p></div>`}]},
   share(){const Z=ZOD[signOf(S.birth.m,S.birth.d)];return{x:`私は【${Z.jp}】。キーワードは「${Z.kw}」でした。`,copy:`${Z.jp}（${Z.kw}）`}},
   after:{h:"星の続きを、<br>あなたの言葉で聞きたいなら",p:"星座が教えてくれるのは、あなたの生まれ持った性質までです。いま悩んでいる恋や仕事の具体的な答えは、あなたの話を聞いた人にしか出せません。占星術に詳しい鑑定師に、ホロスコープ全体を読んでもらうのも一つの方法です。"}},
 
@@ -316,9 +316,9 @@ const BOOKS={
    return[
     {rh:"序",html:`<div class="pg"><div class="chap">序</div>${illus("iro-intro","",{cls:"wide"})}<h2 class="sm">人はみな、<br>見えない色をまとっている</h2><p>考えるより先に惹かれる色には、いまのあなたの心がそのまま映っています。九つの色から、直感で惹かれる順に三つを選んでください。一つ目があなたのオーラの色です。</p></div>`},
     {rh:"色を選ぶ",input:true,gate:true,html:`<div class="pg"><div class="chap">色を選ぶ</div><h2 class="sm">惹かれる順に、<br>三つの色を</h2>${swatches()}<p class="fine" style="margin:0;text-align:center">もう一度触れると、選んだ色を外せます。</p><p class="nerr" id="nerr" role="alert"></p>${seal}</div>`},
-    {rh:"あなたの色",html:`<div class="pg numpage">${illus("iro-"+C[0],motAura(C),{cls:"tall"})}<div class="nm">${A1.jp}のオーラ</div><div class="kw">${A1.kw}</div><div class="trio">${C.map((c,i)=>`<span style="--c:${AURA[c].col}"><i></i>${["オーラ","求める色","隠れた色"][i]}</span>`).join("")}</div></div>`},
+    {rh:"あなたの色",html:`<div class="pg numpage">${illus("iro-"+C[0],motAura(C),{cls:"tall"})}<div class="nm"><span style="color:${inkCol(A1.col)}">${A1.jp}</span>のオーラ</div><div class="kw">${A1.kw}</div><div class="trio">${C.map((c,i)=>`<span style="--c:${AURA[c].col}"><i></i><em style="color:${inkCol(AURA[c].col)}">${AURA[c].jp}</em>${["オーラ","求める色","隠れた色"][i]}</span>`).join("")}</div></div>`},
     {rh:"第一章",html:chapter("一",`${A1.jp}をまとう人`,A1.core)},
-    {rh:"第二章",html:`<div class="pg"><div class="chap">第二章</div><h2>いま求めている色</h2><div class="cdot" style="--c:${A2.col}"></div><p>${dc(A2.want)}</p><p class="fine">二つ目に選んだ${A2.jp}は、${A2.kw}の色です。</p></div>`},
+    {rh:"第二章",html:`<div class="pg"><div class="chap">第二章</div><h2>いま求めている色</h2><div class="cdot" style="--c:${A2.col}"></div><p>${dc(A2.want)}</p><p class="fine">二つ目に選んだ<b style="color:${inkCol(A2.col)}">${A2.jp}</b>は、${A2.kw}の色です。</p></div>`},
     {rh:"第三章",html:`<div class="pg"><div class="chap">第三章</div><h2>隠れている色</h2><div class="cdot" style="--c:${A3.col}"></div><p>${dc(A3.hidden)}</p><p class="fine">三つ目に選んだ${A3.jp}は、${A3.kw}の色です。</p></div>`},
     {rh:"第四章",html:chapter("四","恋のかたち",A1.love)}]},
   share(){const C=S.colors.length===3?S.colors:["violet"];return{x:`私のオーラは【${AURA[C[0]].jp}】でした。`,copy:`オーラの色「${AURA[C[0]].jp}」（${AURA[C[0]].kw}）`}},
@@ -587,9 +587,9 @@ const GUIDE={kazu:{q:"自分の本質",w:"生年月日の数で読む",need:"生
  iro:{q:"わたしのオーラの色",w:"直感で選ぶ三つの色",need:"色を三つ選ぶ"},
  tama:{q:"前世の物語",w:"惹かれる情景で読む",need:"三つの問いに答える"}};
 function buildGuide(order){guide.innerHTML='<div class="step">いま、知りたいことは？</div>'+order.map(id=>{const G=GUIDE[id],B=BOOKS[id];
-  return`<button class="gcard" type="button" role="listitem" data-id="${id}"><span class="sw" style="background-image:url(assets/${id}-spine.jpg)"></span><span class="q">${G.q}</span><span class="w"><b>${B.title}</b>${G.w}</span><span class="m"><span>必要なもの　${G.need}</span><span class="go">ひらく ›</span></span></button>`}).join("")}
+  return`<button class="gcard" type="button" role="listitem" data-id="${id}"><span class="sw" style="background-image:url(assets/${id}-spine.jpg)"></span><span class="q">${G.q}</span><span class="w"><b>${B.title}</b><i>${G.w}</i></span><span class="m"><span>必要なもの　${G.need}</span><span class="go">ひらく ›</span></span></button>`}).join("")}
 const bk=id=>rowEl.querySelector(`.bk3[data-book="${id}"]`);
-function setCaption(id){guide.querySelectorAll(".gcard").forEach(c=>{const on=c.dataset.id===id;c.classList.toggle("on",on);const g=c.querySelector(".go");if(g)g.textContent=hoverable.matches?"ひらく ›":"もう一度で ひらく ›"})}
+function setCaption(id){guide.classList.toggle("picked",!!id);guide.querySelectorAll(".gcard").forEach(c=>{const on=c.dataset.id===id;c.classList.toggle("on",on);if(on&&guide.scrollWidth>guide.clientWidth+4){const x=c.offsetLeft;guide.scrollTo({left:Math.max(0,x),behavior:reduced?"auto":"smooth"})}const g=c.querySelector(".go");if(g)g.textContent=hoverable.matches?"ひらく ›":"もう一度で ひらく ›"})}
 function pull(id){if(busy)return;clearTimeout(pushT);if(pulled===id)return;if(pulled)push(pulled);pulled=id;const el=bk(id);if(!el)return;
   rowEl.querySelectorAll(".pv").forEach(v=>{if(v.style.zIndex)v.style.zIndex=20});el.parentNode.style.zIndex=++zTop;el.classList.add("out1");setTimeout(()=>{if(pulled===id)el.classList.add("out2")},reduced?0:190);setCaption(id)}
 function push(id){const el=bk(id);if(pulled===id){pulled=null;setCaption(null)}if(!el)return;el.classList.remove("out2");if(pulled)el.parentNode.style.zIndex=20;
