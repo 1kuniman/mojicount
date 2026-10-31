@@ -1,0 +1,114 @@
+{
+ "redirects": [
+  {
+   "source": "/count",
+   "destination": "/",
+   "permanent": true
+  },
+  {
+   "source": "/convert",
+   "destination": "/",
+   "permanent": true
+  },
+  {
+   "source": "/format",
+   "destination": "/",
+   "permanent": true
+  },
+  {
+   "source": "/encode",
+   "destination": "/",
+   "permanent": true
+  },
+  {
+   "source": "/datasize",
+   "destination": "/",
+   "permanent": true
+  },
+  {
+   "source": "/date",
+   "destination": "/",
+   "permanent": true
+  },
+  {
+   "source": "/password",
+   "destination": "/",
+   "permanent": true
+  },
+  {
+   "source": "/fancy",
+   "destination": "/",
+   "permanent": true
+  },
+  {
+   "source": "/qr",
+   "destination": "/",
+   "permanent": true
+  },
+  {
+   "source": "/color",
+   "destination": "/",
+   "permanent": true
+  },
+  {
+   "source": "/count/",
+   "destination": "/",
+   "permanent": true
+  },
+  {
+   "source": "/convert/",
+   "destination": "/",
+   "permanent": true
+  },
+  {
+   "source": "/format/",
+   "destination": "/",
+   "permanent": true
+  },
+  {
+   "source": "/encode/",
+   "destination": "/",
+   "permanent": true
+  },
+  {
+   "source": "/datasize/",
+   "destination": "/",
+   "permanent": true
+  },
+  {
+   "source": "/date/",
+   "destination": "/",
+   "permanent": true
+  },
+  {
+   "source": "/password/",
+   "destination": "/",
+   "permanent": true
+  },
+  {
+   "source": "/fancy/",
+   "destination": "/",
+   "permanent": true
+  },
+  {
+   "source": "/qr/",
+   "destination": "/",
+   "permanent": true
+  },
+  {
+   "source": "/color/",
+   "destination": "/",
+   "permanent": true
+  },
+  {
+   "source": "/column",
+   "destination": "/",
+   "permanent": true
+  },
+  {
+   "source": "/column/:path*",
+   "destination": "/",
+   "permanent": true
+  }
+ ]
+}

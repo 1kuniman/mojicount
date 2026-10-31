@@ -1,4 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <rect width="32" height="32" rx="7" fill="#1c1814"/>
-  <text x="16" y="23" font-family="serif" font-size="20" font-weight="700" fill="#f7f3ea" text-anchor="middle">字</text>
+  <rect width="32" height="32" rx="7" fill="#1c1510"/>
+  <path d="M7 9.5c3-1.4 6-1.4 9 .4v14c-3-1.6-6-1.6-9-.3z" fill="#eadcc0"/>
+  <path d="M25 9.5c-3-1.4-6-1.4-9 .4v14c3-1.6 6-1.6 9-.3z" fill="#d9c79f"/>
+  <path d="M22.6 4.2a3.2 3.2 0 1 0 2.9 4.2 2.5 2.5 0 1 1-2.9-4.2z" fill="#f3dc9a"/>
 </svg>

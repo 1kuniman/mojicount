@@ -1,41 +1,21 @@
 import type { MetadataRoute } from "next";
-import { TOOLS } from "@/lib/tools";
+import { BOOKS, bookContent, bookPath, itemPath } from "@/lib/books";
+import { SITE_URL } from "@/lib/site";
 
-const STATIC_PAGES = [
-  "/privacy/",
-  "/about/",
-  "/contact/",
-  "/column/",
-  "/column/genkoyoshi/",
-  "/column/gib-vs-gb/",
-  "/column/password-safety/",
-  "/column/qr-mechanism/",
-  "/column/base64/",
-  "/column/zenkaku-hankaku/",
-  "/column/url-encode/",
-  "/column/mojibake/",
-  "/column/password-reuse/",
-  "/column/quishing/",
-  "/column/two-factor-auth/",
-  "/column/password-manager/",
-];
+export const dynamic = "force-static";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const base = "https://www.mojimojicount.com";
-  const now = new Date();
+  const now = new Date("2026-10-31");
+  const u = (p: string, priority: number) => ({ url: SITE_URL + p, lastModified: now, changeFrequency: "monthly" as const, priority });
   return [
-    { url: `${base}/`, lastModified: now, changeFrequency: "monthly", priority: 1 },
-    ...TOOLS.map((t) => ({
-      url: `${base}${t.href}`,
-      lastModified: now,
-      changeFrequency: "monthly" as const,
-      priority: 0.8,
-    })),
-    ...STATIC_PAGES.map((p) => ({
-      url: `${base}${p}`,
-      lastModified: now,
-      changeFrequency: "monthly" as const,
-      priority: 0.6,
-    })),
+    u("/", 1),
+    u("/mokuroku/", 0.6),
+    ...BOOKS.flatMap((b) => [
+      u(bookPath(b), 0.9),
+      ...b.items.filter((it) => bookContent(b).items[it.key]).map((it) => u(itemPath(b, it), 0.7)),
+    ]),
+    u("/about/", 0.3),
+    u("/privacy/", 0.2),
+    u("/contact/", 0.2),
   ];
 }
