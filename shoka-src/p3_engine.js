@@ -278,7 +278,7 @@ const BOOKS={
     {rh:"第三章",html:`<div class="pg"><div class="chap">第三章</div><h2>今日のすごし方</h2><p>${dc(D.act)}</p>${RULE}<p class="fine">夢やしるしの意味は、受け取る人の状況によって変わります。心当たりのある読み方だけを、受け取ってください。</p></div>`}]},
   share(){const D=DREAMS[S.dream];return{x:S.feel==="none"?`いまの私へのしるしは【${D.name}】でした。`:`【${D.name}】の夢を見ました。`,copy:`${D.name}の夢（${FEEL[S.feel].name}）`}},
   after:{h:"くり返し見る夢が、<br>気になるなら",p:"同じ夢を何度も見るとき、心は同じことを伝えようとしています。夢の意味は、あなたのいまの状況と重ね合わせて初めてはっきりします。気になる夢が続くときは、話を聞いてくれる鑑定師に相談してみるのも一つの方法です。"}},
- ishi:{title:"石の書",en:"The Book of Stones",cloth:"#3f7a78",endc:"#9fc2bd",metal:"gold",tag:"守護石",art:"パワーストーン（石のことば）",
+ ishi:{title:"石の書",en:"The Book of Stones",cloth:"#1d4f4b",endc:"#9fc2bd",metal:"gold",tag:"守護石",art:"パワーストーン（石のことば）",
   blurb:"いまの願いと心の状態から、あなたを守る石を読む",sub:"願いと心から選ぶ<br>あなたを守る石",
   tok(){return[S.stQ1,S.stQ2]},untok(p){if(p.length!==2||!STQ1[p[0]]||!STQ2[p[1]])return false;S.stQ1=p[0];S.stQ2=p[1];return true},
   pages(){const St=STONES[S.stQ1+"-"+S.stQ2];
@@ -292,7 +292,7 @@ const BOOKS={
   share(){const St=STONES[S.stQ1+"-"+S.stQ2];return{x:`いまの私を守る石は【${St.jp}】でした。`,copy:`守護石「${St.jp}」（${St.kw}）`}},
   after:{h:"石だけでは、<br>ほどけない悩みがあるなら",p:"石は気持ちを整える手助けをしてくれますが、具体的な悩みの答えまでは教えてくれません。いま抱えていることを言葉にしたいときは、話を聞いてくれる鑑定師に相談してみるのも一つの方法です。"}},
 
- ki:{title:"気の書",en:"The Book of Nine Stars",cloth:"#b08a4a",endc:"#dcc79c",metal:"gold",tag:"九星",art:"九星気学（本命星と年盤）",
+ ki:{title:"気の書",en:"The Book of Nine Stars",cloth:"#b07829",endc:"#dcc79c",metal:"gold",tag:"九星",art:"九星気学（本命星と年盤）",
   blurb:"生まれ年の星から、性質と今年の運気を読む",sub:"九つの星と方位で読む<br>あなたの運気",
   tok(){return[honmei(kiYear(S.birth.y,S.birth.m,S.birth.d))]},untok(p){if(p.length!==1||!isN(p[0],1,9))return false;SHR=[+p[0]];return true},
   pages(){const st=SHR?SHR[0]:honmei(kiYear(S.birth.y,S.birth.m,S.birth.d)),K=KISEI[st];const ty=kiYear(TODAY.getFullYear(),TODAY.getMonth()+1,TODAY.getDate()),c0=honmei(ty),c1=honmei(ty+1);
@@ -308,7 +308,7 @@ const BOOKS={
   share(){const st=honmei(kiYear(S.birth.y,S.birth.m,S.birth.d));return{x:`私の本命星は【${KISEI[st].jp}】でした。`,copy:`本命星「${KISEI[st].jp}」（${KISEI[st].kw}）`}},
   after:{h:"引っ越しや転職の<br>時期に迷ったら",p:"九星気学は、方位や時期を選ぶときに古くから使われてきた占術です。具体的な引っ越し先や決断の時期は、生年月日と状況を合わせて読む必要があります。気になるときは、九星気学に詳しい鑑定師に相談してみてください。"}},
 
- iro:{title:"色の書",en:"The Book of Colors",cloth:"#7a4a6c",endc:"#c9a7bc",metal:"gold",tag:"オーラ",art:"カラーセラピー（オーラの色）",
+ iro:{title:"色の書",en:"The Book of Colors",cloth:"#66393f",endc:"#c9a7bc",metal:"gold",tag:"オーラ",art:"カラーセラピー（オーラの色）",
   blurb:"直感で選んだ三つの色から、あなたのオーラを読む",sub:"惹かれる色で読む<br>あなたのオーラ",
   tok(){return S.colors.length===3?S.colors:null},untok(p){if(p.length!==3||!p.every(c=>AURA[c])||new Set(p).size<3)return false;S.colors=p;return true},
   validate(){return S.colors.length<3?"色を三つ、惹かれる順に選んでください。":""},
@@ -324,7 +324,7 @@ const BOOKS={
   share(){const C=S.colors.length===3?S.colors:["violet"];return{x:`私のオーラは【${AURA[C[0]].jp}】でした。`,copy:`オーラの色「${AURA[C[0]].jp}」（${AURA[C[0]].kw}）`}},
   after:{h:"心の色が、<br>くすんで見える日に",p:"色は、いまの心の状態を映す鏡です。気持ちが沈んで色が見えにくいときは、誰かに話を聞いてもらうだけで、また鮮やかさが戻ってくることがあります。"}},
 
- tama:{title:"魂の書",en:"The Book of Souls",cloth:"#2f3656",endc:"#8f96b3",metal:"gold",tag:"前世",art:"前世占い（魂の記憶）",
+ tama:{title:"魂の書",en:"The Book of Souls",cloth:"#1c2a42",endc:"#8f96b3",metal:"gold",tag:"前世",art:"前世占い（魂の記憶）",
   blurb:"惹かれる情景から、魂が覚えている前世を読む",sub:"魂の記憶をたどる<br>前世の物語",
   tok(){return[S.pl1,S.pl2,S.pl3]},untok(p){if(p.length!==3||!PLQ1[p[0]]||!PLQ2[p[1]]||!PLQ3[p[2]])return false;S.pl1=p[0];S.pl2=p[1];S.pl3=p[2];return true},
   pages(){const L=LIVES[S.pl1+"-"+S.pl2];
@@ -497,7 +497,7 @@ function land(){drop.style.transform="none";cast.style.setProperty("--h",0);land
   if(pendingJump){pendingJump=false;setTimeout(()=>{const ri=resultIndex();k=isMob()?ri:Math.ceil(ri/2);layout()},600)}}
 
 /* ================= shelf (photo + 3D books) ================= */
-const META={"kazu": {"aspect": 0.6575, "circle": [0.505, 0.474, 0.415, 0.273]}, "en": {"aspect": 0.749, "circle": [0.506, 0.46, 0.525, 0.395]}, "meguri": {"aspect": 0.6654, "circle": [0.51, 0.479, 0.475, 0.317]}, "tsuki": {"aspect": 0.6654, "circle": [0.512, 0.491, 0.508, 0.338]}, "hoshi": {"aspect": 0.623, "circle": [0.5133, 0.4854, 0.4703, 0.293]}, "yume": {"aspect": 0.62, "circle": [0.5215, 0.4831, 0.477, 0.2957]}, "ishi": {"aspect": 0.665, "circle": [0.5, 0.49, 0.51, 0.34]}, "ki": {"aspect": 0.665, "circle": [0.5, 0.49, 0.51, 0.34]}, "iro": {"aspect": 0.665, "circle": [0.5, 0.49, 0.51, 0.34]}, "tama": {"aspect": 0.665, "circle": [0.5, 0.49, 0.51, 0.34]}};
+const META={"kazu": {"aspect": 0.6575, "circle": [0.505, 0.474, 0.415, 0.273]}, "en": {"aspect": 0.749, "circle": [0.506, 0.46, 0.525, 0.395]}, "meguri": {"aspect": 0.6654, "circle": [0.51, 0.479, 0.475, 0.317]}, "tsuki": {"aspect": 0.6654, "circle": [0.512, 0.491, 0.508, 0.338]}, "hoshi": {"aspect": 0.623, "circle": [0.5133, 0.4854, 0.4703, 0.293]}, "yume": {"aspect": 0.62, "circle": [0.5215, 0.4831, 0.477, 0.2957]}, "ishi": {"aspect": 0.665, "circle": [0.503, 0.471, 0.6, 0.399]}, "ki": {"aspect": 0.665, "circle": [0.5, 0.462, 0.58, 0.386]}, "iro": {"aspect": 0.665, "circle": [0.505, 0.465, 0.5, 0.333]}, "tama": {"aspect": 0.665, "circle": [0.498, 0.476, 0.56, 0.372]}};
 const shelf=document.getElementById("shelf"),desk=document.getElementById("desk"),room=document.getElementById("room"),rowEl=document.getElementById("row"),guide=document.getElementById("guide");
 const IMG={w:1448,h:1086,candle:[138,440],floor:788};
 const ACC={ishi:"#2f6b67",ki:"#9a5b2a",iro:"#8a3f6e",tama:"#3a4579",kazu:"#8b6a2f",en:"#a3474e",meguri:"#4a6741",tsuki:"#5d4f8c",hoshi:"#3f5f8a",yume:"#a65f45"};
@@ -511,7 +511,7 @@ const PAT={ishi:`<g fill="#2f6b67" fill-opacity=".28"><path d="M14 6l6 5-6 12-6-
  meguri:`<g fill="#3f5a3a" fill-opacity=".34"><path d="M14 21C8 15 10 9 14 6c4 3 6 9 0 15z"/><path d="M42 35c6 6 4 12 0 15-4-3-6-9 0-15z"/></g>`,
  tsuki:`<g fill="#ffffff" fill-opacity=".55"><path d="M17 8a7 7 0 1 0 0 12a5.4 5.4 0 1 1 0-12z"/><path d="${star4(42,42,3.2)}"/><circle cx="44" cy="14" r=".9"/><circle cx="12" cy="44" r=".9"/></g>`};
 const patURL=id=>`url("data:image/svg+xml,${encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="56" height="56">${PAT[id]}</svg>`)}")`;
-const LABC={ishi:"#3f7a78",ki:"#b08a4a",iro:"#7a4a6c",tama:"#2f3656",hoshi:"#566275",yume:"#a96a57",kazu:"#d9cdb4",en:"#b57d72",meguri:"#62714f",tsuki:"#827a98"};
+const LABC={ishi:"#15373b",ki:"#9b6b2d",iro:"#563343",tama:"#19273d",hoshi:"#566275",yume:"#a96a57",kazu:"#d9cdb4",en:"#b57d72",meguri:"#62714f",tsuki:"#827a98"};
 const EMB={ishi:["#f2e3b6","0 1px 1px rgba(20,50,48,.55)"],ki:["#fff1cf","0 1px 1px rgba(90,60,20,.5)"],iro:["#f6e6c4","0 1px 1px rgba(60,30,50,.55)"],tama:["#e9d79c","0 1px 1px rgba(10,14,30,.6)"],hoshi:["#f7ebc4","0 1px 1px rgba(30,45,70,.55)"],yume:["#fff3df","0 1px 1px rgba(110,60,40,.5)"],kazu:["#7a5822","0 1px 0 rgba(255,250,235,.55),0 -1px 0 rgba(80,55,15,.2)"],en:["#f3dcc0","0 1px 1px rgba(90,40,30,.45)"],meguri:["#f0dca8","0 1px 1px rgba(30,45,20,.55)"],tsuki:["#f4f2f8","0 1px 1px rgba(50,40,80,.5)"]};
 const embStyle=id=>`--emb:${EMB[id][0]};--embs:${EMB[id][1]}`;
 
