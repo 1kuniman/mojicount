@@ -594,8 +594,10 @@ function pull(id){if(busy)return;clearTimeout(pushT);if(pulled===id)return;if(pu
   rowEl.querySelectorAll(".pv").forEach(v=>{if(v.style.zIndex)v.style.zIndex=20});el.parentNode.style.zIndex=++zTop;el.classList.add("out1");setTimeout(()=>{if(pulled===id)el.classList.add("out2")},reduced?0:190);setCaption(id)}
 function push(id){const el=bk(id);if(pulled===id){pulled=null;setCaption(null)}if(!el)return;el.classList.remove("out2");if(pulled)el.parentNode.style.zIndex=20;
   setTimeout(()=>{if(pulled!==id){el.classList.remove("out1");setTimeout(()=>{if(pulled!==id)el.parentNode.style.zIndex=""},500)}},reduced?0:260)}
-const hitId=e=>{const t=e.target.closest&&e.target.closest(".slot,.bk3,.gcard");if(t)return t.dataset.id||t.dataset.book;
-  if(pulled){const el=bk(pulled);if(el){const r=el.getBoundingClientRect();if(e.clientX>=r.left&&e.clientX<=r.right&&e.clientY>=r.top&&e.clientY<=r.bottom)return pulled}}return null};
+// 引き出した本の表紙・背の上なら、後ろにある隣の本より優先する（余白4px）
+const inPulled=e=>{if(!pulled)return false;const el=bk(pulled);if(!el)return false;return[el,...el.querySelectorAll(".cv,.sp")].some(f=>{const r=f.getBoundingClientRect();return r.width>0&&e.clientX>=r.left-4&&e.clientX<=r.right+4&&e.clientY>=r.top-4&&e.clientY<=r.bottom+4})};
+const hitId=e=>{const g=e.target.closest&&e.target.closest(".gcard");if(g)return g.dataset.id;if(inPulled(e))return pulled;
+  const t=e.target.closest&&e.target.closest(".slot,.bk3");return t?t.dataset.id||t.dataset.book:null};
 shelf.addEventListener("pointermove",e=>{if(!hoverable.matches||busy)return;const id=hitId(e);if(id)pull(id);else if(pulled){clearTimeout(pushT);const p=pulled;pushT=setTimeout(()=>push(p),180)}});
 shelf.addEventListener("pointerleave",()=>{if(pulled&&hoverable.matches){const p=pulled;pushT=setTimeout(()=>push(p),180)}});
 shelf.addEventListener("click",e=>{if(busy)return;const id=hitId(e);if(!id){if(pulled)push(pulled);return}
