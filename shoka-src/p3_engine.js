@@ -173,7 +173,7 @@ const BOOKS={
   blurb:"生まれた日の数から、あなたの本質を読む",sub:"ピタゴラス数秘術による<br>生年月日の読みかた",
   tok(){return[lifePath(S.birth.y,S.birth.m,S.birth.d).n,personalYear(S.birth.m,S.birth.d,Y)]},
   untok(p){if(p.length!==2||!LP[p[0]]||!isN(p[1],1,9))return false;SHR=[+p[0],+p[1]];return true},
-  pages(){const lp=SHR?{n:SHR[0],steps:[]}:lifePath(S.birth.y,S.birth.m,S.birth.d),L=LP[lp.n],py=SHR?SHR[1]:personalYear(S.birth.m,S.birth.d,Y),pyN=SHR?reduce(SHR[1]+1):personalYear(S.birth.m,S.birth.d,Y+1);
+  pages(){const lp=SHR?{n:SHR[0],steps:[]}:lifePath(S.birth.y,S.birth.m,S.birth.d),L=LP[lp.n],py=SHR?SHR[1]:personalYear(S.birth.m,S.birth.d,Y),pyN=SHR?reduce(SHR[1]+1):personalYear(S.birth.m,S.birth.d,Y+1);DKEY=String(lp.n);
    return[
     {rh:"序",html:`<div class="pg"><div class="chap">序</div>${illus(cur+"-intro","",{cls:"wide"})}<h2 class="sm">生まれた日に、<br>数が刻まれている</h2><p>古代ギリシャの数学者ピタゴラスは、世界のすべては数で説明できると考えました。その流れを汲む数秘術では、生年月日の数字をすべて足し合わせ、一桁になるまで還元して得られる数を「ライフパスナンバー」と呼びます。</p></div>`},
     {rh:"記入",input:true,html:`<div class="pg"><div class="chap">記入</div><h2>生まれた日を、<br>ここに</h2>${dateFields("b",S.birth)}${seal}<p class="fine" style="margin-top:auto">マスターナンバー11・22・33は還元せず、そのまま読みます。書き入れた日付はこの端末の外へは出ません。</p></div>`},
@@ -193,7 +193,7 @@ const BOOKS={
   tok(){const a=nameNumber(S.nameA),b=nameNumber(S.nameB);return a&&b?[a.n,b.n,S.sit]:null},
   untok(p){if(p.length!==3||!LP[p[0]]||!LP[p[1]]||!SIT[p[2]])return false;SHR=[+p[0],+p[1]];S.sit=p[2];return true},
   pages(){const A=SHR?{n:SHR[0],ro:""}:nameNumber(S.nameA)||{n:1,ro:"",steps:[]},Bn=SHR?{n:SHR[1],ro:""}:nameNumber(S.nameB)||{n:1,ro:"",steps:[]};const ra=reduce(A.n),rb=reduce(Bn.n);
-   const rel=reduce(A.n+Bn.n),R=REL[rel];const tie=ra===rb?"mirror":(LP[A.n].comp.includes(rb)||LP[Bn.n].comp.includes(ra))?"harmony":(ra%2===rb%2?"resonance":"complement");const T=TIE[tie];const St=SIT[S.sit];
+   const rel=reduce(A.n+Bn.n),R=REL[rel];DKEY=String(rel);const tie=ra===rb?"mirror":(LP[A.n].comp.includes(rb)||LP[Bn.n].comp.includes(ra))?"harmony":(ra%2===rb%2?"resonance":"complement");const T=TIE[tie];const St=SIT[S.sit];
    const esc=x=>String(x).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));const LA=SHR?"この本の持ち主":esc(S.nameA),LB=SHR?"あの人":esc(S.nameB);
    return[
     {rh:"序",html:`<div class="pg"><div class="chap">序</div>${illus("en-intro","",{cls:"wide"})}<h2 class="sm">名前の響きにも、<br>数が宿っている</h2><p>数秘術では、名前の一音一音を数に置き換えて足し合わせ、その人の「名前の数」を出します。二人の名前の数を足すと、二人の関係そのものが持つ数が現れます。誕生日を知らない相手とでも読める占いです。</p></div>`},
@@ -213,7 +213,7 @@ const BOOKS={
   blurb:"九年の巡りの中で、今年と月々の流れを読む",sub:"九年でひと巡りする<br>あなたの暦",
   tok(){return[personalYear(S.birth.m,S.birth.d,Y),S.theme]},
   untok(p){if(p.length!==2||!isN(p[0],1,9)||!THEMES[p[1]])return false;SHR=[+p[0]];S.theme=p[1];return true},
-  pages(){const b=S.birth,pyOf=yy=>SHR?reduce(SHR[0]+(yy-Y)+9):personalYear(b.m,b.d,yy),pmOf=(yy,mo)=>reduce(pyOf(yy)+mo),py=pyOf(Y),pyN=pyOf(Y+1);
+  pages(){const b=S.birth,pyOf=yy=>SHR?reduce(SHR[0]+(yy-Y)+9):personalYear(b.m,b.d,yy),pmOf=(yy,mo)=>reduce(pyOf(yy)+mo),py=pyOf(Y),pyN=pyOf(Y+1);DKEY=String(py);
    const row=m=>{const n=pmOf(Y,m),p=PM[n];return`<tr class="${m===M?"now":""}"><th>${MONTHS[m-1]}${m===M?"<em>今月</em>":""}</th><td class="n">${n}</td><td><b>${p.t}</b><span>${p.s}</span></td></tr>`};
    const next3=[0,1,2].map(i=>{let m=M+i,y=Y;if(m>12){m-=12;y++}const n=pmOf(y,m);return`<div class="mo"><div class="mh"><span class="n">${n}</span><span>${MONTHS[m-1]}${y!==Y?`（${y}）`:""}・${PM[n].t}</span></div><p>${PM[n].l}</p><p><span class="lbl">${THEMES[S.theme]}</span>${PMT[S.theme][n]}</p></div>`}).join("");
    return[
@@ -232,7 +232,7 @@ const BOOKS={
   untok(p){if(p.length!==4||!TQ[p[3]])return false;const c=p.slice(0,3);if(!c.every(x=>isN(x,0,21))||new Set(c).size<3)return false;const picks=c.map(Number);S.tarot={deck:[...picks,...[...Array(22).keys()].filter(x=>!picks.includes(x))],picks,revealed:true};S.tq=p[3];return true},
   title:"月の書",en:"The Book of the Moon",cloth:"#857d9b",endc:"#b9b2c9",metal:"silver",tag:"札読み",art:"タロット（大アルカナ二十二枚）",
   blurb:"三枚の札で、これまでと、いまと、これからを読む",sub:"三枚の札で読む<br>今夜のことば",
-  pages(){const P=S.tarot.picks,ok=S.tarot.revealed&&P.length===3,q=TQ[S.tq];
+  pages(){const P=S.tarot.picks,ok=S.tarot.revealed&&P.length===3,q=TQ[S.tq];DKEY=ok?P:null;
    const wait=`<p class="fine" style="text-align:center;margin-top:4cqh">まだ札がひらかれていません。<br>前の頁で三枚を選び、札をひらいてください。</p>`;
    const fan=S.tarot.deck.map((ci,n)=>{const a=-38+76*n/21;return`<button type="button" class="tcard${P.includes(ci)?" picked":""}" data-i="${ci}" style="--a:${a.toFixed(1)}deg" aria-label="札${n+1}">${tback()}</button>`}).join("");
    const slots=POS.map((p,n)=>`<div class="tslot${P[n]!=null?" full":""}">${P[n]!=null?tback():""}<span>${p.name}</span></div>`).join("");
@@ -251,7 +251,7 @@ const BOOKS={
  hoshi:{tok(){return[signOf(S.birth.m,S.birth.d)]},untok(p){if(p.length!==1||!isN(p[0],0,11))return false;const f=ZOD[+p[0]].from;S.birth={y:S.birth.y,m:f[0],d:f[1]};return true},
   title:"星の書",en:"The Book of Stars",cloth:"#5d6b80",endc:"#9eabbe",metal:"gold",tag:"星座",art:"西洋占星術（太陽星座）",
   blurb:"誕生日の星座から、性質と相性を読む",sub:"誕生日の空に昇っていた<br>十二の星座",
-  pages(){const z=signOf(S.birth.m,S.birth.d),Z=ZOD[z];const mates=ZOD.map((x,i)=>({x,i})).filter(o=>o.i!==z&&ZMATCH[Z.el].includes(o.x.el));
+  pages(){const z=signOf(S.birth.m,S.birth.d),Z=ZOD[z];DKEY=Z.k;const mates=ZOD.map((x,i)=>({x,i})).filter(o=>o.i!==z&&ZMATCH[Z.el].includes(o.x.el));
    const nxt=ZOD[(z+1)%12].from,end=`${nxt[0]}月${nxt[1]-1}日`;
    return[
     {rh:"序",html:`<div class="pg"><div class="chap">序</div>${illus("hoshi-intro","",{cls:"wide"})}<h2 class="sm">生まれた日の空に、<br>星座が昇っていた</h2><p>太陽は一年をかけて、空の十二の星座をめぐります。あなたが生まれた日に太陽がいた場所、それがあなたの星座です。二千年以上読み継がれてきた、もっとも身近な星のことばです。</p></div>`},
@@ -268,7 +268,7 @@ const BOOKS={
  yume:{tok(){return[S.dream,S.feel]},untok(p){if(p.length!==2||!DREAMS[p[0]]||!FEEL[p[1]])return false;S.dream=p[0];S.feel=p[1];return true},
   title:"夢の書",en:"The Book of Dreams",cloth:"#b16f5d",endc:"#d9b0a2",metal:"gold",tag:"夢占い",art:"夢占い（夢のモチーフ解釈）",
   blurb:"夢、または直感で選んだ絵から、心のサインを読む",sub:"夢と直感の絵から読む<br>心のサイン",
-  pages(){const D=DREAMS[S.dream],Fe=FEEL[S.feel];
+  pages(){const D=DREAMS[S.dream],Fe=FEEL[S.feel];DKEY=S.dream;
    return[
     {rh:"序",html:`<div class="pg"><div class="chap">序</div>${illus("yume-intro","",{cls:"wide"})}<h2 class="sm">夢は、心が書いた<br>手紙のようなもの</h2><p>眠っているあいだ、心は言葉にできなかった気持ちを、絵や出来事に置き換えて見せてくれます。夢を覚えていない夜は、直感で惹かれた絵が、その手紙の代わりになります。</p></div>`},
     {rh:"問い",input:true,html:`<div class="pg"><div class="chap">問い</div><h2 class="sm">気になる絵を、ひとつ</h2><p class="fine qlead">最近見た夢に出てきたものを。夢を覚えていなければ、いま惹かれる絵を直感で。</p>${iconChoices("dream",DREAMS)}</div>`},
@@ -282,7 +282,7 @@ const BOOKS={
  ishi:{title:"石の書",en:"The Book of Stones",cloth:"#1d4f4b",endc:"#9fc2bd",metal:"gold",tag:"守護石",art:"パワーストーン（石のことば）",
   blurb:"いまの願いと心の状態から、あなたを守る石を読む",sub:"願いと心から選ぶ<br>あなたを守る石",
   tok(){return[S.stQ1,S.stQ2]},untok(p){if(p.length!==2||!STQ1[p[0]]||!STQ2[p[1]])return false;S.stQ1=p[0];S.stQ2=p[1];return true},
-  pages(){const St=STONES[S.stQ1+"-"+S.stQ2];
+  pages(){const St=STONES[S.stQ1+"-"+S.stQ2];DKEY=St.k;
    return[
     {rh:"序",html:`<div class="pg"><div class="chap">序</div>${illus("ishi-intro","",{cls:"wide"})}<h2 class="sm">石は、何万年もの<br>時間を宿している</h2><p>大地の奥で、長い時間をかけて生まれた石には、それぞれ固有のことばがあるとされてきました。いまの願いと心の状態から、あなたにいちばん寄り添う石を選びます。</p></div>`},
     {rh:"問い",input:true,gate:true,html:`<div class="pg"><div class="chap">問い</div><h2 class="sm">いま、いちばん<br>欲しいものは</h2>${choices3("stQ1",STQ1)}<div class="who">いまの心は</div>${choices3("stQ2",STQ2)}${seal}</div>`},
@@ -296,7 +296,7 @@ const BOOKS={
  ki:{title:"気の書",en:"The Book of Nine Stars",cloth:"#b07829",endc:"#dcc79c",metal:"gold",tag:"九星",art:"九星気学（本命星と年盤）",
   blurb:"生まれ年の星から、性質と今年の運気を読む",sub:"九つの星と方位で読む<br>あなたの運気",
   tok(){return[honmei(kiYear(S.birth.y,S.birth.m,S.birth.d))]},untok(p){if(p.length!==1||!isN(p[0],1,9))return false;SHR=[+p[0]];return true},
-  pages(){const st=SHR?SHR[0]:honmei(kiYear(S.birth.y,S.birth.m,S.birth.d)),K=KISEI[st];const ty=kiYear(TODAY.getFullYear(),TODAY.getMonth()+1,TODAY.getDate()),c0=honmei(ty),c1=honmei(ty+1);
+  pages(){const st=SHR?SHR[0]:honmei(kiYear(S.birth.y,S.birth.m,S.birth.d)),K=KISEI[st];DKEY=String(st);const ty=kiYear(TODAY.getFullYear(),TODAY.getMonth()+1,TODAY.getDate()),c0=honmei(ty),c1=honmei(ty+1);
    const p0=palaceOf(st,c0),p1=palaceOf(st,c1),P0=PALACE[p0],P1=PALACE[p1];
    return[
     {rh:"序",html:`<div class="pg"><div class="chap">序</div>${illus("ki-intro","",{cls:"wide"})}<h2 class="sm">九つの星が、<br>巡りながら運を運ぶ</h2><p>九星気学では、生まれた年によって一白水星から九紫火星まで、九つの星のどれかを持って生まれると考えます。九つの星は毎年位置を変え、その年の運気の流れをつくります。</p></div>`},
@@ -313,7 +313,7 @@ const BOOKS={
   blurb:"直感で選んだ三つの色から、あなたのオーラを読む",sub:"惹かれる色で読む<br>あなたのオーラ",
   tok(){return S.colors.length===3?S.colors:null},untok(p){if(p.length!==3||!p.every(c=>AURA[c])||new Set(p).size<3)return false;S.colors=p;return true},
   validate(){return S.colors.length<3?"色を三つ、惹かれる順に選んでください。":""},
-  pages(){const C=S.colors.length===3?S.colors:["violet","blue","pink"],A1=AURA[C[0]],A2=AURA[C[1]],A3=AURA[C[2]];
+  pages(){const C=S.colors.length===3?S.colors:["violet","blue","pink"],A1=AURA[C[0]],A2=AURA[C[1]],A3=AURA[C[2]];DKEY=C[0];
    return[
     {rh:"序",html:`<div class="pg"><div class="chap">序</div>${illus("iro-intro","",{cls:"wide"})}<h2 class="sm">人はみな、<br>見えない色をまとっている</h2><p>考えるより先に惹かれる色には、いまのあなたの心がそのまま映っています。九つの色から、直感で惹かれる順に三つを選んでください。一つ目があなたのオーラの色です。</p></div>`},
     {rh:"色を選ぶ",input:true,gate:true,html:`<div class="pg"><div class="chap">色を選ぶ</div><h2 class="sm">惹かれる順に、<br>三つの色を</h2>${swatches()}<p class="fine" style="margin:0;text-align:center">もう一度触れると、選んだ色を外せます。</p><p class="nerr" id="nerr" role="alert"></p>${seal}</div>`},
@@ -328,7 +328,7 @@ const BOOKS={
  tama:{title:"魂の書",en:"The Book of Souls",cloth:"#1c2a42",endc:"#8f96b3",metal:"gold",tag:"前世",art:"前世占い（魂の記憶）",
   blurb:"惹かれる情景から、魂が覚えている前世を読む",sub:"魂の記憶をたどる<br>前世の物語",
   tok(){return[S.pl1,S.pl2,S.pl3]},untok(p){if(p.length!==3||!PLQ1[p[0]]||!PLQ2[p[1]]||!PLQ3[p[2]])return false;S.pl1=p[0];S.pl2=p[1];S.pl3=p[2];return true},
-  pages(){const L=LIVES[S.pl1+"-"+S.pl2];
+  pages(){const L=LIVES[S.pl1+"-"+S.pl2];DKEY=S.pl1+"-"+S.pl2;
    return[
     {rh:"序",html:`<div class="pg"><div class="chap">序</div>${illus("tama-intro","",{cls:"wide"})}<h2 class="sm">魂は、いくつもの<br>人生を旅してきた</h2><p>なぜか懐かしい場所、理由もなく惹かれるもの。それは魂が覚えている、前の人生の記憶かもしれません。三つの問いに直感で答えて、あなたの魂の物語をたどります。</p></div>`},
     {rh:"問い",input:true,html:`<div class="pg"><div class="chap">問い</div><h2 class="sm">目を閉じて、<br>浮かんだ場所は</h2>${choices3("pl1",PLQ1)}<div class="who">そのとき、手にしているものは</div>${choices3("pl2",PLQ2)}</div>`},
@@ -342,13 +342,52 @@ const BOOKS={
 };
 const ORDER=["kazu","en","meguri","tsuki","hoshi","yume","ishi","ki","iro","tama"];
 
+
+/* ================= deeper chapters (shoka-src/deep/*.json), paginated to fit a page ================= */
+let DKEY=null;
+const KJN=n=>{const d="〇一二三四五六七八九";if(n<10)return d[n];if(n===10)return"十";return(n<20?"":d[Math.floor(n/10)])+"十"+(n%10?d[n%10]:"")};
+function deepSections(){const D=(typeof DEEP!=="undefined")&&DEEP[cur];if(!D||DKEY==null)return[];
+  if(cur!=="tsuki")return D[DKEY]||[];
+  const P=DKEY,out=[];P.forEach((c,n)=>{const T=TAROT[c],sec=D[String(c)];if(!sec)return;const pos=(sec[1]&&sec[1].p[n])||"";out.push({h:`${POS[n].name}の札、${T.jp}`,p:[...sec[0].p,pos].filter(Boolean)})});
+  const last=D[String(P[2])];if(last&&last[2])out.push({h:last[2].h,p:last[2].p});return out}
+// lay the chapters out on a hidden page of the real size, sentence by sentence, so nothing spills on any screen
+let DEEPC={key:"",pages:[],w:0,h:0};
+function deepProbe(){if(typeof book==="undefined"||!book)return null;const el=document.createElement("div");el.className="sheet";el.setAttribute("aria-hidden","true");el.style.cssText="visibility:hidden;pointer-events:none;transform:none;transition:none";
+  el.innerHTML=`<div class="face front page"></div>`;book.appendChild(el);const face=el.firstChild;
+  const fits=html=>{face.innerHTML=html;const pg=face.firstChild,last=pg.lastElementChild;const ps=getComputedStyle(pg);return last.getBoundingClientRect().bottom<=pg.getBoundingClientRect().bottom-parseFloat(ps.paddingBottom)-10};
+  face.innerHTML=`<div class="pg deep"><div class="chap">第一章</div><h2>あ</h2><p>あ</p></div>`;const ok=face.firstChild.getBoundingClientRect().height>120;
+  if(!ok){el.remove();return null}return{fits,done:()=>el.remove()}}
+const deepHTML=(label,first,h,buf)=>`<div class="pg deep"><div class="chap">${label}${first?"":`<span class="cont">つづき</span>`}</div>${first?`<h2>${h}</h2>`:""}${buf.map((t,i)=>`<p${t.cont?' class="ni"':""}>${first&&i===0?dc(t.s):t.s}</p>`).join("")}</div>`;
+function deepPages(startNo){const secs=deepSections();if(!secs.length)return[];
+  const key=cur+"|"+JSON.stringify(DKEY)+"|"+(isMob()?"m":"d");if(DEEPC.key===key)return DEEPC.pages;
+  const probe=deepProbe();const out=[];let no=startNo;
+  for(const sec of secs){no++;const label=`第${KJN(no)}章`;let first=true,buf=[];
+    const flush=()=>{out.push({rh:label,html:deepHTML(label,first,sec.h,buf)});first=false;buf=[]};
+    if(probe){
+      sec.p.forEach(para=>{const ss=para.match(/[^。]+。?/g)||[para];let open=false;
+        for(const sn of ss){
+          if(open){buf[buf.length-1].s+=sn}else buf.push({s:sn,cont:false});
+          if(!probe.fits(deepHTML(label,first,sec.h,buf))){
+            if(open){const last=buf[buf.length-1];last.s=last.s.slice(0,-sn.length)}else buf.pop();
+            if(buf.length)flush();buf.push({s:sn,cont:open});}
+          open=true}});
+      if(buf.length)flush()}
+    else{// no measurable page yet: a conservative estimate for the smallest page (about 16 characters × 8 lines)
+      const L1=7-(sec.h.length>9?2:0),L2=9,lines=t=>Math.ceil((t.length+1)/16);let used=0;
+      sec.p.forEach(para=>{(para.match(/[^。]+。?/g)||[para]).forEach((sn,j)=>{const cap=first?L1:L2;
+        if(j&&buf.length){const last=buf[buf.length-1];const before=lines(last.s);if(used-before+lines(last.s+sn)<=cap){used+=lines(last.s+sn)-before;last.s+=sn;return}}
+        if(used+lines(sn)>cap&&buf.length){flush();used=0}buf.push({s:sn,cont:j>0});used+=lines(sn)})});
+      if(buf.length)flush()}}
+  if(probe){probe.done();DEEPC={key,pages:out,w:book.clientWidth,h:book.clientHeight};if(document.fonts&&document.fonts.status!=="loaded")document.fonts.ready.then(deepRelayoutLater)}
+  return out}
 /* ================= compose a book into faces ================= */
 let cur="kazu",F=[],SHEETS=9,k=0,landed=false,busy=false;
 function compose(){
   const B=BOOKS[cur];const body=B.pages();const sh=B.share();
   const tk=shared?sharedParts:(B.tok?B.tok():null),link=tk?shareLink(cur,tk):SITE_URL+"/";
   const share=encodeURIComponent(`${sh.x}\nあなたも一冊、ひらいてみて。 #宵の書架 #${B.title}`);
-  const f=[{type:"cover"},{type:"endpaper",plate:true},{type:"title"},...body.map(x=>({type:"page",...x})),
+  const chaps=body.filter(x=>/^第.+章$/.test(x.rh||"")).length;const deep=deepPages(chaps);
+  const f=[{type:"cover"},{type:"endpaper",plate:true},{type:"title"},...body.map(x=>({type:"page",...x})),...deep.map(x=>({type:"page",...x})),
     {type:"page",rh:"栞",html:`<div class="pg"><div class="chap">栞</div><h2>この頁を、<br>誰かに届ける</h2><p>Xに書き残すと、あなたの結果がひらいた状態の本へのリンクが付きます。受け取った人は、同じ頁をそのまま読めます。生年月日や名前は、リンクに含まれません。</p><div class="btns"><a class="inkbtn" href="https://twitter.com/intent/tweet?text=${share}&url=${encodeURIComponent(link)}" target="_blank" rel="noopener">Xに書き残す</a><button class="inkbtn" type="button" id="copy" data-copy="${encodeURIComponent(sh.copy+"\n"+link)}">結果とリンクを写しとる</button><button class="inkbtn" type="button" id="again">書き入れなおす</button></div></div>`},
     {type:"page",rh:"跋",html:`<div class="pg"><div class="chap">跋</div><h2>${B.after.h}</h2><p>${B.after.p}</p><div class="btns"><a class="inkbtn solid" id="aff" href="${AFFL.url}" target="_blank" rel="sponsored noopener">ココナラの電話占いで相談する</a><img src="${AFFL.px}" width="1" height="1" alt="" style="position:absolute;width:1px;height:1px;opacity:0"><a class="afsub" href="${AFFL.sub}" target="_blank" rel="sponsored noopener">電話が苦手なら、メールで相談</a><img src="${AFFL.subpx}" width="1" height="1" alt="" style="position:absolute;width:1px;height:1px;opacity:0"><p class="fine" style="text-align:center">PR・外部サイト（ココナラ）に移動します</p></div></div>`}];
   if((f.length+3)%2)f.push({type:"page",blank:true,html:`<div class="pg blank">${FLEURON}</div>`});
@@ -383,8 +422,13 @@ function foxStyle(i){seed=i*97+11+cur.length*13;const n=Math.floor(rnd()*3);let 
 const stage=document.getElementById("stage"),drop=document.getElementById("drop"),tilt=document.getElementById("tilt"),book=document.getElementById("book"),cast=document.getElementById("cast");
 const prev=document.getElementById("prev"),next=document.getElementById("next"),pager=document.getElementById("pager"),stackL=document.getElementById("stackL"),stackR=document.getElementById("stackR");
 const isMob=()=>matchMedia("(max-width:760px)").matches;
+// web fonts that arrive after the book opened change line breaks: lay the chapters out again
+let deepFontT=null;
+function deepRelayoutLater(){clearTimeout(deepFontT);deepFontT=setTimeout(function go(){if(!DEEPC.key||desk.classList.contains("off"))return;if(busy||!landed){deepFontT=setTimeout(go,300);return}
+  const kk=k;build();k=Math.min(kk,isMob()?2*SHEETS-1:SHEETS);layout()},150)}
+if(document.fonts&&document.fonts.addEventListener)document.fonts.addEventListener("loadingdone",deepRelayoutLater);
 function build(){
-  F=compose();SHEETS=F.length/2;const B=BOOKS[cur];
+  DEEPC.key="";F=compose();SHEETS=F.length/2;const B=BOOKS[cur];
   book.style.setProperty("--cloth",B.cloth);book.setAttribute("style",(book.getAttribute("style")||"").replace(/--emb[^;]*;?/g,"")+";"+embStyle(cur)+";--cloth:"+B.cloth+";--endc:"+B.endc);book.style.setProperty("--endc",B.endc);book.style.setProperty("--rubric",ACC[cur]);book.style.setProperty("--cvurl",`url(assets/${cur}-cover.jpg)`);book.style.setProperty("--pat",patURL(cur));book.classList.toggle("silver",B.metal==="silver");book.dataset.book=cur;
   book.querySelectorAll(".sheet").forEach(s=>s.remove());
   for(let s=0;s<SHEETS;s++){const el=document.createElement("div");el.className="sheet";const f=2*s,b=2*s+1;
@@ -644,5 +688,5 @@ buildGuide(ORDER);fitRoom();buildShelfRow();fitRoom();buildShelfRow();shelfLight
 {const h=readHash();if(h)setTimeout(()=>openShared(h),900);else if(readBookHash())setTimeout(openFromHash,900)}
 let rt;addEventListener("resize",()=>{clearTimeout(rt);rt=setTimeout(()=>{drawTable();sizeDust();fitRoom();buildShelfRow();shelfLight();sizeBook();
   if(!desk.classList.contains("off")){const[lx,ly]=deskLight();setLight(lx,ly);const nm=isMob()?"m":"d";
-    if(nm!==mode){k=nm==="m"?(k===0?0:Math.min(2*k,2*SHEETS-1)):Math.ceil(k/2);mode=nm;build()}else{layout();drawCanvases()}}
+    if(nm!==mode){k=nm==="m"?(k===0?0:Math.min(2*k,2*SHEETS-1)):Math.ceil(k/2);mode=nm;build()}else if(DEEPC.key&&(Math.abs(book.clientWidth-DEEPC.w)>8||Math.abs(book.clientHeight-DEEPC.h)>8)){build();k=Math.min(k,mode==="m"?2*SHEETS-1:SHEETS)}else{layout();drawCanvases()}}
   else mode=isMob()?"m":"d"},150)});
