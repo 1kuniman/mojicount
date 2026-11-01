@@ -22,9 +22,21 @@ const dataUri = (p) => {
 
 // out/<book>/index.html と out/<book>/<item>/index.html を集める
 const jobs = [];
+// 2027年の運勢（/2027/<sec>/ と /2027/<sec>/<item>/）は挿絵を使う
+const Y = path.join(OUT, "2027");
+if (fs.existsSync(Y))
+  for (const sec of fs.readdirSync(Y)) {
+    const d = path.join(Y, sec);
+    if (!fs.statSync(d).isDirectory()) continue;
+    if (fs.existsSync(path.join(d, "index.html"))) jobs.push({ file: path.join("og", "2027", sec, "index.jpg"), html: fs.readFileSync(path.join(d, "index.html"), "utf8"), hub: false });
+    for (const item of fs.readdirSync(d)) {
+      const f = path.join(d, item, "index.html");
+      if (fs.existsSync(f)) jobs.push({ file: path.join("og", "2027", sec, `${item}.jpg`), html: fs.readFileSync(f, "utf8"), hub: false });
+    }
+  }
 for (const book of fs.readdirSync(OUT)) {
   const hub = path.join(OUT, book, "index.html");
-  if (!fs.existsSync(hub) || ["mokuroku", "about", "privacy", "contact"].includes(book)) continue;
+  if (!fs.existsSync(hub) || ["mokuroku", "about", "privacy", "contact", "2027"].includes(book)) continue;
   jobs.push({ file: path.join("og", book, "index.jpg"), html: fs.readFileSync(hub, "utf8"), hub: true });
   for (const item of fs.readdirSync(path.join(OUT, book))) {
     const f = path.join(OUT, book, item, "index.html");

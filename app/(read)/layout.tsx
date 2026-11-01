@@ -34,6 +34,7 @@ export default function ReadLayout({ children }: { children: React.ReactNode }) 
           <Link className="brand" href="/">宵の書架</Link>
           <nav aria-label="サイト">
             <Link href="/">本棚へ</Link>
+            <Link href="/2027/">2027年の運勢</Link>
             <Link href="/mokuroku/">本の目録</Link>
           </nav>
         </header>
@@ -42,6 +43,7 @@ export default function ReadLayout({ children }: { children: React.ReactNode }) 
           <span className="brand">宵の書架</span>
           <nav aria-label="サイト情報">
             <Link href="/mokuroku/">本の目録</Link>
+            <Link href="/2027/">2027年の運勢</Link>
             <Link href="/about/">この書架について</Link>
             <Link href="/privacy/">プライバシーポリシー</Link>
             <Link href="/contact/">お問い合わせ</Link>

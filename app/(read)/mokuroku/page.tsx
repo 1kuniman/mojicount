@@ -3,6 +3,7 @@ import Link from "next/link";
 import { BOOKS, bookPath, coverSrc, itemPath, bookContent } from "@/lib/books";
 import { SITE_URL } from "@/lib/site";
 import { Cover, Crumbs, Orn, OpenBook } from "@/components/Parts";
+import { YSecs } from "@/components/Y2027";
 
 export const metadata: Metadata = {
   title: "本の目録｜十冊の占いの本と、すべての頁",
@@ -18,6 +19,11 @@ export default function Mokuroku() {
       <h1>十冊の占いの本</h1>
       <Orn />
       <p className="lead">本棚の十冊と、それぞれの本に綴じてある頁の一覧です。気になる頁から読んでも、本棚から一冊を手に取って占っても構いません。</p>
+      <section className="shelf-h">
+        <p className="chap">年の暦</p>
+        <h2><Link href="/2027/" style={{ textDecoration: "none" }}>2027年の運勢</Link></h2>
+        <YSecs />
+      </section>
       {BOOKS.map((b) => (
         <section key={b.id} className="shelf-h">
           <p className="chap">{b.art}</p>

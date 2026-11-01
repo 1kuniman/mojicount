@@ -1,8 +1,15 @@
 import type { Metadata } from "next";
+import { YLink } from "@/components/Y2027";
 import { notFound } from "next/navigation";
 import { BOOKS, bookBySlug, bookContent, bookPath, coverSrc, ogSrc } from "@/lib/books";
 import { SITE_URL, SITE_NAME } from "@/lib/site";
 import { Aff, Cover, Body, Crumbs, FaqBlock, ItemCards, JsonLd, OpenBook, Orn, OtherBooks } from "@/components/Parts";
+
+const Y27: Record<string, { href: string; label: string }> = {
+  ki: { href: "/2027/kyusei/", label: "九星気学 2027年の運勢と月ごとの暦を読む" },
+  hoshi: { href: "/2027/seiza/", label: "12星座の2027年の運勢を読む" },
+  meguri: { href: "/2027/suhi/", label: "数秘術で読む2027年の運勢" },
+};
 
 export const dynamicParams = false;
 export function generateStaticParams() {
@@ -40,6 +47,7 @@ export default function HubPage({ params }: { params: { book: string } }) {
       <div className="plate cover"><Cover book={b} width={240} eager /></div>
       <p className="badge"><span><b>わかること</b>　{b.q}</span><span><b>必要なもの</b>　{b.need}</span></p>
       {hub && <p className="lead">{hub.lead}</p>}
+      {Y27[b.id] && <YLink href={Y27[b.id].href} label={Y27[b.id].label} />}
       <OpenBook book={b} />
       {hub && <Body doc={hub} />}
       <section className="shelf-h">
