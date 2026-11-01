@@ -355,7 +355,7 @@ ol.acts li::before{content:counter(a,cjk-ideographic);font-family:var(--jp-displ
 .choice:hover{background:rgba(255,252,242,.75)}
 .choice.on{border-color:var(--rubric);background:color-mix(in srgb,var(--rubric) 10%,rgba(255,252,242,.7))}
 /* tarot */
-.tback{position:absolute;inset:0;border-radius:inherit;background-image:url(assets/tsuki-cover.jpg);background-size:cover;background-position:center;
+.tback{position:absolute;inset:0;border-radius:inherit;background-image:url(assets/tsuki-cover.webp);background-size:cover;background-position:center;
   box-shadow:inset 0 0 0 max(2px,.45cqw) #efe9f6,inset 0 0 0 max(3px,.65cqw) rgba(93,79,140,.55),0 1px 3px rgba(40,30,60,.35)}
 .tpick{gap:0}
 .fan{position:relative;height:22cqh;margin-top:2cqh}
@@ -523,6 +523,7 @@ label.who{display:block}
 /* ---------- link to the catalogue (crawlable) ---------- */
 #shelf .bar{justify-content:flex-start}
 #shelf .tagline{margin-left:auto}
+.mokulink+.mokulink{margin-left:14px}
 .mokulink{font-size:13px;letter-spacing:.16em;color:var(--cream);text-decoration:none;border-bottom:1px solid rgba(234,220,192,.4);padding-bottom:1px;opacity:.9;white-space:nowrap}
 .mokulink:hover{opacity:1;border-color:var(--foil-hi)}
 @media (max-width:640px){.mokulink{font-size:11px;letter-spacing:.08em}}

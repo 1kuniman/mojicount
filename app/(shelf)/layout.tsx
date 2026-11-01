@@ -23,7 +23,7 @@ export default function ShelfLayout({ children }: { children: React.ReactNode })
           href="https://fonts.googleapis.com/css2?family=Yuji+Syuku&family=Zen+Old+Mincho:wght@400;600&family=Klee+One:wght@400;600&family=IM+Fell+English:ital@0;1&family=IM+Fell+English+SC&display=swap"
         />
         <link rel="stylesheet" href="/shoka/shoka.css" />
-        <link rel="preload" as="image" href="/assets/shelf.jpg" />
+        <link rel="preload" as="image" href="/assets/shelf.webp" />
       </head>
       <body>
         {children}

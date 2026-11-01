@@ -155,7 +155,7 @@ export function bookContent(b: Book) {
 /* ---------- 画像 ---------- */
 const hasPublic = (p: string) => fs.existsSync(path.join(process.cwd(), "public", p));
 export const illSrc = (key: string) => (hasPublic(`assets/ill/${key}.webp`) ? `/assets/ill/${key}.webp` : null);
-export const coverSrc = (b: Book) => `/assets/${b.id}-cover.jpg`;
+export const coverSrc = (b: Book) => `/assets/${b.id}-cover.webp`;
 export const ogSrc = (b: Book, item?: Item) =>
   hasPublic(`og/${b.slug}/${item ? item.slug : "index"}.jpg`) ? `/og/${b.slug}/${item ? item.slug : "index"}.jpg` : "/og/default.jpg";
 

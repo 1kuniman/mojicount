@@ -396,8 +396,8 @@ function compose(){
 function faceHTML(i){
   const B=BOOKS[cur],it=F[i],c=F.length-3;
   switch(it.type){
-   case"cover":{const c=META[cur].circle;return`<div class="cvimg" style="background-image:url(assets/${cur}-cover.jpg)"></div><div class="cvt" style="left:${(c[0]-c[2]/2)*100}%;top:${(c[1]-c[3]/2)*100}%;width:${c[2]*100}%;height:${c[3]*100}%"><div class="emb title">${B.title}</div><div class="mrule e"></div><div class="emb sc">${B.en}</div></div>`}
-   case"back":return`<div class="cvimg rev" style="background-image:url(assets/${cur}-cover.jpg)"></div>`;
+   case"cover":{const c=META[cur].circle;return`<div class="cvimg" style="background-image:url(assets/${cur}-cover.webp)"></div><div class="cvt" style="left:${(c[0]-c[2]/2)*100}%;top:${(c[1]-c[3]/2)*100}%;width:${c[2]*100}%;height:${c[3]*100}%"><div class="emb title">${B.title}</div><div class="mrule e"></div><div class="emb sc">${B.en}</div></div>`}
+   case"back":return`<div class="cvimg rev" style="background-image:url(assets/${cur}-cover.webp)"></div>`;
    case"endpaper":return it.plate?`<div class="endsheet"><div class="plate"><div class="exl">Ex Libris</div>${inkSigil(cur)}<div class="own">この本をひらいた夜<br><b>${todayJP}</b></div></div></div>`:`<div class="endsheet"></div>`;
    case"title":return FRAME+`<div class="pg titlepage"><div class="vt">${B.title}</div><div class="tp-orn">${inkSigil(cur)}</div><div class="tp-sub">${B.sub}</div><div class="tp-imp">宵の書架</div></div>`;
    case"colophon":return FRAME+`<div class="pg"><div class="colophon"><div class="ct">${B.title}</div><dl><dt>発行</dt><dd>${kanjiNum(Y)}年</dd><dt>編</dt><dd>宵の書架編集室</dd><dt>占術</dt><dd>${B.art}</dd></dl><p class="fine">本書は娯楽と自己理解のための読み物です。医療・法律・金銭上の判断の根拠にはしないでください。</p></div></div>`;
@@ -429,7 +429,7 @@ function deepRelayoutLater(){clearTimeout(deepFontT);deepFontT=setTimeout(functi
 if(document.fonts&&document.fonts.addEventListener)document.fonts.addEventListener("loadingdone",deepRelayoutLater);
 function build(){
   DEEPC.key="";F=compose();SHEETS=F.length/2;const B=BOOKS[cur];
-  book.style.setProperty("--cloth",B.cloth);book.setAttribute("style",(book.getAttribute("style")||"").replace(/--emb[^;]*;?/g,"")+";"+embStyle(cur)+";--cloth:"+B.cloth+";--endc:"+B.endc);book.style.setProperty("--endc",B.endc);book.style.setProperty("--rubric",ACC[cur]);book.style.setProperty("--cvurl",`url(assets/${cur}-cover.jpg)`);book.style.setProperty("--pat",patURL(cur));book.classList.toggle("silver",B.metal==="silver");book.dataset.book=cur;
+  book.style.setProperty("--cloth",B.cloth);book.setAttribute("style",(book.getAttribute("style")||"").replace(/--emb[^;]*;?/g,"")+";"+embStyle(cur)+";--cloth:"+B.cloth+";--endc:"+B.endc);book.style.setProperty("--endc",B.endc);book.style.setProperty("--rubric",ACC[cur]);book.style.setProperty("--cvurl",`url(assets/${cur}-cover.webp)`);book.style.setProperty("--pat",patURL(cur));book.classList.toggle("silver",B.metal==="silver");book.dataset.book=cur;
   book.querySelectorAll(".sheet").forEach(s=>s.remove());
   for(let s=0;s<SHEETS;s++){const el=document.createElement("div");el.className="sheet";const f=2*s,b=2*s+1;
     el.innerHTML=`<div class="face front ${faceCls(f)}" data-f="${f}" style="${foxStyle(f)}"></div><div class="face back ${faceCls(b)}" data-f="${b}" style="${foxStyle(b)}"></div>`;book.appendChild(el)}
@@ -616,8 +616,8 @@ function buildShelfRow(){
     <div class="pv" style="left:${p.x.toFixed(1)}px;top:${top.toFixed(1)}px;width:${p.T.toFixed(1)}px;height:${p.H.toFixed(1)}px"><div class="bk3${B.metal==="silver"?" silver":""}" data-book="${p.id}" style="--T:${p.T.toFixed(1)};--labc:${LABC[p.id]};${embStyle(p.id)};--shade:${shade};--z1:${(p.D*.5).toFixed(0)}px;--z2:${(p.D*(mob?1.15:.75)).toFixed(0)}px;--ly:${mob?-24:-6}px;--ps:${mob?1:.94};--dx:${dx.toFixed(0)}px;transform-origin:50% 50% ${(-p.D/2).toFixed(0)}px">
       <div class="bc" style="width:${p.D.toFixed(1)}px;height:${p.H.toFixed(1)}px;transform:rotateY(90deg)"></div>
       <div class="tp" style="width:${p.T.toFixed(1)}px;height:${p.D.toFixed(1)}px;transform:rotateX(-90deg)"></div>
-      <div class="cv" style="width:${p.D.toFixed(1)}px;height:${p.H.toFixed(1)}px;background-image:url(assets/${p.id}-cover.jpg);transform:translateX(${p.T.toFixed(1)}px) rotateY(90deg)"><div class="cvt3" style="left:${(c[0]-c[2]/2)*100}%;top:${(c[1]-c[3]/2)*100}%;width:${c[2]*100}%;height:${c[3]*100}%"><div class="emb title">${B.title}</div><div class="mrule e"></div><div class="emb sc">${B.en}</div></div><i class="lit"></i></div>
-      <div class="sp" style="background-image:url(assets/${p.id}-spine.jpg)"><div class="lab t"><span>${B.title}</span></div><div class="lab g"><span>${B.tag}</span></div><i class="lit"></i></div>
+      <div class="cv" style="width:${p.D.toFixed(1)}px;height:${p.H.toFixed(1)}px;background-image:url(assets/${p.id}-cover.webp);transform:translateX(${p.T.toFixed(1)}px) rotateY(90deg)"><div class="cvt3" style="left:${(c[0]-c[2]/2)*100}%;top:${(c[1]-c[3]/2)*100}%;width:${c[2]*100}%;height:${c[3]*100}%"><div class="emb title">${B.title}</div><div class="mrule e"></div><div class="emb sc">${B.en}</div></div><i class="lit"></i></div>
+      <div class="sp" style="background-image:url(assets/${p.id}-spine.webp)"><div class="lab t"><span>${B.title}</span></div><div class="lab g"><span>${B.tag}</span></div><i class="lit"></i></div>
     </div></div>`});
   rowEl.innerHTML=html;pulled=null;buildGuide([...placed].sort((a2,b2)=>a2.x-b2.x).map(p=>p.id));
   if(cur&&!desk.classList.contains("off")){const b=bk(cur);if(b){b.classList.add("out1","out2","fly");b.parentNode.style.zIndex=40}}
@@ -634,7 +634,7 @@ const GUIDE={kazu:{q:"自分の本質",w:"生年月日の数で読む",need:"生
  iro:{q:"わたしのオーラの色",w:"直感で選ぶ三つの色",need:"色を三つ選ぶ"},
  tama:{q:"前世の物語",w:"惹かれる情景で読む",need:"三つの問いに答える"}};
 function buildGuide(order){guide.innerHTML='<div class="step">いま、知りたいことは？</div>'+order.map(id=>{const G=GUIDE[id],B=BOOKS[id];
-  return`<button class="gcard" type="button" role="listitem" data-id="${id}"><span class="sw" style="background-image:url(assets/${id}-spine.jpg)"></span><span class="q">${G.q}</span><span class="w"><b>${B.title}</b><i>${G.w}</i></span><span class="m"><span>必要なもの　${G.need}</span><span class="go">ひらく ›</span></span></button>`}).join("")}
+  return`<button class="gcard" type="button" role="listitem" data-id="${id}"><span class="sw" style="background-image:url(assets/${id}-spine.webp)"></span><span class="q">${G.q}</span><span class="w"><b>${B.title}</b><i>${G.w}</i></span><span class="m"><span>必要なもの　${G.need}</span><span class="go">ひらく ›</span></span></button>`}).join("")}
 const bk=id=>rowEl.querySelector(`.bk3[data-book="${id}"]`);
 function setCaption(id){guide.classList.toggle("picked",!!id);guide.querySelectorAll(".gcard").forEach(c=>{const on=c.dataset.id===id;c.classList.toggle("on",on);if(on&&guide.scrollWidth>guide.clientWidth+4){const x=c.offsetLeft;guide.scrollTo({left:Math.max(0,x),behavior:reduced?"auto":"smooth"})}const g=c.querySelector(".go");if(g)g.textContent=hoverable.matches?"ひらく ›":"もう一度で ひらく ›"})}
 function pull(id){if(busy)return;clearTimeout(pushT);if(pulled===id)return;if(pulled)push(pulled);pulled=id;const el=bk(id);if(!el)return;
