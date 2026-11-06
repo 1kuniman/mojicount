@@ -347,6 +347,7 @@ const ORDER=["kazu","en","meguri","tsuki","hoshi","yume","ishi","ki","iro","tama
 let DKEY=null;
 /* ラッキーアイテム（Amazonの検索結果へのアソシエイトリンク）。結果ごと・日ごとに三つ */
 const amz=kw=>`https://www.amazon.co.jp/s?k=${encodeURIComponent(kw)}&tag=${LUCKY.tag}`;
+function luckyItemsFor(id,seed){const L=LUCKY,ord=L.order[id];if(!L.tag||!ord)return null;const h=s=>{let x=2166136261;for(const c of s)x=Math.imul(x^c.codePointAt(0),16777619)>>>0;return x};const out=[];for(let i=0;out.length<3&&i<30;i++){const p=L.pool[ord[i%ord.length]];const it=p[h(seed+"|"+i)%p.length];if(!out.some(o=>o.n===it.n))out.push(it)}return out}
 function luckyItems(seed){const L=LUCKY,ord=L.order[cur];if(!L.tag||!ord||DKEY==null)return null;
   const h=s=>{let x=2166136261;for(const c of s)x=Math.imul(x^c.codePointAt(0),16777619)>>>0;return x};const out=[];
   if(cur==="ishi"){const s=Object.values(STONES).find(v=>v.k===DKEY);if(s)out.push({n:`${s.jp}のブレスレット`,kw:`${s.jp} ブレスレット 天然石`,why:"あなたの守護石を、毎日身につけられる形で。"})}
@@ -355,7 +356,7 @@ function luckyItems(seed){const L=LUCKY,ord=L.order[cur];if(!L.tag||!ord||DKEY==
   for(let i=0;out.length<3&&i<30;i++){const p=L.pool[ord[i%ord.length]];const it=p[h(seed+"|"+i)%p.length];if(!out.some(o=>o.n===it.n))out.push(it)}
   return out}
 function luckyPage(){if(shared)return null;const t=new Date();const items=luckyItems(`${cur}|${DKEY}|${t.getFullYear()}-${t.getMonth()+1}-${t.getDate()}`);if(!items)return null;
-  return{rh:"ラッキーアイテム",type:"page",html:`<div class="pg lucky"><div class="chap">今夜のしるし</div><h2>ラッキーアイテム</h2><ol class="lk">${items.map((x,i)=>`<li><span class="lkn">${kj(i+1)}</span><a href="${amz(x.kw)}" target="_blank" rel="sponsored noopener"><b>${x.n}</b><span class="lkw">${x.why}</span><span class="lkgo">Amazonで見る ›</span></a></li>`).join("")}</ol><p class="fine lkf">アイテムは毎日入れ替わります</p></div>`}}
+  return{rh:"ラッキーアイテム",type:"page",html:`<div class="pg lucky"><div class="chap">今夜のしるし</div><h2>ラッキーアイテム</h2><ol class="lk">${items.map((x,i)=>`<li><span class="lkn">${kj(i+1)}</span><a href="${amz(x.kw)}" target="_blank" rel="sponsored noopener"><b>${x.n}</b><span class="lkw">${x.why}</span><span class="lkgo">Amazonで探す ›</span></a></li>`).join("")}</ol></div>`}}
 const KJN=n=>{const d="〇一二三四五六七八九";if(n<10)return d[n];if(n===10)return"十";return(n<20?"":d[Math.floor(n/10)])+"十"+(n%10?d[n%10]:"")};
 function deepSections(){const D=(typeof DEEP!=="undefined")&&DEEP[cur];if(!D||DKEY==null)return[];
   if(cur!=="tsuki")return D[DKEY]||[];

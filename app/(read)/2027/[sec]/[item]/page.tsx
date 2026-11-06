@@ -3,8 +3,9 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 import { SECS, bookOf, itemDoc, secBySlug, secPath, yItemPath, Y_PATH, Y_UPDATED, yOg } from "@/lib/y2027";
-import { Aff, Body, Crumbs, FaqBlock, JsonLd, OpenBook, Orn, Plate } from "@/components/Parts";
+import { Aff, Body, LuckyItems, Crumbs, FaqBlock, JsonLd, OpenBook, Orn, Plate } from "@/components/Parts";
 import { Months, YCards, YLink, YSecs } from "@/components/Y2027";
+import { LEAD_2027 } from "@/lib/lucky";
 
 export const dynamicParams = false;
 export function generateStaticParams() {
@@ -57,6 +58,7 @@ export default function YItemPage({ params }: { params: { sec: string; item: str
       <YLink href={it.evergreen} label={`${name}の性格・恋愛・仕事をくわしく読む`} />
       <OpenBook book={b} label={`${b.title}をひらいて、${s.id === "kyusei" ? "あなたの本命星と方位盤" : "あなたの星座"}を読む`} />
       <FaqBlock faq={d.faq} />
+      <LuckyItems book={b} item={bi} lead={LEAD_2027} title={`${name}の2027年のラッキーアイテム`} />
       <Aff />
       <nav className="pn" aria-label="前後の項目">
         <Link href={yItemPath(s, prev)}>‹ {prev.label}</Link>

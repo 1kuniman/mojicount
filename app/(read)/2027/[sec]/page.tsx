@@ -4,8 +4,9 @@ import { notFound } from "next/navigation";
 import { BOOKS, itemPath } from "@/lib/books";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 import { SECS, bookOf, kiYearPalace, palaceTheme, secBySlug, secDoc, secPath, yItemPath, Y_PATH, Y_UPDATED, yOg } from "@/lib/y2027";
-import { Aff, Body, Crumbs, FaqBlock, JsonLd, OpenBook, Orn, Plate } from "@/components/Parts";
+import { Aff, Body, LuckyItems, Crumbs, FaqBlock, JsonLd, OpenBook, Orn, Plate } from "@/components/Parts";
 import { YCards, YSecs } from "@/components/Y2027";
+import { LEAD_2027 } from "@/lib/lucky";
 
 export const dynamicParams = false;
 export function generateStaticParams() {
@@ -92,6 +93,7 @@ export default function YSecPage({ params }: { params: { sec: string } }) {
       )}
       <OpenBook book={b} label={`${b.title}をひらいて、あなたの${s.id === "suhi" ? "数" : s.id === "kyusei" ? "本命星" : "星座"}を出す`} />
       <FaqBlock faq={d.faq} />
+      <LuckyItems book={b} lead={LEAD_2027} title="2027年を迎えるラッキーアイテム" />
       <Aff />
       <section className="shelf-h">
         <p className="chap">2027年のほかの読みかた</p>

@@ -18,10 +18,11 @@ const h = (s: string) => {
 };
 
 /** 結果に合わせた三つのラッキーアイテム（本の中と同じ選び方。解説ページは日替わりにしない） */
-export function luckyFor(book: Book, item?: Item): Lucky[] {
+export function luckyFor(book: Book, item?: Item, lead?: Lucky): Lucky[] {
   const ord = ORDER[book.id];
   if (!L.tag || !ord) return [];
   const out: Lucky[] = [];
+  if (lead) out.push(lead);
   if (item && book.id === "ishi") out.push({ n: `${item.label}のブレスレット`, kw: `${item.label} ブレスレット 天然石`, why: "あなたの守護石を、毎日身につけられる形で。" });
   if (item && book.id === "iro") {
     const c = item.label.replace("のオーラ", "");
@@ -31,7 +32,7 @@ export function luckyFor(book: Book, item?: Item): Lucky[] {
     const k = D.KISEI[Number(item.key)];
     if (k && EL[k.el]) out.push(EL[k.el]);
   }
-  const seed = `${book.id}|${item ? item.key : "hub"}`;
+  const seed = `${book.id}|${item ? item.key : "hub"}${lead ? "|" + lead.n : ""}`;
   for (let i = 0; out.length < 3 && i < 30; i++) {
     const p = P[ord[i % ord.length]];
     const it = p[h(seed + "|" + i) % p.length];
@@ -39,3 +40,6 @@ export function luckyFor(book: Book, item?: Item): Lucky[] {
   }
   return out;
 }
+
+/** 2027年の頁の先頭に出す品 */
+export const LEAD_2027: Lucky = { n: "2027年の手帳", kw: "手帳 2027 1月始まり", why: "この頁で読んだ一年の流れを、書き込んでいく一冊に。" };

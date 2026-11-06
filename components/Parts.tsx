@@ -3,7 +3,7 @@ import type { Book, Doc, Item } from "@/lib/books";
 import { BOOKS, bookPath, coverSrc, illSrc, itemPath, openHref } from "@/lib/books";
 import { AFF, SITE_URL } from "@/lib/site";
 import { COVER_META } from "@/lib/covers";
-import { amz, luckyFor } from "@/lib/lucky";
+import { amz, luckyFor, type Lucky } from "@/lib/lucky";
 
 /** 表紙の画像に、円の中の題字を重ねる */
 export function Cover({ book, width, className, eager }: { book: Book; width: number; className?: string; eager?: boolean }) {
@@ -166,12 +166,12 @@ export function Aff() {
   );
 }
 
-export function LuckyItems({ book, item }: { book: Book; item?: Item }) {
-  const items = luckyFor(book, item);
+export function LuckyItems({ book, item, lead, title }: { book: Book; item?: Item; lead?: Lucky; title?: string }) {
+  const items = luckyFor(book, item, lead);
   if (!items.length) return null;
   return (
     <section className="lucky">
-      <p className="chap">{item ? `${item.label}の` : ""}ラッキーアイテム</p>
+      <p className="chap">{title ?? `${item ? `${item.label}の` : ""}ラッキーアイテム`}</p>
       <ol>
         {items.map((x, i) => (
           <li key={x.n}>
@@ -179,7 +179,7 @@ export function LuckyItems({ book, item }: { book: Book; item?: Item }) {
             <a href={amz(x.kw)} target="_blank" rel="sponsored noopener">
               <b>{x.n}</b>
               <span className="w">{x.why}</span>
-              <span className="go">Amazonで見る ›</span>
+              <span className="go">Amazonで探す ›</span>
             </a>
           </li>
         ))}
