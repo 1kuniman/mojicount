@@ -430,7 +430,7 @@ function deepRelayoutLater(){clearTimeout(deepFontT);deepFontT=setTimeout(functi
 if(document.fonts&&document.fonts.addEventListener)document.fonts.addEventListener("loadingdone",deepRelayoutLater);
 function build(){
   DEEPC.key="";F=compose();SHEETS=F.length/2;const B=BOOKS[cur];
-  book.style.setProperty("--cloth",B.cloth);book.setAttribute("style",(book.getAttribute("style")||"").replace(/--emb[^;]*;?/g,"")+";"+embStyle(cur)+";--cloth:"+B.cloth+";--endc:"+B.endc);book.style.setProperty("--endc",B.endc);book.style.setProperty("--rubric",ACC[cur]);book.style.setProperty("--cvurl",`url(assets/${cur}-cover.webp)`);book.style.setProperty("--pat",patURL(cur));book.classList.toggle("silver",B.metal==="silver");book.dataset.book=cur;
+  book.style.setProperty("--cloth",B.cloth);book.setAttribute("style",(book.getAttribute("style")||"").replace(/--emb[^;]*;?/g,"")+";"+embStyle(cur)+";--cloth:"+B.cloth+";--endc:"+B.endc);book.style.setProperty("--endc",B.endc);book.style.setProperty("--rubric",ACC[cur]);book.style.setProperty("--cvurl",`url(/assets/${cur}-cover.webp)`);book.style.setProperty("--pat",patURL(cur));book.classList.toggle("silver",B.metal==="silver");book.dataset.book=cur;
   book.querySelectorAll(".sheet").forEach(s=>s.remove());
   for(let s=0;s<SHEETS;s++){const el=document.createElement("div");el.className="sheet";const f=2*s,b=2*s+1;
     el.innerHTML=`<div class="face front ${faceCls(f)}" data-f="${f}" style="${foxStyle(f)}"></div><div class="face back ${faceCls(b)}" data-f="${b}" style="${foxStyle(b)}"></div>`;book.appendChild(el)}

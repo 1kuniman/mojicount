@@ -15,5 +15,6 @@ if (fs.existsSync(deepDir))
 const parts = ["data_lp.js", "p2_data.js", "luck.js"].map((f) => fs.readFileSync(path.join(src, f), "utf8"));
 const js = [...parts, `const DEEP=${JSON.stringify(DEEP)};`, fs.readFileSync(path.join(src, "p3_engine.js"), "utf8"), fs.readFileSync(path.join(src, "kuji.js"), "utf8")].join("\n");
 fs.writeFileSync(path.join(out, "app.js"), js);
-fs.copyFileSync(path.join(src, "style.css"), path.join(out, "shoka.css"));
+// the stylesheet is served from /shoka/, so asset urls must be absolute
+fs.writeFileSync(path.join(out, "shoka.css"), fs.readFileSync(path.join(src, "style.css"), "utf8").replace(/url\((["']?)assets\//g, "url($1/assets/"));
 console.log("shoka: app.js", (js.length / 1024).toFixed(0) + "KB");
