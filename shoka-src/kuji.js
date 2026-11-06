@@ -57,8 +57,7 @@ let kujiOn=false;
 const kujiBtn=document.getElementById("kujibtn");
 function kujiLabel(){if(!kujiBtn)return;const done=!!(KUJI&&KUJI.d===kujiToday());kujiBtn.querySelector("b").textContent=done?"今夜のくじを、もう一度ひらく":"迷ったら、今夜のくじを引く";
   kujiBtn.querySelector("small").textContent=done?`今日は${KUJI_RANKS[KUJI.ri].r}・${BOOKS[KUJI.id].title}`:"本が一冊と、今日の運勢がでます"}
-function kujiOpen(id){choose(id);const t0=Date.now();(function wait(){if(landed&&cur===id){setTimeout(()=>{if(cur!==id||desk.classList.contains("off"))return;const i=F.findIndex(f=>f.omi);if(i<0)return;
-  const nk=isMob()?i:Math.ceil(i/2);if(k!==nk){k=nk;layout()}},500);return}if(Date.now()-t0<9000)setTimeout(wait,120)})()}
+function kujiOpen(id){choose(id)}
 if(kujiBtn){kujiLabel();kujiBtn.addEventListener("click",e=>{e.stopPropagation();if(busy||kujiOn||shelf.classList.contains("off"))return;
   const q=KUJI&&KUJI.d===kujiToday()?KUJI:kujiDraw();kujiLabel();
   const ids=[...rowEl.querySelectorAll(".bk3")].map(b=>b.dataset.book);const end=ids.indexOf(q.id);
