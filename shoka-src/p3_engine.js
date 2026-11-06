@@ -387,7 +387,8 @@ function compose(){
   const tk=shared?sharedParts:(B.tok?B.tok():null),link=tk?shareLink(cur,tk):SITE_URL+"/";
   const share=encodeURIComponent(`${sh.x}\nあなたも一冊、ひらいてみて。 #宵の書架 #${B.title}`);
   const chaps=body.filter(x=>/^第.+章$/.test(x.rh||"")).length;const deep=deepPages(chaps);
-  const f=[{type:"cover"},{type:"endpaper",plate:true},{type:"title"},...body.map(x=>({type:"page",...x})),...deep.map(x=>({type:"page",...x})),
+  const q=typeof kujiFor==="function"?kujiFor(cur):null;
+  const f=[{type:"cover"},{type:"endpaper",plate:true},{type:"title"},...(q?[{type:"page",rh:"今夜のくじ",omi:true,html:kujiHTML(q)}]:[]),...body.map(x=>({type:"page",...x})),...deep.map(x=>({type:"page",...x})),
     {type:"page",rh:"栞",html:`<div class="pg"><div class="chap">栞</div><h2>この頁を、<br>誰かに届ける</h2><p>Xに書き残すと、あなたの結果がひらいた状態の本へのリンクが付きます。受け取った人は、同じ頁をそのまま読めます。生年月日や名前は、リンクに含まれません。</p><div class="btns"><a class="inkbtn" href="https://twitter.com/intent/tweet?text=${share}&url=${encodeURIComponent(link)}" target="_blank" rel="noopener">Xに書き残す</a><button class="inkbtn" type="button" id="copy" data-copy="${encodeURIComponent(sh.copy+"\n"+link)}">結果とリンクを写しとる</button><button class="inkbtn" type="button" id="again">書き入れなおす</button></div></div>`},
     {type:"page",rh:"跋",html:`<div class="pg"><div class="chap">跋</div><h2>${B.after.h}</h2><p>${B.after.p}</p><div class="btns"><a class="inkbtn solid" id="aff" href="${AFFL.url}" target="_blank" rel="sponsored noopener">ココナラの電話占いで相談する</a><img src="${AFFL.px}" width="1" height="1" alt="" style="position:absolute;width:1px;height:1px;opacity:0"><a class="afsub" href="${AFFL.sub}" target="_blank" rel="sponsored noopener">電話が苦手なら、メールで相談</a><img src="${AFFL.subpx}" width="1" height="1" alt="" style="position:absolute;width:1px;height:1px;opacity:0"><p class="fine" style="text-align:center">PR・外部サイト（ココナラ）に移動します</p></div></div>`}];
   if((f.length+3)%2)f.push({type:"page",blank:true,html:`<div class="pg blank">${FLEURON}</div>`});
@@ -425,7 +426,7 @@ const isMob=()=>matchMedia("(max-width:760px)").matches;
 // web fonts that arrive after the book opened change line breaks: lay the chapters out again
 let deepFontT=null;
 function deepRelayoutLater(){clearTimeout(deepFontT);deepFontT=setTimeout(function go(){if(!DEEPC.key||desk.classList.contains("off"))return;if(busy||!landed){deepFontT=setTimeout(go,300);return}
-  const kk=k;build();k=Math.min(kk,isMob()?2*SHEETS-1:SHEETS);layout()},150)}
+  DEEPC.key="";render(true)},150)}
 if(document.fonts&&document.fonts.addEventListener)document.fonts.addEventListener("loadingdone",deepRelayoutLater);
 function build(){
   DEEPC.key="";F=compose();SHEETS=F.length/2;const B=BOOKS[cur];
@@ -434,8 +435,19 @@ function build(){
   for(let s=0;s<SHEETS;s++){const el=document.createElement("div");el.className="sheet";const f=2*s,b=2*s+1;
     el.innerHTML=`<div class="face front ${faceCls(f)}" data-f="${f}" style="${foxStyle(f)}"></div><div class="face back ${faceCls(b)}" data-f="${b}" style="${foxStyle(b)}"></div>`;book.appendChild(el)}
   render(true);layout()}
-function render(all){F=compose();book.querySelectorAll(".face").forEach(el=>{const i=+el.dataset.f;if(!all&&F[i].input)return;el.innerHTML=faceHTML(i)});
-  (document.fonts?document.fonts.ready:Promise.resolve()).then(drawCanvases)}
+// update the open book in place: only faces whose content changed are touched; sheets are added/removed at the end when the page count changes
+const tplEl=document.createElement("template");
+function morph(el,h){const strip=x=>x.replace(/ class="[^"]*"/g,"");
+  if(el._h!=null&&strip(el._h)===strip(h)){tplEl.innerHTML=h;const a=el.querySelectorAll("*"),b=tplEl.content.querySelectorAll("*");
+    if(a.length===b.length){a.forEach((n,j)=>{const c=b[j].getAttribute("class");if(n.getAttribute("class")!==c){if(c==null)n.removeAttribute("class");else n.setAttribute("class",c)}});el._h=h;return}}
+  el.innerHTML=h;el._h=h}
+function render(all){F=compose();const need=F.length/2;const sheets=[...book.querySelectorAll(".sheet")];
+  if(sheets.length!==need){while(sheets.length<need){const s=sheets.length,el=document.createElement("div");el.className="sheet";el.innerHTML=`<div class="face front" data-f="${2*s}"></div><div class="face back" data-f="${2*s+1}"></div>`;book.appendChild(el);sheets.push(el)}
+    while(sheets.length>need)sheets.pop().remove();SHEETS=need;k=Math.min(k,isMob()?2*SHEETS-1:SHEETS)}
+  book.querySelectorAll(".face").forEach(el=>{const i=+el.dataset.f;const cls=`face ${i%2?"back":"front"} ${faceCls(i)}`;
+    if(el._cls!==cls){const sh=el.classList.contains("show");el.className=cls+(sh?" show":"");el._cls=cls;el.setAttribute("style",foxStyle(i))}
+    if(!all&&F[i].input&&el._h!=null)return;morph(el,faceHTML(i))});
+  layout();(document.fonts?document.fonts.ready:Promise.resolve()).then(drawCanvases)}
 
 function drawCanvases(){book.querySelectorAll("canvas[data-draw]").forEach(c=>{const s=c.clientWidth,h=c.clientHeight;if(!s||!h)return;const dpr=Math.min(2,devicePixelRatio||1);c.width=s*dpr;c.height=h*dpr;const g=c.getContext("2d");g.scale(dpr,dpr);
   ({wheel:drawWheel,moon:drawMoon,phases:drawPhases})[c.dataset.draw](g,s,h,c)})}
@@ -468,7 +480,9 @@ function layout(){
     prev.disabled=k===0;next.disabled=k===SHEETS;const tR=Math.max(0,SHEETS-1-k),tL=Math.max(0,k-1);
     const sh=(n,dir)=>{let a=[];const m=Math.min(4+n*1.2,13);for(let j=1;j<=m;j++)a.push(`${dir*j*.8}px ${j*.75}px 0 ${j%3===0?"#bfae88":j%2?"#efe6cf":"#dccfae"}`);a.push(`${dir*(m*.8+1)}px ${m*.75+1.5}px 3px rgba(0,0,0,.45)`);return a.join(",")||"none"};
     stackR.style.boxShadow=sh(tR,1);stackL.style.boxShadow=sh(tL,-1);stackL.style.visibility=tL>0?"visible":"hidden";stackR.style.visibility=tR>0&&k>0?"visible":"hidden"}
+  if(typeof omiVisible==="function")omiVisible();
   pager.className="";if(k===0&&landed){pager.textContent="表紙に触れて、ひらく";pager.className="hint"}else if(k===1&&!isMob()){pager.textContent="右の頁でめくる・左の頁でもどる";pager.className="hint"}else if(k===1&&isMob()){pager.textContent="右側をタップで、めくる";pager.className="hint"}else pager.textContent=label();flipVisible()}
+function inkIn(i){const f=book.querySelector(`.face[data-f="${i}"]`);if(!f||reduced)return;f.classList.remove("inkin");void f.offsetWidth;f.classList.add("inkin");setTimeout(()=>f.classList.remove("inkin"),1400)}
 function flipVisible(){if(cur!=="tsuki"||!S.tarot.revealed)return;(isMob()?[k]:[2*k-1,2*k]).forEach(i=>{const f=book.querySelector(`.face[data-f="${i}"]`);if(!f)return;
   f.querySelectorAll(".reveal:not(.go)").forEach(r=>requestAnimationFrame(()=>requestAnimationFrame(()=>r.classList.add("go"))))})}
 function label(){const c=F.length-3;
@@ -503,7 +517,8 @@ book.addEventListener("click",e=>{const t=e.target;
     if(cur==="en"){const er=book.querySelector("#nerr");const a=nameNumber(S.nameA),c=nameNumber(S.nameB);
       if(!S.nameA.trim()||!S.nameB.trim()){if(er)er.textContent="二人の名前を書き入れてください。";return}
       if(!a||!c){if(er)er.textContent="漢字は読めません。ひらがなで書いてください。";return}if(er)er.textContent=""}
-    b.classList.remove("press");void b.offsetWidth;b.classList.add("press");opened[cur]=true;render(false);setTimeout(()=>step(1),420);return}
+    b.classList.remove("press");void b.offsetWidth;b.classList.add("press");opened[cur]=true;render(false);
+    setTimeout(()=>{const ri=resultIndex();const vis=isMob()?[k]:[2*k-1,2*k];if(vis.includes(ri)){inkIn(ri);pager.className="";pager.textContent=label()}else step(1)},420);return}
   if(t.closest("#copy")){const b=t.closest("#copy"),txt=decodeURIComponent(b.dataset.copy)+`\n— ${BOOKS[cur].title}（宵の書架）`;
     try{navigator.clipboard.writeText(txt).then(()=>b.textContent="写しとりました").catch(()=>b.textContent="写しとれませんでした")}catch(err){b.textContent="写しとれませんでした"}return}
   if(t.closest("#again")){if(lock)return;if(shared){exitShared(true);return}opened={};if(cur==="tsuki"){newDraw();render(true)}const idx=F.findIndex(f=>f.input);k=isMob()?idx:Math.floor((idx+1)/2);layout();return}
@@ -517,8 +532,9 @@ book.addEventListener("click",e=>{const t=e.target;
     setTimeout(()=>{const ri=F.findIndex(f=>f.rh==="ひらいた札");const vis=isMob()?[k]:[2*k-1,2*k];if(vis.includes(ri))flipVisible();else step(1)},380);return}
 });
 stage.addEventListener("click",e=>{if(!landed||desk.classList.contains("off"))return;
-  if(e.target.closest("button,a,select,input,label,.choice,.tcard,.nerr,.sw9"))return;
-  const r=drop.getBoundingClientRect();if(e.clientX<r.left-24||e.clientX>r.right+24||e.clientY<r.top-24||e.clientY>r.bottom+24)return;
+  if(e.target.closest("button,a,select,input,label,.choice,.tcard,.nerr,.sw9,.choices,.ichoices,.fan,.tslots,.tact,.sealrow,.nfield,.datef"))return;
+  const r=drop.getBoundingClientRect();
+  {const fc=e.target.closest(".face");if(fc&&F[+fc.dataset.f]&&F[+fc.dataset.f].input){const fr=fc.getBoundingClientRect();const edge=Math.min(56,fr.width*.12);if(e.clientX>fr.left+edge&&e.clientX<fr.right-edge)return}}if(e.clientX<r.left-24||e.clientX>r.right+24||e.clientY<r.top-24||e.clientY>r.bottom+24)return;
   if(k===0){step(1);return}if(!isMob()&&k===SHEETS){step(-1);return}
   step(e.clientX>r.left+r.width/2?1:-1)});
 stage.addEventListener("pointermove",e=>{return;const r=stage.getBoundingClientRect();
@@ -645,11 +661,11 @@ function push(id){const el=bk(id);if(pulled===id){pulled=null;setCaption(null)}i
 const inPulled=e=>{if(!pulled)return false;const el=bk(pulled);if(!el)return false;return[el,...el.querySelectorAll(".cv,.sp")].some(f=>{const r=f.getBoundingClientRect();return r.width>0&&e.clientX>=r.left-4&&e.clientX<=r.right+4&&e.clientY>=r.top-4&&e.clientY<=r.bottom+4})};
 const hitId=e=>{const g=e.target.closest&&e.target.closest(".gcard");if(g)return g.dataset.id;if(inPulled(e))return pulled;
   const t=e.target.closest&&e.target.closest(".slot,.bk3");return t?t.dataset.id||t.dataset.book:null};
-shelf.addEventListener("pointermove",e=>{if(!hoverable.matches||busy)return;const id=hitId(e);if(id)pull(id);else if(pulled){clearTimeout(pushT);const p=pulled;pushT=setTimeout(()=>push(p),180)}});
+shelf.addEventListener("pointermove",e=>{if(!hoverable.matches||busy||kujiOn)return;const id=hitId(e);if(id)pull(id);else if(pulled){clearTimeout(pushT);const p=pulled;pushT=setTimeout(()=>push(p),180)}});
 shelf.addEventListener("pointerleave",()=>{if(pulled&&hoverable.matches){const p=pulled;pushT=setTimeout(()=>push(p),180)}});
-shelf.addEventListener("click",e=>{if(busy)return;const id=hitId(e);if(!id){if(pulled)push(pulled);return}
+shelf.addEventListener("click",e=>{if(busy||kujiOn||e.target.closest("#kujibtn"))return;const id=hitId(e);if(!id){if(pulled)push(pulled);return}
   if(hoverable.matches||pulled===id)choose(id);else pull(id)});
-addEventListener("keydown",e=>{if(shelf.classList.contains("off")||busy)return;
+addEventListener("keydown",e=>{if(shelf.classList.contains("off")||busy||kujiOn)return;
   if(e.key==="ArrowRight"||e.key==="ArrowLeft"){const ids=[...rowEl.querySelectorAll(".bk3")].map(b=>b.dataset.book);const i=ids.indexOf(pulled);const n=i<0?0:(i+(e.key==="ArrowRight"?1:-1)+ids.length)%ids.length;pull(ids[n])}
   if(e.key==="Enter"&&pulled)choose(pulled);if(e.key==="Escape"&&pulled)push(pulled)});
 function shelfLight(){const[x,y]=toScreen(...IMG.candle);if(!shelf.classList.contains("off"))setLight(x/innerWidth,y/innerHeight)}
@@ -688,5 +704,5 @@ buildGuide(ORDER);fitRoom();buildShelfRow();fitRoom();buildShelfRow();shelfLight
 {const h=readHash();if(h)setTimeout(()=>openShared(h),900);else if(readBookHash())setTimeout(openFromHash,900)}
 let rt;addEventListener("resize",()=>{clearTimeout(rt);rt=setTimeout(()=>{drawTable();sizeDust();fitRoom();buildShelfRow();shelfLight();sizeBook();
   if(!desk.classList.contains("off")){const[lx,ly]=deskLight();setLight(lx,ly);const nm=isMob()?"m":"d";
-    if(nm!==mode){k=nm==="m"?(k===0?0:Math.min(2*k,2*SHEETS-1)):Math.ceil(k/2);mode=nm;build()}else if(DEEPC.key&&(Math.abs(book.clientWidth-DEEPC.w)>8||Math.abs(book.clientHeight-DEEPC.h)>8)){build();k=Math.min(k,mode==="m"?2*SHEETS-1:SHEETS)}else{layout();drawCanvases()}}
+    if(nm!==mode){k=nm==="m"?(k===0?0:Math.min(2*k,2*SHEETS-1)):Math.ceil(k/2);mode=nm;build()}else if(DEEPC.key&&(Math.abs(book.clientWidth-DEEPC.w)>8||Math.abs(book.clientHeight-DEEPC.h)>8)){DEEPC.key="";render(true)}else{layout();drawCanvases()}}
   else mode=isMob()?"m":"d"},150)});
