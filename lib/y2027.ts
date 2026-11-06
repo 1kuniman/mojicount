@@ -59,4 +59,4 @@ export const yOg = (parts: string[]) => {
   const p = `og/2027/${parts.join("/") || "index"}.jpg`;
   return hasPublic(p) ? "/" + p : "/og/default.jpg";
 };
-export const Y_UPDATED = "2026-11-01";
+export const Y_UPDATED = "2026-11-06";
