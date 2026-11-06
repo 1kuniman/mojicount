@@ -607,7 +607,7 @@ label.who{display:block}
 .omilk span{display:block;font-size:.82em;letter-spacing:.3em;color:var(--rubric)}
 .omilk a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--rubric);font-family:var(--jp-display);font-size:1.12em}
 @container (max-height:660px){.pg.lucky h2{margin:.8cqh 0 1.6cqh}.pg.lucky .lk{gap:1.1cqh}.pg.lucky .lk li{padding-bottom:1.1cqh}.pg.lucky .lkw{line-height:1.5;margin:.2cqh 0 .3cqh}.pg.lucky .lkf{padding-top:.6cqh}}
-@container (max-height:520px){.pg.lucky .lkw{display:none}.pg.lucky .lkgo{display:inline-block;margin-top:.4cqh}}
-@container (max-height:500px){.pg.lucky h2{font-size:clamp(17px,5.4cqw,26px);margin:.8cqh 0 1.6cqh}.pg.lucky h2+*{display:none}}
+@container (max-height:470px){.pg.lucky .lkw{display:none}.pg.lucky .lkgo{display:inline-block;margin-top:.4cqh}}
+@container (max-height:500px){.pg.lucky h2{font-size:clamp(17px,5.4cqw,26px);margin:.8cqh 0 1.6cqh}}
 @container (max-height:620px){.omirank span{font-size:clamp(40px,14cqw,70px)}.omirank{margin:1.4cqh 0 1.2cqh}.pg.omi .omisou{font-size:clamp(12px,3cqw,15px);line-height:1.7;margin-bottom:1.4cqh}.omil{gap:.9cqh 4cqw;margin-bottom:1.4cqh}.omil dd{line-height:1.5}.omilk span{display:inline;margin-right:.6em}}
 @container (max-height:500px){.omino{display:none}.omil dd{font-size:clamp(10.5px,2.6cqw,13px)}.pg.omi .omibook{display:none}}
