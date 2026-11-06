@@ -591,3 +591,17 @@ label.who{display:block}
 .pg.omi .omibook{font-size:clamp(11px,2.7cqw,13.5px);line-height:1.8;color:var(--ink-soft);text-align:center;margin:0}
 .omibook b{color:var(--ink);font-weight:600;margin:0 0 0 .2em}
 @media (prefers-reduced-motion:reduce){.face .omirank span{opacity:1}.face.omigo .omirank span{animation:none;transform:rotate(-3deg)}}
+/* ---- ラッキーアイテム ---- */
+.pg.lucky h2{margin:1.6cqh 0 2.4cqh}
+.lk{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:1.6cqh}
+.lk li{display:grid;grid-template-columns:auto 1fr;gap:0 3cqw;align-items:start;padding-bottom:1.6cqh;border-bottom:1px solid rgba(43,34,28,.2)}
+.lkn{font-family:var(--jp-display);font-size:clamp(17px,5cqw,26px);line-height:1;color:var(--rubric);padding-top:.15em}
+.lk a{display:block;text-decoration:none;color:inherit}
+.lk b{display:block;font-family:var(--jp-display);font-weight:400;font-size:clamp(13.5px,3.7cqw,18px);letter-spacing:.04em;line-height:1.4;color:var(--ink)}
+.lkw{display:block;margin:.4cqh 0 .5cqh;font-size:clamp(11px,2.75cqw,13.5px);line-height:1.6;color:var(--ink-soft)}
+.lkgo{font-size:clamp(11px,2.7cqw,13px);letter-spacing:.08em;color:var(--rubric);border-bottom:1px solid currentColor}
+.lk a:hover .lkgo{opacity:.7}
+.pg.lucky .lkf{margin:auto 0 0;padding-top:1.2cqh;text-align:center}
+@container (max-height:660px){.pg.lucky h2{margin:.8cqh 0 1.6cqh}.pg.lucky .lk{gap:1.1cqh}.pg.lucky .lk li{padding-bottom:1.1cqh}.pg.lucky .lkw{line-height:1.5;margin:.2cqh 0 .3cqh}.pg.lucky .lkf{padding-top:.6cqh}}
+@container (max-height:520px){.pg.lucky .lkw{display:none}.pg.lucky .lkgo{display:inline-block;margin-top:.4cqh}}
+@container (max-height:500px){.pg.lucky h2{font-size:clamp(17px,5.4cqw,26px);margin:.8cqh 0 1.6cqh}.pg.lucky h2+*{display:none}}

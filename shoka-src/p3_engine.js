@@ -345,6 +345,17 @@ const ORDER=["kazu","en","meguri","tsuki","hoshi","yume","ishi","ki","iro","tama
 
 /* ================= deeper chapters (shoka-src/deep/*.json), paginated to fit a page ================= */
 let DKEY=null;
+/* ラッキーアイテム（Amazonの検索結果へのアソシエイトリンク）。結果ごと・日ごとに三つ */
+const amz=kw=>`https://www.amazon.co.jp/s?k=${encodeURIComponent(kw)}&tag=${LUCKY.tag}`;
+function luckyItems(seed){const L=LUCKY,ord=L.order[cur];if(!L.tag||!ord||DKEY==null)return null;
+  const h=s=>{let x=2166136261;for(const c of s)x=Math.imul(x^c.codePointAt(0),16777619)>>>0;return x};const out=[];
+  if(cur==="ishi"){const s=Object.values(STONES).find(v=>v.k===DKEY);if(s)out.push({n:`${s.jp}のブレスレット`,kw:`${s.jp} ブレスレット 天然石`,why:"あなたの守護石を、毎日身につけられる形で。"})}
+  if(cur==="iro"&&AURA[DKEY]){const c=AURA[DKEY].jp;out.push({n:`${c}色のハンカチ`,kw:`ハンカチ ${c}色`,why:`${c}のオーラを、手もとにそっと持ち歩いて。`})}
+  if(cur==="ki"&&KISEI[+DKEY])out.push(L.el[KISEI[+DKEY].el]);
+  for(let i=0;out.length<3&&i<30;i++){const p=L.pool[ord[i%ord.length]];const it=p[h(seed+"|"+i)%p.length];if(!out.some(o=>o.n===it.n))out.push(it)}
+  return out}
+function luckyPage(){if(shared)return null;const t=new Date();const items=luckyItems(`${cur}|${DKEY}|${t.getFullYear()}-${t.getMonth()+1}-${t.getDate()}`);if(!items)return null;
+  return{rh:"ラッキーアイテム",type:"page",html:`<div class="pg lucky"><div class="chap">今夜のしるし</div><h2>ラッキーアイテム</h2><ol class="lk">${items.map((x,i)=>`<li><span class="lkn">${kj(i+1)}</span><a href="${amz(x.kw)}" target="_blank" rel="sponsored noopener"><b>${x.n}</b><span class="lkw">${x.why}</span><span class="lkgo">Amazonで見る ›</span></a></li>`).join("")}</ol><p class="fine lkf">PR・Amazonアソシエイト　アイテムは毎日入れ替わります</p></div>`}}
 const KJN=n=>{const d="〇一二三四五六七八九";if(n<10)return d[n];if(n===10)return"十";return(n<20?"":d[Math.floor(n/10)])+"十"+(n%10?d[n%10]:"")};
 function deepSections(){const D=(typeof DEEP!=="undefined")&&DEEP[cur];if(!D||DKEY==null)return[];
   if(cur!=="tsuki")return D[DKEY]||[];
@@ -386,9 +397,9 @@ function compose(){
   const B=BOOKS[cur];const body=B.pages();const sh=B.share();
   const tk=shared?sharedParts:(B.tok?B.tok():null),link=tk?shareLink(cur,tk):SITE_URL+"/";
   const share=encodeURIComponent(`${sh.x}\nあなたも一冊、ひらいてみて。 #宵の書架 #${B.title}`);
-  const chaps=body.filter(x=>/^第.+章$/.test(x.rh||"")).length;const deep=deepPages(chaps);
+  const chaps=body.filter(x=>/^第.+章$/.test(x.rh||"")).length;const lk=luckyPage();const deep=deepPages(chaps);
   const q=typeof kujiFor==="function"?kujiFor(cur):null;
-  const f=[{type:"cover"},{type:"endpaper",plate:true},{type:"title"},...(q?[{type:"page",rh:"今夜のくじ",omi:true,html:kujiHTML(q)}]:[]),...body.map(x=>({type:"page",...x})),...deep.map(x=>({type:"page",...x})),
+  const f=[{type:"cover"},{type:"endpaper",plate:true},{type:"title"},...(q?[{type:"page",rh:"今夜のくじ",omi:true,html:kujiHTML(q)}]:[]),...body.map(x=>({type:"page",...x})),...(lk?[lk]:[]),...deep.map(x=>({type:"page",...x})),
     {type:"page",rh:"栞",html:`<div class="pg"><div class="chap">栞</div><h2>この頁を、<br>誰かに届ける</h2><p>Xに書き残すと、あなたの結果がひらいた状態の本へのリンクが付きます。受け取った人は、同じ頁をそのまま読めます。生年月日や名前は、リンクに含まれません。</p><div class="btns"><a class="inkbtn" href="https://twitter.com/intent/tweet?text=${share}&url=${encodeURIComponent(link)}" target="_blank" rel="noopener">Xに書き残す</a><button class="inkbtn" type="button" id="copy" data-copy="${encodeURIComponent(sh.copy+"\n"+link)}">結果とリンクを写しとる</button><button class="inkbtn" type="button" id="again">書き入れなおす</button></div></div>`},
     {type:"page",rh:"跋",html:`<div class="pg"><div class="chap">跋</div><h2>${B.after.h}</h2><p>${B.after.p}</p><div class="btns"><a class="inkbtn solid" id="aff" href="${AFFL.url}" target="_blank" rel="sponsored noopener">ココナラの電話占いで相談する</a><img src="${AFFL.px}" width="1" height="1" alt="" style="position:absolute;width:1px;height:1px;opacity:0"><a class="afsub" href="${AFFL.sub}" target="_blank" rel="sponsored noopener">電話が苦手なら、メールで相談</a><img src="${AFFL.subpx}" width="1" height="1" alt="" style="position:absolute;width:1px;height:1px;opacity:0"><p class="fine" style="text-align:center">PR・外部サイト（ココナラ）に移動します</p></div></div>`}];
   if((f.length+3)%2)f.push({type:"page",blank:true,html:`<div class="pg blank">${FLEURON}</div>`});

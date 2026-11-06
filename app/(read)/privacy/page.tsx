@@ -25,7 +25,7 @@ export default function Privacy() {
       </section>
       <section>
         <h2>広告について</h2>
-        <p>当サイトは、第三者配信の広告サービス（Google AdSense）や、アフィリエイトプログラムを利用することがあります。広告配信事業者は、ユーザーの興味に応じた広告を表示するために Cookie を使用することがあります。Cookie を無効にする方法や Google AdSense については、Google の広告設定（https://adssettings.google.com/）や、Google のポリシーと規約（https://policies.google.com/technologies/ads?hl=ja）をご覧ください。広告やアフィリエイトのリンクには「広告・PR」と表示します。</p>
+        <p>当サイトは、第三者配信の広告サービス（Google AdSense）や、アフィリエイトプログラムを利用することがあります。広告配信事業者は、ユーザーの興味に応じた広告を表示するために Cookie を使用することがあります。Cookie を無効にする方法や Google AdSense については、Google の広告設定（https://adssettings.google.com/）や、Google のポリシーと規約（https://policies.google.com/technologies/ads?hl=ja）をご覧ください。広告やアフィリエイトのリンクには「広告・PR」と表示します。Amazonのアソシエイトとして、宵の書架は適格販売により収入を得ています。</p>
       </section>
       <section>
         <h2>免責事項</h2>

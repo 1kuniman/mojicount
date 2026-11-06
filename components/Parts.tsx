@@ -3,6 +3,7 @@ import type { Book, Doc, Item } from "@/lib/books";
 import { BOOKS, bookPath, coverSrc, illSrc, itemPath, openHref } from "@/lib/books";
 import { AFF, SITE_URL } from "@/lib/site";
 import { COVER_META } from "@/lib/covers";
+import { amz, luckyFor } from "@/lib/lucky";
 
 /** 表紙の画像に、円の中の題字を重ねる */
 export function Cover({ book, width, className, eager }: { book: Book; width: number; className?: string; eager?: boolean }) {
@@ -162,6 +163,29 @@ export function Aff() {
       )}
       <small>外部サイト（ココナラ）に移動します・広告</small>
     </aside>
+  );
+}
+
+export function LuckyItems({ book, item }: { book: Book; item?: Item }) {
+  const items = luckyFor(book, item);
+  if (!items.length) return null;
+  return (
+    <section className="lucky">
+      <p className="chap">{item ? `${item.label}の` : ""}ラッキーアイテム</p>
+      <ol>
+        {items.map((x, i) => (
+          <li key={x.n}>
+            <span className="n">{"一二三"[i]}</span>
+            <a href={amz(x.kw)} target="_blank" rel="sponsored noopener">
+              <b>{x.n}</b>
+              <span className="w">{x.why}</span>
+              <span className="go">Amazonで見る ›</span>
+            </a>
+          </li>
+        ))}
+      </ol>
+      <small>PR・Amazonの検索結果に移動します</small>
+    </section>
   );
 }
 

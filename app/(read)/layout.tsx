@@ -49,6 +49,7 @@ export default function ReadLayout({ children }: { children: React.ReactNode }) 
             <Link href="/contact/">お問い合わせ</Link>
           </nav>
           占いの結果は、いまの自分をふり返るための読みものです。大切な判断は、ご自身の考えを大切に。
+          <small className="amzn">Amazonのアソシエイトとして、宵の書架は適格販売により収入を得ています。</small>
         </footer>
         <Analytics />
       </body>

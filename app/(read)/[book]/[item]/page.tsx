@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { BOOKS, bookBySlug, bookContent, bookPath, itemPath, ogSrc } from "@/lib/books";
 import { SITE_URL, SITE_NAME } from "@/lib/site";
 import { YLink } from "@/components/Y2027";
-import { Aff, Body, Crumbs, FaqBlock, ItemCards, JsonLd, OpenBook, Orn, OtherBooks, Plate } from "@/components/Parts";
+import { Aff, Body, LuckyItems, Crumbs, FaqBlock, ItemCards, JsonLd, OpenBook, Orn, OtherBooks, Plate } from "@/components/Parts";
 
 export const dynamicParams = false;
 export function generateStaticParams() {
@@ -57,6 +57,7 @@ export default function ItemPage({ params }: { params: { book: string; item: str
       {b.id === "meguri" && <YLink href="/2027/suhi/" label="2027年のパーソナルイヤーを出して、一年を読む" />}
       <OpenBook book={b} label={`${b.title}で、あなたを占う`} />
       <FaqBlock faq={doc.faq} />
+      <LuckyItems book={b} item={it} />
       <Aff />
       <nav className="pn" aria-label="前後の項目">
         <Link href={itemPath(b, prev)}>‹ {prev.label}</Link>

@@ -13,7 +13,7 @@ if (fs.existsSync(deepDir))
     DEEP[id] = Object.assign(DEEP[id] || {}, JSON.parse(fs.readFileSync(path.join(deepDir, f), "utf8")));
   }
 const parts = ["data_lp.js", "p2_data.js", "luck.js"].map((f) => fs.readFileSync(path.join(src, f), "utf8"));
-const js = [...parts, `const DEEP=${JSON.stringify(DEEP)};`, fs.readFileSync(path.join(src, "p3_engine.js"), "utf8"), fs.readFileSync(path.join(src, "kuji.js"), "utf8")].join("\n");
+const js = [...parts, `const DEEP=${JSON.stringify(DEEP)};`, `const LUCKY=${fs.readFileSync(path.join(process.cwd(), "content/lucky.json"), "utf8")};`, fs.readFileSync(path.join(src, "p3_engine.js"), "utf8"), fs.readFileSync(path.join(src, "kuji.js"), "utf8")].join("\n");
 fs.writeFileSync(path.join(out, "app.js"), js);
 // the stylesheet is served from /shoka/, so asset urls must be absolute
 fs.writeFileSync(path.join(out, "shoka.css"), fs.readFileSync(path.join(src, "style.css"), "utf8").replace(/url\((["']?)assets\//g, "url($1/assets/"));
