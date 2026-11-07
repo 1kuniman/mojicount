@@ -55,17 +55,18 @@ ${(()=>{const t=new Date();const it=(typeof luckyItemsFor==="function")&&luckyIt
 /* shelf: the roulette that picks tonight's book */
 let kujiOn=false;
 const kujiBtn=document.getElementById("kujibtn");
-function kujiLabel(){if(!kujiBtn)return;const done=!!(KUJI&&KUJI.d===kujiToday());kujiBtn.querySelector("b").textContent=done?"今夜のくじを、もう一度ひらく":"迷ったら、今夜のくじを引く";
-  kujiBtn.querySelector("small").textContent=done?`今日は${KUJI_RANKS[KUJI.ri].r}・${BOOKS[KUJI.id].title}`:"本が一冊と、今日の運勢がでます"}
+function kujiLabel(){if(!kujiBtn)return;const done=!!(KUJI&&KUJI.d===kujiToday());kujiBtn.classList.toggle("done",done);kujiBtn.querySelector(".kj-ic").textContent=done?"本":"籤";
+  kujiBtn.querySelector("b").textContent=done?`本日の一冊　${BOOKS[KUJI.id].title}`:"迷ったら、今夜のくじを引く";
+  kujiBtn.querySelector("small").textContent=done?`${KUJI_RANKS[KUJI.ri].r}・押すとこの本がひらきます・毎日0時に新しいくじ`:"本が一冊と、今日の運勢がでます・毎日0時に引き直せます"}
 function kujiOpen(id){choose(id)}
 if(kujiBtn){kujiLabel();kujiBtn.addEventListener("click",e=>{e.stopPropagation();if(busy||kujiOn||shelf.classList.contains("off"))return;
-  const q=KUJI&&KUJI.d===kujiToday()?KUJI:kujiDraw();kujiLabel();
+  if(KUJI&&KUJI.d===kujiToday()){kujiOpen(KUJI.id);return}const q=kujiDraw();kujiLabel();
   const ids=[...rowEl.querySelectorAll(".bk3")].map(b=>b.dataset.book);const end=ids.indexOf(q.id);
   if(reduced||end<0){kujiOpen(q.id);return}
-  kujiOn=true;shelf.classList.add("kuji");kujiBtn.disabled=true;
+  kujiOn=true;shelf.classList.add("kuji");kujiBtn.disabled=true;if(typeof spinStart==="function")spinStart();
   const start=Math.floor(Math.random()*ids.length);const N=2*ids.length+((end-start)%ids.length+ids.length)%ids.length;
   if(pulled)push(pulled);let i=0,lit=null;(function hop(){const id=ids[(start+i)%ids.length];if(lit)lit.classList.remove("lit");lit=bk(id);if(lit)lit.classList.add("lit");
-    if(i>=N){setTimeout(()=>{if(lit)lit.classList.remove("lit");pull(id);const el=bk(id);if(el)el.classList.add("picked");setTimeout(()=>{if(el)el.classList.remove("picked");shelf.classList.remove("kuji");kujiBtn.disabled=false;kujiOn=false;kujiOpen(id)},1300)},250);return}
+    if(i>=N){setTimeout(()=>{if(lit)lit.classList.remove("lit");if(typeof spinStop==="function"){spinStop();sfx("pick")}pull(id);const el=bk(id);if(el)el.classList.add("picked");setTimeout(()=>{if(el)el.classList.remove("picked");shelf.classList.remove("kuji");kujiBtn.disabled=false;kujiOn=false;kujiOpen(id)},1300)},250);return}
     i++;const t=i/N;setTimeout(hop,55+420*Math.pow(t,3))})()})}
 /* the slip stamps itself in the first time its page is on screen */
 function omiVisible(){(isMob()?[k]:[2*k-1,2*k]).forEach(i=>{const f=book.querySelector(`.face[data-f="${i}"]`);if(f&&f.querySelector(".omi")&&!f.classList.contains("omigo"))requestAnimationFrame(()=>requestAnimationFrame(()=>f.classList.add("omigo")))})}

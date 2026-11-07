@@ -1,7 +1,7 @@
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="wcs" x="-20%" y="-20%" width="140%" height="140%"><feTurbulence type="fractalNoise" baseFrequency=".06" numOctaves="3" seed="4" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="7" result="d"/><feGaussianBlur in="d" stdDeviation=".9"/></filter><filter id="wcf" x="-20%" y="-20%" width="140%" height="140%"><feTurbulence type="fractalNoise" baseFrequency=".022" numOctaves="4" seed="7" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="38" result="d"/><feGaussianBlur in="d" stdDeviation="3.2" result="b"/><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="3" result="g"/><feColorMatrix in="g" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -1.4 1.25" result="ga"/><feComposite in="b" in2="ga" operator="in"/></filter></svg>
 <div class="scene" id="shelf">
   <div class="room" id="room"><img src="assets/shelf.webp" alt=""><div class="flick"></div><div id="row"></div></div>
-  <div class="bar"><span class="brand">宵の書架</span><span class="tagline">無料・登録なし</span><a class="mokulink" href="/2027/">2027年の運勢</a><a class="mokulink" href="/mokuroku/">本の目録</a></div>
+  <div class="bar"><span class="brand">宵の書架</span><span class="tagline">無料・登録なし</span><a class="mokulink" href="/2027/">2027年の運勢</a><a class="mokulink" href="/mokuroku/">本の目録</a><button class="sndbtn" type="button" aria-pressed="false" title="音のオン・オフ"><i></i><span>音 オフ</span></button></div>
   <div class="intro"><div class="kick">十冊の占いの本</div><h1>直感で、一冊を手に取って</h1><p>いま惹かれた本が、今夜のあなたを読み解きます</p><button class="kujibtn" id="kujibtn" type="button"><span class="kj-ic" aria-hidden="true">籤</span><span class="kj-t"><b>迷ったら、今夜のくじを引く</b><small>本が一冊と、今日の運勢がでます</small></span></button></div>
   <div id="guide" role="list"><div class="step">いま知りたいことは？</div></div>
 </div>
@@ -9,7 +9,7 @@
 <div class="scene off" id="desk">
   <canvas class="layer" id="table"></canvas>
   <div class="app" lang="ja">
-    <div class="bar"><button class="backbtn" id="backbtn" type="button">‹ 本棚へもどす</button><span id="bookname"></span></div>
+    <div class="bar"><button class="backbtn" id="backbtn" type="button">‹ 本棚へもどす</button><span class="barR"><span id="bookname"></span><button class="sndbtn" type="button" aria-pressed="false" title="音のオン・オフ"><i></i><span>音 オフ</span></button></span></div>
     <div id="sharedbar" hidden><span>友だちから届いた本です</span><button id="mine" type="button">あなたも、この本で読む</button></div>
     <div class="stage" id="stage">
       <div class="cast closed" id="cast"><i class="soft"></i><i class="contact"></i></div>
@@ -25,5 +25,7 @@
   </div>
 </div>
 <div class="candle" id="candle"></div>
+<div id="sndpanel" hidden><label for="sndvol">音量</label><input type="range" id="sndvol" min="0" max="100" value="60"><small>もう一度ボタンを押すと、すべての音を止めます</small></div>
+<div id="sndhint" hidden>♪ 音を出すには、ここを押してください<br><small>ページをめくる音と、くじの音。初めはオフです</small></div>
 <div class="vignette"></div>
 <canvas class="layer" id="dust"></canvas>

@@ -507,7 +507,7 @@ function blocked(nk){const g=gateIndex();if(g<0)return false;const firstShown=is
 function nudge(){const g=gateIndex();const f=book.querySelector(`.face[data-f="${g}"]`);const t=f&&f.querySelector(cur==="tsuki"?"#tstate":".sealnote");
   pager.className="hint";pager.textContent=cur==="tsuki"?"札を三枚選んで、印を押してください":"印を押すと、先へ進めます";
   if(t){t.classList.remove("shake");void t.offsetWidth;t.classList.add("shake")}const s2=f&&f.querySelector(".seal");if(s2){s2.classList.remove("pulse");void s2.offsetWidth;s2.classList.add("pulse")}}
-function step(dir){if(lock||!landed)return;const max=isMob()?2*SHEETS-1:SHEETS;const nk=Math.min(max,Math.max(0,k+dir));if(nk===k)return;if(dir>0&&blocked(nk)){nudge();return}lock=true;
+function step(dir){if(lock||!landed)return;const max=isMob()?2*SHEETS-1:SHEETS;const nk=Math.min(max,Math.max(0,k+dir));if(nk===k)return;if(dir>0&&blocked(nk)){nudge();return}lock=true;if(typeof sfx==="function")sfx("flip");
   if(!isMob()){const idx=dir>0?k:k-1;const s=book.querySelectorAll(".sheet")[idx];s.classList.add("turning",dir>0?"turn-f":"turn-b");s.style.zIndex=50;
     setTimeout(()=>{s.classList.remove("turning","turn-f","turn-b");layout()},1000)}
   k=nk;layout();setTimeout(()=>lock=false,isMob()?420:820)}
