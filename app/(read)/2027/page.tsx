@@ -31,7 +31,7 @@ export default function Y2027Top() {
       <Orn />
       <p className="lead">{d.lead}</p>
       <section className="shelf-h" style={{ marginTop: 28 }}>
-        <p className="chap">三つの読みかた</p>
+        <p className="chap">四つの読みかた</p>
         <h2>どの占いで、2027年を読みますか</h2>
         <YSecs />
       </section>

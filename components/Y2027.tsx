@@ -42,7 +42,7 @@ export function YCards({ sec, current }: { sec: YSec; current?: string }) {
   );
 }
 
-/** 2027年の三つの入り口 */
+/** 2027年の四つの入り口 */
 export function YSecs({ except }: { except?: string }) {
   return (
     <ul className="ysecs">
@@ -50,7 +50,7 @@ export function YSecs({ except }: { except?: string }) {
         <li key={s.slug}>
           <Link href={secPath(s)}>
             <b>{s.title}</b>
-            <small>{s.id === "kyusei" ? "本命星ごとの一年と、月ごとの暦" : s.id === "seiza" ? "12星座ごとの一年と、星の動き" : "パーソナルイヤーで読む九つの一年"}</small>
+            <small>{s.id === "kyusei" ? "本命星ごとの一年と、月ごとの暦" : s.id === "seiza" ? "12星座ごとの一年と、星の動き" : s.id === "eto" ? "生まれ年の干支と、丁未の年の相性" : "パーソナルイヤーで読む九つの一年"}</small>
           </Link>
         </li>
       ))}

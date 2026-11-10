@@ -55,8 +55,8 @@ export default function YItemPage({ params }: { params: { sec: string; item: str
       <p className="lead">{d.lead}</p>
       <Body doc={d} />
       <Months months={d.months} title={`${name}の2027年、月ごとの過ごし方`} />
-      <YLink href={it.evergreen} label={`${name}の性格・恋愛・仕事をくわしく読む`} />
-      <OpenBook book={b} label={`${b.title}をひらいて、${s.id === "kyusei" ? "あなたの本命星と方位盤" : "あなたの星座"}を読む`} />
+      <YLink href={it.evergreen} label={s.id === "eto" ? "九星気学でも、あなたの2027年を読む" : `${name}の性格・恋愛・仕事をくわしく読む`} />
+      <OpenBook book={b} label={`${b.title}をひらいて、${s.id === "seiza" ? "あなたの星座" : "あなたの本命星と方位盤"}を読む`} />
       <FaqBlock faq={d.faq} />
       <LuckyItems book={b} item={bi} lead={LEAD_2027} title={`${name}の2027年のラッキーアイテム`} />
       <Aff />
@@ -66,7 +66,7 @@ export default function YItemPage({ params }: { params: { sec: string; item: str
       </nav>
       <section className="shelf-h">
         <p className="chap">{s.title}</p>
-        <h2>{s.id === "kyusei" ? "ほかの本命星の2027年" : "ほかの星座の2027年"}</h2>
+        <h2>{s.id === "kyusei" ? "ほかの本命星の2027年" : s.id === "eto" ? "ほかの干支の2027年" : "ほかの星座の2027年"}</h2>
         <YCards sec={s} current={it.slug} />
       </section>
       <section className="shelf-h">

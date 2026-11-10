@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { BOOKS, itemPath } from "@/lib/books";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
-import { SECS, bookOf, kiYearPalace, palaceTheme, secBySlug, secDoc, secPath, yItemPath, Y_PATH, Y_UPDATED, yOg } from "@/lib/y2027";
+import { ETO, SECS, bookOf, kiYearPalace, palaceTheme, secBySlug, secDoc, secPath, yItemPath, Y_PATH, Y_UPDATED, yOg } from "@/lib/y2027";
 import { Aff, Body, LuckyItems, Crumbs, FaqBlock, JsonLd, OpenBook, Orn, Plate } from "@/components/Parts";
 import { YCards, YSecs } from "@/components/Y2027";
 import { LEAD_2027 } from "@/lib/lucky";
@@ -66,10 +66,30 @@ export default function YSecPage({ params }: { params: { sec: string } }) {
           </div>
         </section>
       )}
+      {s.id === "eto" && (
+        <section className="shelf-h" style={{ marginTop: 28 }}>
+          <p className="chap">丁未の年と十二支</p>
+          <h2>生まれ年の干支と、未との関係</h2>
+          <div className="ywrap">
+            <table className="ytable">
+              <thead><tr><th>干支</th><th>おもな生まれ年</th><th>未との関係</th></tr></thead>
+              <tbody>
+                {s.items.map((it, i) => (
+                  <tr key={it.slug}>
+                    <td><Link href={yItemPath(s, it)}>{it.key}年（{ETO[i].animal}）</Link></td>
+                    <td>{ETO[i].years.join("・")}</td>
+                    <td>{ETO[i].rel}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
+      )}
       {s.items.length > 0 && (
         <section className="shelf-h">
           <p className="chap">一覧</p>
-          <h2>{s.id === "kyusei" ? "本命星ごとの2027年" : "12星座ごとの2027年"}</h2>
+          <h2>{s.id === "kyusei" ? "本命星ごとの2027年" : s.id === "eto" ? "干支ごとの2027年" : "12星座ごとの2027年"}</h2>
           <YCards sec={s} />
         </section>
       )}
@@ -91,7 +111,7 @@ export default function YSecPage({ params }: { params: { sec: string } }) {
           </ul>
         </section>
       )}
-      <OpenBook book={b} label={`${b.title}をひらいて、あなたの${s.id === "suhi" ? "数" : s.id === "kyusei" ? "本命星" : "星座"}を出す`} />
+      <OpenBook book={b} label={`${b.title}をひらいて、あなたの${s.id === "suhi" ? "数" : s.id === "seiza" ? "星座" : "本命星"}を出す`} />
       <FaqBlock faq={d.faq} />
       <LuckyItems book={b} lead={LEAD_2027} title="2027年を迎えるラッキーアイテム" />
       <Aff />
