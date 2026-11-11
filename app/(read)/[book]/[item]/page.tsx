@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { BOOKS, bookBySlug, bookContent, bookPath, itemPath, ogSrc } from "@/lib/books";
-import { SITE_URL, SITE_NAME } from "@/lib/site";
+import { AFF_NOTE, SITE_URL, SITE_NAME } from "@/lib/site";
 import { YLink } from "@/components/Y2027";
 import { Aff, Body, LuckyItems, Crumbs, FaqBlock, ItemCards, JsonLd, OpenBook, Orn, OtherBooks, Plate } from "@/components/Parts";
 
@@ -52,13 +52,13 @@ export default function ItemPage({ params }: { params: { book: string; item: str
       {it.sub && <p className="badge"><span>{it.sub}</span></p>}
       <p className="lead">{doc.lead}</p>
       <Body doc={doc} />
+      <Aff note={AFF_NOTE[b.id]} />
       {b.id === "ki" && <YLink href={`/2027/kyusei/${it.slug}/`} label={`${it.label}の2027年の運勢と月ごとの暦`} />}
       {b.id === "hoshi" && <YLink href={`/2027/seiza/${it.slug}/`} label={`${it.label}の2027年の運勢`} />}
       {b.id === "meguri" && <YLink href="/2027/suhi/" label="2027年のパーソナルイヤーを出して、一年を読む" />}
       <OpenBook book={b} label={`${b.title}で、あなたを占う`} />
       <FaqBlock faq={doc.faq} />
       <LuckyItems book={b} item={it} />
-      <Aff />
       <nav className="pn" aria-label="前後の項目">
         <Link href={itemPath(b, prev)}>‹ {prev.label}</Link>
         <Link href={itemPath(b, next)}>{next.label} ›</Link>

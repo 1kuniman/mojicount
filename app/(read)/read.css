@@ -177,3 +177,4 @@ article li::before{content:"◆";position:absolute;left:0;top:.05em;font-size:.6
 .lucky a:hover .go{opacity:.7}
 .lucky small{display:block;margin-top:6px;text-align:center;font-size:.75em;color:var(--ink-soft)}
 .rfoot .amzn{display:block;margin-top:6px;font-size:.85em;opacity:.8}
+.aff .aff-h{font-family:var(--display);font-size:1.05em;letter-spacing:.06em;color:var(--ink);margin:0 0 6px}

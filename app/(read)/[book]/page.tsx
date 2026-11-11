@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { YLink } from "@/components/Y2027";
 import { notFound } from "next/navigation";
 import { BOOKS, bookBySlug, bookContent, bookPath, coverSrc, ogSrc } from "@/lib/books";
-import { SITE_URL, SITE_NAME } from "@/lib/site";
+import { AFF_NOTE, SITE_URL, SITE_NAME } from "@/lib/site";
 import { Aff, Cover, Body, LuckyItems, Crumbs, FaqBlock, ItemCards, JsonLd, OpenBook, Orn, OtherBooks } from "@/components/Parts";
 
 const Y27: Record<string, { href: string; label: string }> = {
@@ -58,7 +58,7 @@ export default function HubPage({ params }: { params: { book: string } }) {
       <OpenBook book={b} />
       {hub && <FaqBlock faq={hub.faq} />}
       <LuckyItems book={b} title={`${b.title}のラッキーアイテム`} />
-      <Aff />
+      <Aff note={AFF_NOTE[b.id]} />
       <section className="shelf-h">
         <p className="chap">ほかの本</p>
         <h2>書架のほかの九冊</h2>

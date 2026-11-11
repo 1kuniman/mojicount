@@ -147,13 +147,14 @@ export function OtherBooks({ except }: { except?: string }) {
   );
 }
 
-export function Aff() {
+export function Aff({ note, label, head }: { note?: string; label?: string; head?: string } = {}) {
   if (!AFF.url) return null;
   return (
     <aside className="aff">
       <small className="pr">PR</small>
-      <p>{AFF.note}</p>
-      <a href={AFF.url} rel="sponsored noopener" target="_blank">{AFF.label}</a>
+      {head && <p className="aff-h">{head}</p>}
+      <p>{note ?? AFF.note}</p>
+      <a href={AFF.url} rel="sponsored noopener" target="_blank">{label ?? AFF.label}</a>
       <img className="px" src={AFF.pixel} width={1} height={1} alt="" />
       {AFF.sub && (
         <span className="aff-sub">

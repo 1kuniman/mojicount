@@ -54,12 +54,21 @@ export default function YItemPage({ params }: { params: { sec: string; item: str
       {it.sub && <p className="badge"><span>{it.sub}</span></p>}
       <p className="lead">{d.lead}</p>
       <Body doc={d} />
+      <Aff
+        head={`${name}の2027年、ひとりで決めきれないことは`}
+        note={
+          s.id === "kyusei"
+            ? "結婚や転職、引っ越しの時期と方位は、九星気学で鑑定する占い師に、生年月日からじかにみてもらうこともできます。"
+            : s.id === "seiza"
+              ? "結婚や転職の決めどきは、西洋占星術の占い師に、生まれた日時からのホロスコープでじかに読んでもらうこともできます。"
+              : "結婚や転職の決めどきは、占い師に生年月日からじかにみてもらう方法もあります。"
+        }
+      />
       <Months months={d.months} title={`${name}の2027年、月ごとの過ごし方`} />
       <YLink href={it.evergreen} label={s.id === "eto" ? "九星気学でも、あなたの2027年を読む" : `${name}の性格・恋愛・仕事をくわしく読む`} />
       <OpenBook book={b} label={`${b.title}をひらいて、${s.id === "seiza" ? "あなたの星座" : "あなたの本命星と方位盤"}を読む`} />
       <FaqBlock faq={d.faq} />
       <LuckyItems book={b} item={bi} lead={LEAD_2027} title={`${name}の2027年のラッキーアイテム`} />
-      <Aff />
       <nav className="pn" aria-label="前後の項目">
         <Link href={yItemPath(s, prev)}>‹ {prev.label}</Link>
         <Link href={yItemPath(s, next)}>{next.label} ›</Link>
