@@ -12,7 +12,7 @@ export function Months({ months, title }: { months: Month[]; title: string }) {
       <h2>{title}</h2>
       <dl>
         {months.map((m, i) => (
-          <div key={i}>
+          <div key={i} id={m.m.startsWith("2028") ? "m-next1" : `m${m.m.match(/^(\d+)月/)?.[1] ?? i}`}>
             <dt>{m.m}</dt>
             <dd>{m.t}</dd>
           </div>

@@ -48,11 +48,13 @@ export default function ItemPage({ params }: { params: { book: string; item: str
       <p className="kicker">{b.title}</p>
       <h1>{doc.h1}</h1>
       <Orn />
+      {b.id === "ki" && <YLink href={`/2027/kyusei/${it.slug}/`} label={`${it.label}の2027年の運勢（仕事運・結婚・転職）`} />}
+      {b.id === "hoshi" && <YLink href={`/2027/seiza/${it.slug}/`} label={`${it.label}の2027年の運勢（仕事運・恋愛）`} />}
       <Plate item={it} book={b} />
       {it.sub && <p className="badge"><span>{it.sub}</span></p>}
       <p className="lead">{doc.lead}</p>
       <Body doc={doc} />
-      <Aff note={AFF_NOTE[b.id]} />
+      <Aff place="aff-item" note={AFF_NOTE[b.id]} />
       {b.id === "ki" && <YLink href={`/2027/kyusei/${it.slug}/`} label={`${it.label}の2027年の運勢と月ごとの暦`} />}
       {b.id === "hoshi" && <YLink href={`/2027/seiza/${it.slug}/`} label={`${it.label}の2027年の運勢`} />}
       {b.id === "meguri" && <YLink href="/2027/suhi/" label="2027年のパーソナルイヤーを出して、一年を読む" />}
