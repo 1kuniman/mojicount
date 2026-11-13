@@ -21,7 +21,7 @@ export default function Privacy() {
       </section>
       <section>
         <h2>アクセス解析</h2>
-        <p>サイトの改善のため、Vercel Analytics を使ってページの閲覧数などを計測しています。個人を特定する情報は収集していません。</p>
+        <p>サイトの改善のため、Vercel Analytics と Google アナリティクスを使って、ページの閲覧数や、どのリンクが押されたかなどを計測しています。Google アナリティクスはデータの収集に Cookie を使用しますが、個人を特定する情報は収集していません。データの扱いについては Google のポリシー（https://policies.google.com/technologies/partner-sites?hl=ja）をご覧ください。計測を無効にしたい場合は、Google アナリティクス オプトアウト アドオン（https://tools.google.com/dlpage/gaoptout?hl=ja）をご利用いただけます。</p>
       </section>
       <section>
         <h2>広告について</h2>
@@ -33,7 +33,7 @@ export default function Privacy() {
       </section>
       <section>
         <h2>改定</h2>
-        <p>このポリシーは、必要に応じて改定することがあります。最終更新日：2026年10月31日</p>
+        <p>このポリシーは、必要に応じて改定することがあります。最終更新日：2026年11月14日</p>
       </section>
     </main>
   );

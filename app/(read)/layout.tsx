@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import Link from "next/link";
 import { Analytics } from "@vercel/analytics/react";
+import { GA } from "@/components/GA";
 import { SITE_URL, SITE_NAME, SITE_DESC } from "@/lib/site";
 import "./read.css";
 
@@ -52,6 +53,7 @@ export default function ReadLayout({ children }: { children: React.ReactNode }) 
           <small className="amzn">Amazonのアソシエイトとして、宵の書架は適格販売により収入を得ています。</small>
         </footer>
         <Analytics />
+        <GA />
       </body>
     </html>
   );

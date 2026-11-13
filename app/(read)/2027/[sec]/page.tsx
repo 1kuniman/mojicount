@@ -114,7 +114,7 @@ export default function YSecPage({ params }: { params: { sec: string } }) {
       <OpenBook book={b} label={`${b.title}をひらいて、あなたの${s.id === "suhi" ? "数" : s.id === "seiza" ? "星座" : "本命星"}を出す`} />
       <FaqBlock faq={d.faq} />
       <LuckyItems book={b} lead={LEAD_2027} title="2027年を迎えるラッキーアイテム" />
-      <Aff />
+      <Aff place="aff-2027hub" />
       <section className="shelf-h">
         <p className="chap">2027年のほかの読みかた</p>
         <h2>ほかの占いで読む2027年</h2>

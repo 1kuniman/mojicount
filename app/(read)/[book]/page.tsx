@@ -58,7 +58,7 @@ export default function HubPage({ params }: { params: { book: string } }) {
       <OpenBook book={b} />
       {hub && <FaqBlock faq={hub.faq} />}
       <LuckyItems book={b} title={`${b.title}のラッキーアイテム`} />
-      <Aff note={AFF_NOTE[b.id]} />
+      <Aff place="aff-hub" note={AFF_NOTE[b.id]} />
       <section className="shelf-h">
         <p className="chap">ほかの本</p>
         <h2>書架のほかの九冊</h2>

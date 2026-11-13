@@ -1,4 +1,6 @@
 export const SITE_URL = "https://www.mojimojicount.com";
+/** Google アナリティクス（GA4）の測定ID。空なら読み込まない */
+export const GA_ID = "G-P3E7D4E0J5";
 export const SITE_NAME = "宵の書架";
 export const SITE_DESC =
   "本棚から直感で一冊を選んで占う、無料・登録なしの占いの本。数秘術・タロット・星座・夢占い・九星気学・守護石・オーラ・前世まで、十冊の本をめくって読み解きます。";

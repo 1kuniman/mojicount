@@ -37,7 +37,7 @@ export default function Y2027Top() {
       </section>
       <Body doc={d} />
       <FaqBlock faq={d.faq} />
-      <Aff />
+      <Aff place="aff-2027hub" />
       <p className="note">占いは、いまの自分をふり返るための読みものです。</p>
       <JsonLd
         data={{

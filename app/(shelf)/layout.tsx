@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Analytics } from "@vercel/analytics/react";
+import { GA } from "@/components/GA";
 import { SITE_URL, SITE_NAME, SITE_DESC } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -28,6 +29,7 @@ export default function ShelfLayout({ children }: { children: React.ReactNode })
       <body>
         {children}
         <Analytics />
+        <GA />
       </body>
     </html>
   );

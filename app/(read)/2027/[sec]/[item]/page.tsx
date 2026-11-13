@@ -55,6 +55,7 @@ export default function YItemPage({ params }: { params: { sec: string; item: str
       <p className="lead">{d.lead}</p>
       <Body doc={d} />
       <Aff
+        place="aff-2027"
         head={`${name}の2027年、ひとりで決めきれないことは`}
         note={
           s.id === "kyusei"

@@ -50,7 +50,7 @@ function kujiHTML(q){const R=KUJI_RANKS[q.ri],B=BOOKS[q.id];
   return`<div class="pg omi ${R.cls}"><div class="chap">今夜のくじ</div><div class="omino">第${kj(q.no)}番</div>
 <div class="omirank"><span>${R.r}</span></div><p class="omisou">${R.sou[q.s]}</p>
 <dl class="omil"><div><dt>願い事</dt><dd>${R.negai[q.n]}</dd></div><div><dt>恋愛</dt><dd>${R.koi[q.k]}</dd></div><div><dt>仕事</dt><dd>${R.shigoto[q.g]}</dd></div><div><dt>待ち人</dt><dd>${R.machi[q.m]}</dd></div></dl>
-${(()=>{const t=new Date();const it=(typeof luckyItemsFor==="function")&&luckyItemsFor(q.id,`${q.id}|kuji|${t.getFullYear()}-${t.getMonth()+1}-${t.getDate()}`);return it&&it[0]?`<p class="omilk"><span>ラッキーアイテム</span><a href="${amz(it[0].kw)}" target="_blank" rel="sponsored noopener">${it[0].n} ›</a></p>`:""})()}<p class="omibook">今夜あなたを呼んだのは<b>${B.title}</b>。次の頁から、続きを読み解きます。</p></div>`}
+${(()=>{const t=new Date();const it=(typeof luckyItemsFor==="function")&&luckyItemsFor(q.id,`${q.id}|kuji|${t.getFullYear()}-${t.getMonth()+1}-${t.getDate()}`);return it&&it[0]?`<p class="omilk" data-place="omikuji"><span>ラッキーアイテム</span><a href="${amz(it[0].kw)}" target="_blank" rel="sponsored noopener">${it[0].n} ›</a></p>`:""})()}<p class="omibook">今夜あなたを呼んだのは<b>${B.title}</b>。次の頁から、続きを読み解きます。</p></div>`}
 
 /* shelf: the roulette that picks tonight's book */
 let kujiOn=false;

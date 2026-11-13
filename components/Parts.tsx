@@ -147,10 +147,10 @@ export function OtherBooks({ except }: { except?: string }) {
   );
 }
 
-export function Aff({ note, label, head }: { note?: string; label?: string; head?: string } = {}) {
+export function Aff({ note, label, head, place = "aff" }: { note?: string; label?: string; head?: string; place?: string } = {}) {
   if (!AFF.url) return null;
   return (
-    <aside className="aff">
+    <aside className="aff" data-place={place}>
       <small className="pr">PR</small>
       {head && <p className="aff-h">{head}</p>}
       <p>{note ?? AFF.note}</p>
@@ -171,7 +171,7 @@ export function LuckyItems({ book, item, lead, title }: { book: Book; item?: Ite
   const items = luckyFor(book, item, lead);
   if (!items.length) return null;
   return (
-    <section className="lucky">
+    <section className="lucky" data-place="lucky">
       <p className="chap">{title ?? `${item ? `${item.label}の` : ""}ラッキーアイテム`}</p>
       <ol>
         {items.map((x, i) => (
