@@ -6,6 +6,7 @@ import { SECS, bookOf, itemDoc, secBySlug, secPath, yItemPath, Y_PATH, Y_UPDATED
 import { Aff, Body, LuckyItems, Crumbs, FaqBlock, JsonLd, OpenBook, Orn, Plate } from "@/components/Parts";
 import { Months, YCards, YLink, YSecs } from "@/components/Y2027";
 import { LEAD_2027 } from "@/lib/lucky";
+import { Mine } from "@/components/Me";
 
 export const dynamicParams = false;
 export function generateStaticParams() {
@@ -52,6 +53,7 @@ export default function YItemPage({ params }: { params: { sec: string; item: str
       <Orn />
       <Plate item={bi} book={b} />
       {it.sub && <p className="badge"><span>{it.sub}</span></p>}
+      <Mine kind={s.id === "kyusei" ? "star" : s.id === "seiza" ? "sign" : "eto"} k={s.id === "kyusei" ? it.key : String(i)} />
       <p className="lead">{d.lead}</p>
       <Body doc={d} />
       <Aff

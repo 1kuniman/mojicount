@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { BOOKS, bookBySlug, bookContent, bookPath, itemPath, ogSrc } from "@/lib/books";
 import { AFF_NOTE, SITE_URL, SITE_NAME } from "@/lib/site";
 import { YLink } from "@/components/Y2027";
+import { Mine } from "@/components/Me";
 import { Aff, Body, LuckyItems, Crumbs, FaqBlock, ItemCards, JsonLd, OpenBook, Orn, OtherBooks, Plate } from "@/components/Parts";
 
 export const dynamicParams = false;
@@ -52,6 +53,9 @@ export default function ItemPage({ params }: { params: { book: string; item: str
       {b.id === "hoshi" && <YLink href={`/2027/seiza/${it.slug}/`} label={`${it.label}の2027年の運勢（仕事運・恋愛）`} />}
       <Plate item={it} book={b} />
       {it.sub && <p className="badge"><span>{it.sub}</span></p>}
+      {b.id === "ki" && <Mine kind="star" k={it.key} />}
+      {b.id === "hoshi" && <Mine kind="sign" k={String(i)} />}
+      {b.id === "meguri" && <Mine kind="py" k={it.key} />}
       <p className="lead">{doc.lead}</p>
       <Body doc={doc} />
       <Aff place="aff-item" note={AFF_NOTE[b.id]} />

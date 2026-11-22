@@ -7,6 +7,10 @@ import { ETO, SECS, bookOf, kiYearPalace, palaceTheme, secBySlug, secDoc, secPat
 import { Aff, Body, LuckyItems, Crumbs, FaqBlock, JsonLd, OpenBook, Orn, Plate } from "@/components/Parts";
 import { YCards, YSecs } from "@/components/Y2027";
 import { LEAD_2027 } from "@/lib/lucky";
+import { BirthCalc } from "@/components/Me";
+import { meData } from "@/lib/meData";
+
+const CALC = { kyusei: "star", seiza: "sign", eto: "eto", suhi: "py" } as const;
 
 export const dynamicParams = false;
 export function generateStaticParams() {
@@ -43,6 +47,7 @@ export default function YSecPage({ params }: { params: { sec: string } }) {
       <Orn />
       <Plate book={b} />
       <p className="lead">{d.lead}</p>
+      <BirthCalc data={meData()} kind={CALC[s.id]} />
       {s.id === "kyusei" && (
         <section className="shelf-h" style={{ marginTop: 28 }}>
           <p className="chap">2027年の年盤</p>

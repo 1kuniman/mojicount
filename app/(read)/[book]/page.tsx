@@ -3,6 +3,10 @@ import { YLink } from "@/components/Y2027";
 import { notFound } from "next/navigation";
 import { BOOKS, bookBySlug, bookContent, bookPath, coverSrc, ogSrc } from "@/lib/books";
 import { AFF_NOTE, SITE_URL, SITE_NAME } from "@/lib/site";
+import { BirthCalc } from "@/components/Me";
+import { meData } from "@/lib/meData";
+
+const CALC: Record<string, "star" | "sign" | "py"> = { ki: "star", hoshi: "sign", meguri: "py" };
 import { Aff, Cover, Body, LuckyItems, Crumbs, FaqBlock, ItemCards, JsonLd, OpenBook, Orn, OtherBooks } from "@/components/Parts";
 
 const Y27: Record<string, { href: string; label: string }> = {
@@ -47,6 +51,7 @@ export default function HubPage({ params }: { params: { book: string } }) {
       <div className="plate cover"><Cover book={b} width={240} eager /></div>
       <p className="badge"><span><b>わかること</b>　{b.q}</span><span><b>必要なもの</b>　{b.need}</span></p>
       {hub && <p className="lead">{hub.lead}</p>}
+      {CALC[b.id] && <BirthCalc data={meData()} kind={CALC[b.id]} />}
       {Y27[b.id] && <YLink href={Y27[b.id].href} label={Y27[b.id].label} />}
       <OpenBook book={b} />
       {hub && <Body doc={hub} />}

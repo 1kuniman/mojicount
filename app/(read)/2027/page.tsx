@@ -4,6 +4,8 @@ import { SITE_NAME, SITE_URL } from "@/lib/site";
 import { topDoc, Y_PATH, Y_UPDATED, yOg } from "@/lib/y2027";
 import { Body, Crumbs, FaqBlock, JsonLd, Orn, Aff } from "@/components/Parts";
 import { YSecs } from "@/components/Y2027";
+import { MyYear } from "@/components/Me";
+import { meData } from "@/lib/meData";
 
 export function generateMetadata(): Metadata {
   const d = topDoc();
@@ -29,6 +31,9 @@ export default function Y2027Top() {
       <p className="kicker">2027年の運勢</p>
       <h1>{d.h1}</h1>
       <Orn />
+      <MyYear data={meData()}>
+        <Aff place="aff-me" head="四つの占いを重ねて、もっと深く読むなら" note="生年月日を伝えて、占い師にあなたの2027年をじかにみてもらう方法もあります。結婚や転職の決めどきを相談する人が多い時期です。" />
+      </MyYear>
       <p className="lead">{d.lead}</p>
       <section className="shelf-h" style={{ marginTop: 28 }}>
         <p className="chap">四つの読みかた</p>

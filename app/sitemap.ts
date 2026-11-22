@@ -14,11 +14,14 @@ const SIG: Record<string, string> = {
   "tpl:item": "2026-11-12", // 案内を本文直後へ・本ごとの文面
   "tpl:item:ki": "2026-11-14", // 見出し下に2027年版へのリンク
   "tpl:item:hoshi": "2026-11-14",
-  "tpl:y2027": "2026-11-10", // 干支の入口を追加
-  "tpl:ysec": "2026-11-10",
+  "tpl:y2027": "2026-11-22", // わたしの2027年
+  "tpl:ysec": "2026-11-22", // 計算機
+  "tpl:book:ki": "2026-11-22",
+  "tpl:book:hoshi": "2026-11-22",
+  "tpl:book:meguri": "2026-11-22",
   "tpl:yitem": "2026-11-12", // 結婚・転職に結びつけた案内
   "tpl:mokuroku": "2026-11-01",
-  "tpl:privacy": "2026-11-14", // GA4を追記
+  "tpl:privacy": "2026-11-22", // しおり（誕生日の保存）を追記
 };
 const lm = { ...(LM as Record<string, string>), ...SIG };
 const FALLBACK = "2026-10-31";
@@ -43,7 +46,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     u("/", 1, latest("tpl:home")),
     u("/mokuroku/", 0.6, latest("tpl:mokuroku")),
     ...BOOKS.flatMap((b) => [
-      u(bookPath(b), 0.9, latest("tpl:book", ...b.contentFiles.map((f) => `${f}.json:hub`))),
+      u(bookPath(b), 0.9, latest("tpl:book", `tpl:book:${b.id}`, ...b.contentFiles.map((f) => `${f}.json:hub`))),
       ...b.items
         .filter((it) => bookContent(b).items[it.key])
         .map((it) => u(itemPath(b, it), 0.7, latest("tpl:item", `tpl:item:${b.id}`, ...b.contentFiles.map((f) => `${f}.json:items.${it.key}`)))),

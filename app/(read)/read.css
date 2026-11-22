@@ -178,3 +178,52 @@ article li::before{content:"◆";position:absolute;left:0;top:.05em;font-size:.6
 .lucky small{display:block;margin-top:6px;text-align:center;font-size:.75em;color:var(--ink-soft)}
 .rfoot .amzn{display:block;margin-top:6px;font-size:.85em;opacity:.8}
 .aff .aff-h{font-family:var(--display);font-size:1.05em;letter-spacing:.06em;color:var(--ink);margin:0 0 6px}
+
+/* ---------- わたしの2027年・計算機・しおり ---------- */
+.mybar{min-height:34px;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:4px 16px;padding:7px 14px;background:rgba(18,13,9,.72);border-bottom:1px solid rgba(243,220,154,.1);
+  font-family:var(--hand);font-size:12.5px;letter-spacing:.1em;color:var(--cream-dim)}
+.mybar a{color:var(--cream-dim);text-decoration:none;border-bottom:1px solid rgba(243,220,154,.28);padding-bottom:1px}
+.mybar a:hover{color:var(--cream)}
+.mybar.on .t{color:var(--foil-hi);border:0}
+.mybar.on .t::after{content:"：";color:var(--cream-dim)}
+.me{margin:30px 0 0;padding:26px clamp(16px,4vw,30px) 24px;border:1px solid rgba(147,49,31,.34);border-radius:6px;background:rgba(255,250,236,.62);scroll-margin-top:72px}
+.me .chap{margin:0}
+.me h2{margin:6px 0 14px;font-size:clamp(19px,3vw,23px)}
+.melead{text-indent:0;text-align:center;margin:0 0 14px;font-size:.95em;color:var(--ink-soft);line-height:1.9}
+.melink{margin-left:10px;background:none;border:0;padding:0;font:inherit;font-size:.9em;color:var(--rubric);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.meform{display:flex;flex-direction:column;align-items:center;gap:14px}
+.mefields{display:flex;gap:8px;justify-content:center}
+.mefields label{display:flex;align-items:center;gap:4px;font-family:var(--hand);font-size:14px;color:var(--ink-soft)}
+.mefields label span{order:2}
+.mefields select{font:inherit;font-family:var(--display);font-size:18px;color:var(--ink);padding:8px 6px;min-width:62px;border:1px solid rgba(110,95,80,.45);border-radius:4px;background:#fffaf0}
+.mefields label:first-child select{min-width:86px}
+.meform button[type=submit]{font-family:var(--display);font-size:16px;letter-spacing:.12em;color:#fbefe0;background:var(--rubric);border:0;border-radius:4px;padding:11px 26px;cursor:pointer}
+.meform button[type=submit]:hover{background:var(--rubric-soft)}
+.meform small{font-family:var(--hand);font-size:11.5px;color:var(--ink-faint);text-align:center}
+.meerr{margin:0;text-indent:0;font-size:13.5px;color:var(--rubric)}
+.mecards{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:0;padding:0;list-style:none}
+.mecards.two{grid-template-columns:repeat(2,1fr);max-width:520px;margin:0 auto}
+@media (max-width:700px){.mecards{grid-template-columns:repeat(2,1fr)}}
+.mecards li{display:flex;flex-direction:column;gap:6px}
+.mecards li>a:first-child{flex:1;display:flex;flex-direction:column;align-items:center;text-align:center;gap:4px;padding:14px 8px 12px;text-decoration:none;border:1px solid rgba(147,49,31,.22);border-radius:4px;background:#fffaf0;transition:background .2s,border-color .2s}
+.mecards li>a:first-child:hover{background:#fff4dc;border-color:rgba(147,49,31,.55)}
+.mecards .k{font-family:var(--hand);font-size:11.5px;letter-spacing:.14em;color:var(--rubric)}
+.mecards .k i{font-style:normal;color:var(--ink-faint)}
+.mecards b{font-family:var(--display);font-weight:400;font-size:17px;letter-spacing:.04em;line-height:1.5;word-break:auto-phrase}
+.mecards span{font-size:12.5px;line-height:1.6;color:var(--ink-soft)}
+.mecards em{margin-top:auto;padding-top:6px;font-style:normal;font-family:var(--hand);font-size:12.5px;color:var(--rubric)}
+.meprog{text-indent:0;text-align:center;margin:16px 0 0;font-size:13.5px;color:var(--ink-soft);line-height:1.9}
+.meprog b{font-family:var(--display);font-size:1.25em;color:var(--rubric);font-weight:400}
+.menote{margin:14px 0 0;padding:10px 14px;border-left:2px solid rgba(147,49,31,.4);background:rgba(255,255,255,.35)}
+.menote p{margin:0;text-indent:0;font-size:12.5px;line-height:1.85;color:var(--ink-soft)}
+.menote p+p{margin-top:6px}
+.meshare{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:8px 10px;margin:18px 0 0;text-indent:0;font-family:var(--hand);font-size:12.5px;color:var(--ink-faint)}
+.meshare span{width:100%;text-align:center;letter-spacing:.14em}
+.meshare a,.meshare button{font:inherit;color:var(--ink-soft);text-decoration:none;border:1px solid rgba(110,95,80,.4);border-radius:999px;padding:5px 14px;background:rgba(255,250,236,.6);cursor:pointer}
+.meshare a:hover,.meshare button:hover{border-color:var(--rubric);color:var(--rubric)}
+.memore{text-indent:0;text-align:center;margin:14px 0 0;font-family:var(--hand);font-size:13px}
+.memore a{color:var(--rubric);text-underline-offset:3px}
+.me .aff{margin-top:22px}
+.me+.lead{margin-top:28px}
+.mine{text-indent:0;text-align:center;margin:10px 0 0}
+.mine span{display:inline-block;font-family:var(--hand);font-size:12.5px;letter-spacing:.14em;color:#fbefe0;background:var(--rubric);border-radius:999px;padding:3px 14px}

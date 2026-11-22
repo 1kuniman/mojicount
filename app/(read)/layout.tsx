@@ -3,6 +3,8 @@ import Link from "next/link";
 import { Analytics } from "@vercel/analytics/react";
 import { GA } from "@/components/GA";
 import { SITE_URL, SITE_NAME, SITE_DESC } from "@/lib/site";
+import { MyBar } from "@/components/Me";
+import { meData } from "@/lib/meData";
 import "./read.css";
 
 export const metadata: Metadata = {
@@ -39,6 +41,7 @@ export default function ReadLayout({ children }: { children: React.ReactNode }) 
             <Link href="/mokuroku/">本の目録</Link>
           </nav>
         </header>
+        <MyBar data={meData()} />
         {children}
         <footer className="rfoot">
           <span className="brand">宵の書架</span>
