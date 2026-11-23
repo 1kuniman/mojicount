@@ -145,6 +145,23 @@ export const BOOKS: Book[] = [
     ],
     contentFiles: ["kaori"],
   },
+  {
+    // 遊びとしての心理テスト（本棚アプリの KOKORO と同じ並び）
+    id: "kokoro", slug: "shinri", title: "心の書", art: "心理テスト",
+    need: "二つの問い", q: "いまの心のかたち", hubIll: "kokoro-intro", itemsLabel: "九つの心のかたち",
+    items: [
+      { key: "danro", slug: "danro", label: "暖炉の人", sub: "ぬくもり・迎え入れる・分け合う", ill: "kokoro-danro" },
+      { key: "toudai", slug: "toudai", label: "灯台守", sub: "守る・見届ける・ゆるがない", ill: "kokoro-toudai" },
+      { key: "madobe", slug: "madobe", label: "窓辺の人", sub: "見守る・聞き役・ほどよい距離", ill: "kokoro-madobe" },
+      { key: "izumi", slug: "izumi", label: "泉の人", sub: "湧き出る・素直・感じたまま", ill: "kokoro-izumi" },
+      { key: "suimon", slug: "suimon", label: "水門の人", sub: "深い気持ち・選んで開く・一途", ill: "kokoro-suimon" },
+      { key: "mizukagami", slug: "mizukagami", label: "水鏡の人", sub: "映す・理解する・静かな共感", ill: "kokoro-mizukagami" },
+      { key: "kaze", slug: "kaze", label: "風の人", sub: "自由・軽やかさ・行き来する", ill: "kokoro-kaze" },
+      { key: "chizu", slug: "chizu", label: "地図を描く人", sub: "自分で決める・計画・遠くを目指す", ill: "kokoro-chizu" },
+      { key: "hoshiyomi", slug: "hoshiyomi", label: "星を読む人", sub: "見通す・考える・ひとりの時間", ill: "kokoro-hoshiyomi" },
+    ],
+    contentFiles: ["kokoro"],
+  },
 ];
 
 export const bookBySlug = (slug: string) => BOOKS.find((b) => b.slug === slug);

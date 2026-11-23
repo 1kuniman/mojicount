@@ -13,7 +13,7 @@ export function Cover({ book, width, className, eager }: { book: Book; width: nu
   return (
     <span className={"coverw " + (className || "")} style={{ width, height: h }}>
       <img src={coverSrc(book)} alt={`${book.title}の表紙`} width={width} height={h} loading={eager ? "eager" : "lazy"} />
-      <span className="ct" style={{ left: `${c[0] * 100}%`, top: `${c[1] * 100}%`, fontSize: fs, color: book.id === "kazu" ? "#7a5418" : "#f3dc9a" }}>{book.title}</span>
+      <span className="ct" style={{ left: `${c[0] * 100}%`, top: `${c[1] * 100}%`, fontSize: fs, color: book.id === "kazu" ? "#7a5418" : book.id === "kokoro" ? "#f6f9fb" : "#f3dc9a" }}>{book.title}</span>
     </span>
   );
 }
@@ -54,7 +54,7 @@ export function OpenBook({ book, label }: { book: Book; label?: string }) {
     <a className="open" href={openHref(book)}>
       <span className="seal" aria-hidden="true">読</span>
       <span>
-        <b>{label || (book.id === "kaori" ? `${book.title}をひらいて、香りを選ぶ` : `${book.title}をひらいて占う`)}</b>
+        <b>{label || (book.id === "kaori" ? `${book.title}をひらいて、香りを選ぶ` : book.id === "kokoro" ? `${book.title}をひらいて、心理テストをする` : `${book.title}をひらいて占う`)}</b>
         <small>{book.need}で読む・無料・登録なし</small>
       </span>
     </a>

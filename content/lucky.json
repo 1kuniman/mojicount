@@ -72,7 +72,8 @@
   "ki": ["home", "paper", "tea"],
   "iro": ["wear", "aroma", "home"],
   "tama": ["read", "home", "aroma"],
-  "kaori": ["kaoru", "kaoru", "tea"]
+  "kaori": ["kaoru", "kaoru", "tea"],
+  "kokoro": ["paper", "home", "tea"]
  },
  "el": {
   "水": {"n": "ガラスの水差し", "kw": "ガラス 水差し ピッチャー", "why": "水の星のあなたに。澄んだ水を、毎朝ひと口。"},

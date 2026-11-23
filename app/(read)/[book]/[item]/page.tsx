@@ -62,7 +62,7 @@ export default function ItemPage({ params }: { params: { book: string; item: str
       {b.id === "ki" && <YLink href={`/2027/kyusei/${it.slug}/`} label={`${it.label}の2027年の運勢と月ごとの暦`} />}
       {b.id === "hoshi" && <YLink href={`/2027/seiza/${it.slug}/`} label={`${it.label}の2027年の運勢`} />}
       {b.id === "meguri" && <YLink href="/2027/suhi/" label="2027年のパーソナルイヤーを出して、一年を読む" />}
-      <OpenBook book={b} label={b.id === "kaori" ? `${b.title}で、いまの香りを選ぶ` : `${b.title}で、あなたを占う`} />
+      <OpenBook book={b} label={b.id === "kaori" ? `${b.title}で、いまの香りを選ぶ` : b.id === "kokoro" ? `${b.title}で、いまの心のかたちをたしかめる` : `${b.title}で、あなたを占う`} />
       <FaqBlock faq={doc.faq} />
       {b.id === "kaori" ? <Aff place="aff-item" note={AFF_NOTE[b.id]} /> : <LuckyItems book={b} item={it} />}
       <nav className="pn" aria-label="前後の項目">

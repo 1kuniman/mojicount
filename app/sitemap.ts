@@ -9,7 +9,7 @@ export const dynamic = "force-static";
 /* 更新日は content/lastmod.json（npm run lastmod で生成、本文の項目ごと）と、
    読む人に見える形でページの型を変えた日（SIG・手で更新）のうち、新しいほう */
 const SIG: Record<string, string> = {
-  "tpl:home": "2026-11-23", // 本棚：蔵書票・栞、香りの書
+  "tpl:home": "2026-11-23", // 本棚：蔵書票・栞、香りの書、心の書
   "tpl:book": "2026-11-12", // 本ごとのココナラ案内
   "tpl:item": "2026-11-12", // 案内を本文直後へ・本ごとの文面
   "tpl:item:ki": "2026-11-14", // 見出し下に2027年版へのリンク
@@ -20,7 +20,7 @@ const SIG: Record<string, string> = {
   "tpl:book:hoshi": "2026-11-22",
   "tpl:book:meguri": "2026-11-22",
   "tpl:yitem": "2026-11-12", // 結婚・転職に結びつけた案内
-  "tpl:mokuroku": "2026-11-23", // 香りの書を追加
+  "tpl:mokuroku": "2026-11-23", // 香りの書・心の書を追加
   "tpl:privacy": "2026-11-23", // しおり・蔵書票の保存を追記
 };
 const lm = { ...(LM as Record<string, string>), ...SIG };

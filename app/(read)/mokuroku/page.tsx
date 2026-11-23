@@ -6,8 +6,8 @@ import { Cover, Crumbs, Orn, OpenBook } from "@/components/Parts";
 import { YSecs } from "@/components/Y2027";
 
 export const metadata: Metadata = {
-  title: "本の目録｜十一冊の本と、すべての頁",
-  description: "宵の書架にある十一冊の本（数秘術・名前の相性・パーソナルイヤー・タロット・12星座・夢占い・守護石・九星気学・オーラ・前世・香りの選びかた）と、それぞれの解説の頁の一覧です。",
+  title: "本の目録｜十二冊の本と、すべての頁",
+  description: "宵の書架にある十二冊の本（数秘術・名前の相性・パーソナルイヤー・タロット・12星座・夢占い・守護石・九星気学・オーラ・前世・香りの選びかた・心理テスト）と、それぞれの解説の頁の一覧です。",
   alternates: { canonical: SITE_URL + "/mokuroku/" },
 };
 
@@ -16,9 +16,9 @@ export default function Mokuroku() {
     <main className="sheet">
       <Crumbs trail={[{ name: "宵の書架", href: "/" }, { name: "本の目録" }]} />
       <p className="kicker">目録</p>
-      <h1>十一冊の本</h1>
+      <h1>十二冊の本</h1>
       <Orn />
-      <p className="lead">本棚の十一冊と、それぞれの本に綴じてある頁の一覧です。気になる頁から読んでも、本棚から一冊を手に取って占っても構いません。</p>
+      <p className="lead">本棚の十二冊と、それぞれの本に綴じてある頁の一覧です。気になる頁から読んでも、本棚から一冊を手に取って占っても構いません。</p>
       <section className="shelf-h">
         <p className="chap">年の暦</p>
         <h2><Link href="/2027/" style={{ textDecoration: "none" }}>2027年の運勢</Link></h2>
