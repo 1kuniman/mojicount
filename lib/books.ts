@@ -128,6 +128,23 @@ export const BOOKS: Book[] = [
     })),
     contentFiles: ["tama"],
   },
+  {
+    // 占いではない本：気分と好みから香りを選ぶ（本棚アプリの KAORI と同じ並び）
+    id: "kaori", slug: "aroma", title: "香りの書", art: "アロマ・香りの選びかた",
+    need: "二つの問い", q: "いまの自分に合う香り", hubIll: "kaori-intro", itemsLabel: "九つの香り",
+    items: [
+      { key: "lavender", slug: "lavender", label: "ラベンダー", sub: "やすらぎ・眠る前・はじめの一本", ill: "kaori-lavender" },
+      { key: "bergamot", slug: "bergamot", label: "ベルガモット", sub: "ほどける・紅茶の香り・やさしい柑橘", ill: "kaori-bergamot" },
+      { key: "sandalwood", slug: "sandalwood", label: "サンダルウッド（白檀）", sub: "静けさ・深呼吸・お香の香り", ill: "kaori-sandalwood" },
+      { key: "geranium", slug: "geranium", label: "ゼラニウム", sub: "バランス・ローズに似た香り・ゆらぎの日に", ill: "kaori-geranium" },
+      { key: "grapefruit", slug: "grapefruit", label: "グレープフルーツ", sub: "リフレッシュ・軽やかさ・朝の空気", ill: "kaori-grapefruit" },
+      { key: "peppermint", slug: "peppermint", label: "ペパーミント", sub: "すっきり・目が覚める・集中の前に", ill: "kaori-peppermint" },
+      { key: "ylang-ylang", slug: "ylang-ylang", label: "イランイラン", sub: "華やかさ・自分をもてなす・特別な夜", ill: "kaori-ylang-ylang" },
+      { key: "sweet-orange", slug: "sweet-orange", label: "スイートオレンジ", sub: "明るさ・あたたかさ・みんなが好きな香り", ill: "kaori-sweet-orange" },
+      { key: "rosemary", slug: "rosemary", label: "ローズマリー", sub: "はっきり・朝の机・始める前の一呼吸", ill: "kaori-rosemary" },
+    ],
+    contentFiles: ["kaori"],
+  },
 ];
 
 export const bookBySlug = (slug: string) => BOOKS.find((b) => b.slug === slug);

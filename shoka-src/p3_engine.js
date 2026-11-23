@@ -26,9 +26,9 @@ const STONE_SLUG={rose:"rose-quartz",moon:"moonstone",rhodo:"rhodochrosite",amet
 const KI_SLUG=["","ippaku-suisei","jikoku-dosei","sanpeki-mokusei","shiroku-mokusei","goou-dosei","roppaku-kinsei","shichiseki-kinsei","happaku-dosei","kyushi-kasei"];
 const SEO_PATH={kazu:p=>`/lifepath/${p[0]}/`,en:p=>`/aisho/${reduce(+p[0]+ +p[1])}/`,meguri:p=>`/personal-year/${p[0]}/`,tsuki:p=>`/tarot/${TAROT_SLUG[+p[0]]}/`,
  hoshi:p=>`/seiza/${ZOD[+p[0]].k}/`,yume:p=>`/yume/${p[0]}/`,ishi:p=>`/stone/${STONE_SLUG[STONES[p[0]+"-"+p[1]].k]}/`,ki:p=>`/kyusei/${KI_SLUG[+p[0]]}/`,
- iro:p=>`/aura/${p[0]}/`,tama:p=>`/zense/${p[0]}-${p[1]}/`};
+ iro:p=>`/aura/${p[0]}/`,tama:p=>`/zense/${p[0]}-${p[1]}/`,kaori:p=>`/aroma/${KAORI[p[0]+"-"+p[1]].k}/`};
 const shareLink=(id,tk)=>{let path="/";try{path=SEO_PATH[id](tk)}catch(e){}return`${SITE_URL}${path}#r-${id}-${tk.join("-")}`};
-let S={birth:{y:1990,m:1,d:1},partner:{y:1992,m:6,d:15},theme:"love",btime:-1,sit:"kata",tq:"love",dream:"water",feel:"good",nameA:"",nameB:"",stQ1:"love",stQ2:"tired",colors:[],pl1:"sea",pl2:"book",pl3:"vow",tarot:{deck:[],picks:[],revealed:false}};
+let S={birth:{y:1990,m:1,d:1},partner:{y:1992,m:6,d:15},theme:"love",btime:-1,sit:"kata",tq:"love",dream:"water",feel:"good",nameA:"",nameB:"",stQ1:"love",stQ2:"tired",kaQ1:"rest",kaQ2:"flower",colors:[],pl1:"sea",pl2:"book",pl3:"vow",tarot:{deck:[],picks:[],revealed:false}};
 try{const v=JSON.parse(localStorage.getItem("yoi-shoka")||"null");if(v&&v.birth){delete v.tarot;Object.assign(S,v)}}catch(e){}
 const save=()=>{if(shared)return;try{localStorage.setItem("yoi-shoka",JSON.stringify(S))}catch(e){}};
 const Y=new Date().getFullYear(),M=new Date().getMonth()+1;
@@ -146,7 +146,7 @@ const kj=n=>{if(n<10)return KJ[n];if(n===10)return"十";if(n<20)return"十"+KJ[n
 const TODAY=new Date(),todayJP=`${kanjiNum(TODAY.getFullYear())}年${kj(TODAY.getMonth()+1)}月${kj(TODAY.getDate())}日`;
 const choices=(key,items,grid)=>`<div class="choices${grid?" grid":""}" data-key="${key}">${Object.entries(items).map(([v,o])=>`<button type="button" class="choice${S[key]===v?" on":""}" data-v="${v}"><i></i><span class="cn2">${o.name}</span><span class="cs">${o.sub}</span></button>`).join("")}</div>`;
 /* illustration plates: a generated watercolor (assets/ill/<key>.webp) over a painted placeholder */
-const ILLC={ishi:["#8fc4bd","#c9b8ec","#e9c98a"],ki:["#e6cf8f","#d8a77a","#a9c49a"],iro:["#e59ab3","#9fc0d8","#e9c64f"],tama:["#8f96d3","#c9b8ec","#e9c98a"],kazu:["#d9b66a","#c9a7cf","#9fc0d8"],en:["#e7a3a8","#f0c6a8","#c9a7cf"],meguri:["#a9c49a","#e6cf8f","#9fc0d8"],tsuki:["#b5a6dc","#9fc0d8","#e7b9cf"],hoshi:["#8fb0dc","#c9b8ec","#f0d6a0"],yume:["#f2b8a0","#c9b8ec","#a8d0d8"]};
+const ILLC={ishi:["#8fc4bd","#c9b8ec","#e9c98a"],ki:["#e6cf8f","#d8a77a","#a9c49a"],iro:["#e59ab3","#9fc0d8","#e9c64f"],tama:["#8f96d3","#c9b8ec","#e9c98a"],kazu:["#d9b66a","#c9a7cf","#9fc0d8"],en:["#e7a3a8","#f0c6a8","#c9a7cf"],meguri:["#a9c49a","#e6cf8f","#9fc0d8"],tsuki:["#b5a6dc","#9fc0d8","#e7b9cf"],hoshi:["#8fb0dc","#c9b8ec","#f0d6a0"],yume:["#f2b8a0","#c9b8ec","#a8d0d8"],kaori:["#d9c48a","#c9b8ec","#a8cdb8"]};
 function illus(key,motif,o={}){const c=ILLC[o.book||cur];let sd=0;for(const ch of key)sd=(sd*31+ch.charCodeAt(0))%9973;const rr=()=>{sd=(sd*16807)%2147483647;return(sd%1000)/1000};
   const blobs=c.map((col,i)=>`<ellipse cx="${(80+rr()*140).toFixed(0)}" cy="${(60+rr()*80).toFixed(0)}" rx="${(70+rr()*50).toFixed(0)}" ry="${(45+rr()*35).toFixed(0)}" fill="${col}" fill-opacity="${(.5-i*.08).toFixed(2)}"/>`).join("");
   return`<figure class="ill${o.cls?" "+o.cls:""}"><svg class="wash" viewBox="0 0 300 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><g filter="url(#wcf)">${blobs}</g><g class="mot" fill="none" stroke="var(--rubric)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${motif||""}</g></svg><img src="assets/ill/${key}.webp" alt="" onerror="this.remove()">${o.badge?`<span class="badge">${o.badge}</span>`:""}</figure>`}
@@ -162,6 +162,7 @@ const tq=()=>S.tq==="self"?"core":S.tq;
 const isN=(v,lo,hi)=>/^\d+$/.test(v)&&+v>=lo&&+v<=hi;
 const choices3=(key,items)=>`<div class="choices grid g3" data-key="${key}">${Object.entries(items).map(([v,o])=>`<button type="button" class="choice${S[key]===v?" on":""}" data-v="${v}"><i></i><span class="cn2">${o.name}</span><span class="cs">${o.sub}</span></button>`).join("")}</div>`;
 const swatches=()=>`<div class="swatches">${Object.entries(AURA).map(([c,a])=>{const i=S.colors.indexOf(c);return`<button type="button" class="sw9${i>=0?" on":""}" data-c="${c}" aria-label="${a.jp}" style="--c:${a.col}"><span class="dot"></span>${i>=0?`<b>${i+1}</b>`:""}<span class="nm9">${a.jp}</span></button>`}).join("")}</div>`;
+const motBottle=col=>`<path d="M138 78h24v-14h-24z" stroke-width="1.2"/><path d="M144 64v-10h12v10" stroke-width="1.2"/><path d="M134 78c-16 8-24 24-24 42 0 28 18 46 40 46s40-18 40-46c0-18-8-34-24-42z" fill="${col}" fill-opacity=".5"/><path d="M126 118c4-10 12-16 22-18" stroke-width="1.1" opacity=".7"/><path d="M150 44c-6-8 6-12 0-20M160 40c-4-6 4-9 0-15" stroke-width="1" opacity=".6"/>`;
 const motGem=col=>`<path d="M150 34l46 34-46 104-46-104z" fill="${col}" fill-opacity=".55"/><path d="M104 68h92M150 34l-18 34 18 104 18-104z" stroke-width="1.1"/>`;
 const motLoshu=st=>{let s="";const ord=[4,9,2,3,5,7,8,1,6];ord.forEach((n,i)=>{const x=105+(i%3)*30,y=55+Math.floor(i/3)*30;s+=`<rect x="${x}" y="${y}" width="28" height="28" rx="2" ${n===st?'fill="var(--rubric)" fill-opacity=".35"':""}/><text x="${x+14}" y="${y+19}" text-anchor="middle" font-size="13" fill="var(--rubric)" stroke="none">${n}</text>`});return s};
 const motAura=cols=>cols.map((c,i)=>`<circle cx="150" cy="100" r="${70-i*20}" fill="${AURA[c].col}" fill-opacity="${.32+i*.12}" stroke="none"/>`).join("");
@@ -338,9 +339,23 @@ const BOOKS={
     {rh:"第二章",html:`<div class="pg"><div class="chap">第二章</div><h2>今世に残った才能</h2><p>${dc(L.gift)}</p>${RULE}<p>${VOWS[S.pl3]}</p></div>`},
     {rh:"第三章",html:chapter("三","今世のテーマ",L.lesson)}]},
   share(){const L=LIVES[S.pl1+"-"+S.pl2];return{x:`私の前世は【${L.jp}】でした。`,copy:`前世「${L.jp}」（${L.era}）`}},
-  after:{h:"魂の物語の続きを、<br>聞いてみたいなら",p:"前世の物語は、いまのあなたを理解するためのひとつの手がかりです。いまの人間関係やくり返す悩みと重ねて読み解くには、霊感や前世鑑定を得意とする鑑定師に話を聞いてもらうのも一つの方法です。"}}
+  after:{h:"魂の物語の続きを、<br>聞いてみたいなら",p:"前世の物語は、いまのあなたを理解するためのひとつの手がかりです。いまの人間関係やくり返す悩みと重ねて読み解くには、霊感や前世鑑定を得意とする鑑定師に話を聞いてもらうのも一つの方法です。"}},
+ kaori:{title:"香りの書",en:"The Book of Scents",cloth:"#2e292b",endc:"#cbb98e",metal:"gold",tag:"香り",art:"アロマ（香りの選びかた）",
+  blurb:"いまの気分と好みから、あなたに合う香りを選ぶ",sub:"気分と好みから選ぶ<br>いまのあなたに合う香り",
+  tok(){return[S.kaQ1,S.kaQ2]},untok(p){if(p.length!==2||!KAQ1[p[0]]||!KAQ2[p[1]])return false;S.kaQ1=p[0];S.kaQ2=p[1];return true},
+  pages(){const K=KAORI[S.kaQ1+"-"+S.kaQ2];DKEY=K.k;
+   return[
+    {rh:"序",html:`<div class="pg"><div class="chap">序</div>${illus("kaori-intro",motBottle("#c9a24a"),{cls:"wide"})}<h2 class="sm">香りは、いちばん早く<br>気分に届く</h2><p>目で見るより、耳で聞くより先に、香りは気持ちを動かします。この本は占いではありません。いまの気分と、惹かれる香りの系統から、今夜のあなたに合う一本を選ぶための案内です。</p></div>`},
+    {rh:"問い",input:true,gate:true,html:`<div class="pg"><div class="chap">問い</div><h2 class="sm">いま、ほしいのは<br>どんな時間</h2>${choices3("kaQ1",KAQ1)}<div class="who">惹かれる香りは</div>${choices3("kaQ2",KAQ2)}${seal}</div>`},
+    {rh:"あなたの香り",html:`<div class="pg numpage">${illus("kaori-"+K.k,motBottle(K.col),{cls:"tall"})}<div class="nm">${K.jp}</div><div class="kw">${K.en}・${K.kw}</div><div class="calc">時間：${KAQ1[S.kaQ1].name}　好み：${KAQ2[S.kaQ2].name}</div></div>`},
+    {rh:"第一章",html:chapter("一","香りのことば",K.core)},
+    {rh:"第二章",html:chapter("二","こんな時間に",K.scene)},
+    {rh:"第三章",html:`<div class="pg"><div class="chap">第三章</div><h2>香りの使いかた</h2><p><span class="lbl">香らせる</span>${K.air}</p><p><span class="lbl">手もとで</span>${K.carry}</p></div>`},
+    {rh:"使う前に",html:`<div class="pg"><div class="chap">使う前に</div><h2 class="sm">精油を使うときの<br>約束ごと</h2><p>${KAORI_CAUTION}</p>${RULE}<p class="fine">${K.note||"香りの感じ方には個人差があります。気分が悪くなったら、すぐに使うのをやめて、部屋の空気を入れ替えてください。"}</p></div>`}]},
+  share(){const K=KAORI[S.kaQ1+"-"+S.kaQ2];return{x:`いまの私に合う香りは【${K.jp}】でした。`,copy:`いまの香り「${K.jp}」（${K.kw}）`}},
+  after:{h:"香りで整えても、<br>ほどけない気持ちがあるなら",p:"香りは気分を切り替える手助けをしてくれますが、悩みそのものを解いてはくれません。同じことを考えつづけてしまう夜は、話を聞いてくれる人に言葉にしてみるのも一つの方法です。"}},
 };
-const ORDER=["kazu","en","meguri","tsuki","hoshi","yume","ishi","ki","iro","tama"];
+const ORDER=["kazu","en","meguri","tsuki","hoshi","yume","ishi","ki","iro","tama","kaori"];
 
 
 /* ================= deeper chapters (shoka-src/deep/*.json), paginated to fit a page ================= */
@@ -350,6 +365,7 @@ const amz=kw=>`https://www.amazon.co.jp/s?k=${encodeURIComponent(kw)}&tag=${LUCK
 function luckyItemsFor(id,seed){const L=LUCKY,ord=L.order[id];if(!L.tag||!ord)return null;const h=s=>{let x=2166136261;for(const c of s)x=Math.imul(x^c.codePointAt(0),16777619)>>>0;return x};const out=[];for(let i=0;out.length<3&&i<30;i++){const p=L.pool[ord[i%ord.length]];const it=p[h(seed+"|"+i)%p.length];if(!out.some(o=>o.n===it.n))out.push(it)}return out}
 function luckyItems(seed){const L=LUCKY,ord=L.order[cur];if(!L.tag||!ord||DKEY==null)return null;
   const h=s=>{let x=2166136261;for(const c of s)x=Math.imul(x^c.codePointAt(0),16777619)>>>0;return x};const out=[];
+  if(cur==="kaori"){const a=Object.values(KAORI).find(v=>v.k===DKEY);if(a){const nm=a.jp.replace(/（.*/,"");out.push({n:`${nm}の精油`,kw:`${nm} 精油 エッセンシャルオイル`,why:"今夜選ばれた香りを、まず一本。10mlほどの小瓶から。"})}}
   if(cur==="ishi"){const s=Object.values(STONES).find(v=>v.k===DKEY);if(s)out.push({n:`${s.jp}のブレスレット`,kw:`${s.jp} ブレスレット 天然石`,why:"あなたの守護石を、毎日身につけられる形で。"})}
   if(cur==="iro"&&AURA[DKEY]){const c=AURA[DKEY].jp;out.push({n:`${c}色のハンカチ`,kw:`ハンカチ ${c}色`,why:`${c}のオーラを、手もとにそっと持ち歩いて。`})}
   if(cur==="ki"&&KISEI[+DKEY])out.push(L.el[KISEI[+DKEY].el]);
@@ -570,10 +586,10 @@ function land(){drop.style.transform="none";cast.style.setProperty("--h",0);land
   if(pendingJump){pendingJump=false;setTimeout(()=>{const ri=resultIndex();k=isMob()?ri:Math.ceil(ri/2);layout()},600)}}
 
 /* ================= shelf (photo + 3D books) ================= */
-const META={"kazu": {"aspect": 0.6575, "circle": [0.505, 0.474, 0.415, 0.273]}, "en": {"aspect": 0.749, "circle": [0.506, 0.46, 0.525, 0.395]}, "meguri": {"aspect": 0.6654, "circle": [0.51, 0.479, 0.475, 0.317]}, "tsuki": {"aspect": 0.6654, "circle": [0.512, 0.491, 0.508, 0.338]}, "hoshi": {"aspect": 0.623, "circle": [0.5133, 0.4854, 0.4703, 0.293]}, "yume": {"aspect": 0.62, "circle": [0.5215, 0.4831, 0.477, 0.2957]}, "ishi": {"aspect": 0.665, "circle": [0.503, 0.471, 0.6, 0.399]}, "ki": {"aspect": 0.665, "circle": [0.5, 0.462, 0.58, 0.386]}, "iro": {"aspect": 0.665, "circle": [0.505, 0.465, 0.5, 0.333]}, "tama": {"aspect": 0.665, "circle": [0.498, 0.476, 0.56, 0.372]}};
+const META={"kazu": {"aspect": 0.6575, "circle": [0.505, 0.474, 0.415, 0.273]}, "en": {"aspect": 0.749, "circle": [0.506, 0.46, 0.525, 0.395]}, "meguri": {"aspect": 0.6654, "circle": [0.51, 0.479, 0.475, 0.317]}, "tsuki": {"aspect": 0.6654, "circle": [0.512, 0.491, 0.508, 0.338]}, "hoshi": {"aspect": 0.623, "circle": [0.5133, 0.4854, 0.4703, 0.293]}, "yume": {"aspect": 0.62, "circle": [0.5215, 0.4831, 0.477, 0.2957]}, "ishi": {"aspect": 0.665, "circle": [0.503, 0.471, 0.6, 0.399]}, "ki": {"aspect": 0.665, "circle": [0.5, 0.462, 0.58, 0.386]}, "iro": {"aspect": 0.665, "circle": [0.505, 0.465, 0.5, 0.333]}, "tama": {"aspect": 0.665, "circle": [0.498, 0.476, 0.56, 0.372]}, "kaori": {"aspect": 0.6667, "circle": [0.493, 0.475, 0.56, 0.373]}};
 const shelf=document.getElementById("shelf"),desk=document.getElementById("desk"),room=document.getElementById("room"),rowEl=document.getElementById("row"),guide=document.getElementById("guide");
 const IMG={w:1448,h:1086,candle:[138,440],floor:788};
-const ACC={ishi:"#2f6b67",ki:"#9a5b2a",iro:"#8a3f6e",tama:"#3a4579",kazu:"#8b6a2f",en:"#a3474e",meguri:"#4a6741",tsuki:"#5d4f8c",hoshi:"#3f5f8a",yume:"#a65f45"};
+const ACC={ishi:"#2f6b67",ki:"#9a5b2a",iro:"#8a3f6e",tama:"#3a4579",kazu:"#8b6a2f",en:"#a3474e",meguri:"#4a6741",tsuki:"#5d4f8c",hoshi:"#3f5f8a",yume:"#a65f45",kaori:"#8a6a2a"};
 const star4=(x,y,r)=>`M${x} ${y-r}L${x+r*.24} ${y-r*.24}L${x+r} ${y}L${x+r*.24} ${y+r*.24}L${x} ${y+r}L${x-r*.24} ${y+r*.24}L${x-r} ${y}L${x-r*.24} ${y-r*.24}Z`;
 const PAT={ishi:`<g fill="#2f6b67" fill-opacity=".28"><path d="M14 6l6 5-6 12-6-12z"/><circle cx="42" cy="42" r="1.4"/></g>`,
  ki:`<g fill="#7a5a22" fill-opacity=".3"><rect x="9" y="9" width="4" height="4"/><rect x="15" y="9" width="4" height="4"/><rect x="9" y="15" width="4" height="4"/><rect x="15" y="15" width="4" height="4"/><circle cx="42" cy="42" r="1.4"/></g>`,
@@ -582,10 +598,11 @@ const PAT={ishi:`<g fill="#2f6b67" fill-opacity=".28"><path d="M14 6l6 5-6 12-6-
  yume:`<g fill="#a65f45" fill-opacity=".22"><path d="M6 20c0-5 5-8 9-6 2-5 11-6 14 0 5-1 9 2 8 6 4 1 3 7-1 7H8c-4 0-5-5-2-7z"/><circle cx="44" cy="44" r="1.6"/></g>`,kazu:`<g fill="#9a7a3c" fill-opacity=".42"><path d="${star4(14,14,5)}"/><path d="${star4(42,42,3.4)}"/></g>`,
  en:`<g fill="#9c4950" fill-opacity=".32">${[0,72,144,216,288].map(a=>`<circle cx="${(14+3.2*Math.cos(a*Math.PI/180)).toFixed(2)}" cy="${(14+3.2*Math.sin(a*Math.PI/180)).toFixed(2)}" r="2.1"/>`).join("")}<circle cx="42" cy="42" r="1.6"/></g>`,
  meguri:`<g fill="#3f5a3a" fill-opacity=".34"><path d="M14 21C8 15 10 9 14 6c4 3 6 9 0 15z"/><path d="M42 35c6 6 4 12 0 15-4-3-6-9 0-15z"/></g>`,
- tsuki:`<g fill="#ffffff" fill-opacity=".55"><path d="M17 8a7 7 0 1 0 0 12a5.4 5.4 0 1 1 0-12z"/><path d="${star4(42,42,3.2)}"/><circle cx="44" cy="14" r=".9"/><circle cx="12" cy="44" r=".9"/></g>`};
+ tsuki:`<g fill="#ffffff" fill-opacity=".55"><path d="M17 8a7 7 0 1 0 0 12a5.4 5.4 0 1 1 0-12z"/><path d="${star4(42,42,3.2)}"/><circle cx="44" cy="14" r=".9"/><circle cx="12" cy="44" r=".9"/></g>`,
+ kaori:`<g fill="#b8923c" fill-opacity=".34"><path d="M14 8c4 5 6 8 6 11a6 6 0 0 1-12 0c0-3 2-6 6-11z"/><circle cx="42" cy="42" r="1.5"/><circle cx="48" cy="36" r=".9"/></g>`};
 const patURL=id=>`url("data:image/svg+xml,${encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="56" height="56">${PAT[id]}</svg>`)}")`;
-const LABC={ishi:"#15373b",ki:"#9b6b2d",iro:"#563343",tama:"#19273d",hoshi:"#566275",yume:"#a96a57",kazu:"#d9cdb4",en:"#b57d72",meguri:"#62714f",tsuki:"#827a98"};
-const EMB={ishi:["#f2e3b6","0 1px 1px rgba(20,50,48,.55)"],ki:["#fff1cf","0 1px 1px rgba(90,60,20,.5)"],iro:["#f6e6c4","0 1px 1px rgba(60,30,50,.55)"],tama:["#e9d79c","0 1px 1px rgba(10,14,30,.6)"],hoshi:["#f7ebc4","0 1px 1px rgba(30,45,70,.55)"],yume:["#fff3df","0 1px 1px rgba(110,60,40,.5)"],kazu:["#7a5822","0 1px 0 rgba(255,250,235,.55),0 -1px 0 rgba(80,55,15,.2)"],en:["#f3dcc0","0 1px 1px rgba(90,40,30,.45)"],meguri:["#f0dca8","0 1px 1px rgba(30,45,20,.55)"],tsuki:["#f4f2f8","0 1px 1px rgba(50,40,80,.5)"]};
+const LABC={ishi:"#15373b",ki:"#9b6b2d",iro:"#563343",tama:"#19273d",hoshi:"#566275",yume:"#a96a57",kazu:"#d9cdb4",en:"#b57d72",meguri:"#62714f",tsuki:"#827a98",kaori:"#2a2526"};
+const EMB={ishi:["#f2e3b6","0 1px 1px rgba(20,50,48,.55)"],ki:["#fff1cf","0 1px 1px rgba(90,60,20,.5)"],iro:["#f6e6c4","0 1px 1px rgba(60,30,50,.55)"],tama:["#e9d79c","0 1px 1px rgba(10,14,30,.6)"],hoshi:["#f7ebc4","0 1px 1px rgba(30,45,70,.55)"],yume:["#fff3df","0 1px 1px rgba(110,60,40,.5)"],kazu:["#7a5822","0 1px 0 rgba(255,250,235,.55),0 -1px 0 rgba(80,55,15,.2)"],en:["#f3dcc0","0 1px 1px rgba(90,40,30,.45)"],meguri:["#f0dca8","0 1px 1px rgba(30,45,20,.55)"],tsuki:["#f4f2f8","0 1px 1px rgba(50,40,80,.5)"],kaori:["#f0d99a","0 1px 1px rgba(0,0,0,.65)"]};
 const embStyle=id=>`--emb:${EMB[id][0]};--embs:${EMB[id][1]}`;
 
 const hoverable=matchMedia("(hover:hover) and (pointer:fine)");
@@ -662,7 +679,8 @@ const GUIDE={kazu:{q:"自分の本質",w:"生年月日の数で読む",need:"生
  ishi:{q:"わたしを守る石",w:"願いと心の状態で選ぶ",need:"二つの問いに答える"},
  ki:{q:"九星と今年の方位",w:"生まれ年の星と方位盤",need:"生年月日"},
  iro:{q:"わたしのオーラの色",w:"直感で選ぶ三つの色",need:"色を三つ選ぶ"},
- tama:{q:"前世の物語",w:"惹かれる情景で読む",need:"三つの問いに答える"}};
+ tama:{q:"前世の物語",w:"惹かれる情景で読む",need:"三つの問いに答える"},
+ kaori:{q:"いまの自分に合う香り",w:"気分と好みで選ぶ・占いではない本",need:"二つの問いに答える"}};
 function buildGuide(order){guide.innerHTML='<div class="step">いま、知りたいことは？</div>'+order.map(id=>{const G=GUIDE[id],B=BOOKS[id];
   return`<button class="gcard" type="button" role="listitem" data-id="${id}"><span class="sw" style="background-image:url(assets/${id}-spine.webp)"></span><span class="q">${G.q}</span><span class="w"><b>${B.title}</b><i>${G.w}</i></span><span class="m"><span>必要なもの　${G.need}</span><span class="go">ひらく ›</span></span></button>`}).join("")}
 const bk=id=>rowEl.querySelector(`.bk3[data-book="${id}"]`);

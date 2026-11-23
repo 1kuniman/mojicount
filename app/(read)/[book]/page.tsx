@@ -66,7 +66,7 @@ export default function HubPage({ params }: { params: { book: string } }) {
       <Aff place="aff-hub" note={AFF_NOTE[b.id]} />
       <section className="shelf-h">
         <p className="chap">ほかの本</p>
-        <h2>書架のほかの九冊</h2>
+        <h2>書架のほかの本</h2>
         <OtherBooks except={b.id} />
       </section>
       <p className="note">占いは、いまの自分をふり返るための読みものです。</p>

@@ -677,3 +677,8 @@ label.who{display:block}
 #toast b{font-weight:400;font-size:14.5px;letter-spacing:.08em;color:var(--foil-hi)}
 #toast span{font-size:12px;letter-spacing:.06em;opacity:.85}
 @media (prefers-reduced-motion:reduce){#toast{transition:none}}
+
+/* 11冊：案内カードは横6枚で二段に収める（パソコン幅のみ。スマホは横スクロールのまま） */
+@media (min-width:761px){#guide{grid-template-columns:repeat(6,minmax(0,1fr))!important;max-width:1320px!important}}
+.exg{grid-template-columns:repeat(6,1fr)}
+@media (max-width:480px){.exg{grid-template-columns:repeat(4,1fr)}}

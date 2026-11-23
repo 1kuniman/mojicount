@@ -23,6 +23,10 @@ export function luckyFor(book: Book, item?: Item, lead?: Lucky): Lucky[] {
   if (!L.tag || !ord) return [];
   const out: Lucky[] = [];
   if (lead) out.push(lead);
+  if (item && book.id === "kaori") {
+    const nm = item.label.replace(/（.*/, "");
+    out.push({ n: `${nm}の精油`, kw: `${nm} 精油 エッセンシャルオイル`, why: "まずは一本。10mlほどの小瓶から試せます。" });
+  }
   if (item && book.id === "ishi") out.push({ n: `${item.label}のブレスレット`, kw: `${item.label} ブレスレット 天然石`, why: "あなたの守護石を、毎日身につけられる形で。" });
   if (item && book.id === "iro") {
     const c = item.label.replace("のオーラ", "");

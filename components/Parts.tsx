@@ -54,7 +54,7 @@ export function OpenBook({ book, label }: { book: Book; label?: string }) {
     <a className="open" href={openHref(book)}>
       <span className="seal" aria-hidden="true">読</span>
       <span>
-        <b>{label || `${book.title}をひらいて占う`}</b>
+        <b>{label || (book.id === "kaori" ? `${book.title}をひらいて、香りを選ぶ` : `${book.title}をひらいて占う`)}</b>
         <small>{book.need}で読む・無料・登録なし</small>
       </span>
     </a>

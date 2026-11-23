@@ -58,13 +58,13 @@ export default function ItemPage({ params }: { params: { book: string; item: str
       {b.id === "meguri" && <Mine kind="py" k={it.key} />}
       <p className="lead">{doc.lead}</p>
       <Body doc={doc} />
-      <Aff place="aff-item" note={AFF_NOTE[b.id]} />
+      {b.id === "kaori" ? <LuckyItems book={b} item={it} title={`${it.label.replace(/（.*/, "")}の香りを試すなら`} /> : <Aff place="aff-item" note={AFF_NOTE[b.id]} />}
       {b.id === "ki" && <YLink href={`/2027/kyusei/${it.slug}/`} label={`${it.label}の2027年の運勢と月ごとの暦`} />}
       {b.id === "hoshi" && <YLink href={`/2027/seiza/${it.slug}/`} label={`${it.label}の2027年の運勢`} />}
       {b.id === "meguri" && <YLink href="/2027/suhi/" label="2027年のパーソナルイヤーを出して、一年を読む" />}
-      <OpenBook book={b} label={`${b.title}で、あなたを占う`} />
+      <OpenBook book={b} label={b.id === "kaori" ? `${b.title}で、いまの香りを選ぶ` : `${b.title}で、あなたを占う`} />
       <FaqBlock faq={doc.faq} />
-      <LuckyItems book={b} item={it} />
+      {b.id === "kaori" ? <Aff place="aff-item" note={AFF_NOTE[b.id]} /> : <LuckyItems book={b} item={it} />}
       <nav className="pn" aria-label="前後の項目">
         <Link href={itemPath(b, prev)}>‹ {prev.label}</Link>
         <Link href={itemPath(b, next)}>{next.label} ›</Link>
@@ -76,7 +76,7 @@ export default function ItemPage({ params }: { params: { book: string; item: str
       </section>
       <section className="shelf-h">
         <p className="chap">ほかの本</p>
-        <h2>書架のほかの九冊</h2>
+        <h2>書架のほかの本</h2>
         <OtherBooks except={b.id} />
       </section>
       <p className="note">占いは、いまの自分をふり返るための読みものです。</p>
