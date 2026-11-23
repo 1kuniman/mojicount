@@ -633,3 +633,47 @@ label.who{display:block}
 .barR{display:inline-flex;align-items:center}
 #sndpanel[hidden],#sndhint[hidden]{display:none}
 @media (max-width:640px){#shelf .tagline{display:none}.brand{white-space:nowrap}#shelf .bar{align-items:center}#shelf .mokulink:first-of-type{margin-left:auto}}
+
+/* ---------- しおり：栞・蔵書票・お知らせ ---------- */
+/* 読んだ本の天から、栞の紙がのぞく */
+.bk3.done .sp::before{content:"";position:absolute;left:58%;top:-8.6%;width:20%;height:9%;border-radius:2px 2px 0 0;
+  background:linear-gradient(180deg,#f3e6c8,#e2cf9f 70%,#b99a5a);box-shadow:0 -1px 3px rgba(0,0,0,.45),inset 0 0 0 1px rgba(120,80,30,.35);z-index:-1}
+.bk3.done .sp::after{content:"";position:absolute;left:64%;top:-6.6%;width:8%;height:3.2%;background:#93311f;border-radius:1px;z-index:-1}
+.exbtn{display:inline-flex;align-items:baseline;gap:6px;margin-left:14px;padding:3px 10px 4px;border-radius:999px;border:1px solid rgba(234,220,192,.4);background:rgba(0,0,0,.25);
+  color:var(--cream);font-family:var(--jp-body);font-size:12px;letter-spacing:.12em;cursor:pointer;white-space:nowrap;opacity:.9}
+.exbtn:hover{opacity:1;border-color:var(--foil-hi)}
+.exbtn b{font-family:var(--jp-display,var(--jp-body));font-weight:400;font-size:14px;color:var(--foil-hi)}
+.exbtn b::after{content:"冊";font-size:10px;margin-left:1px;color:var(--cream);opacity:.8}
+.exbtn.all{border-color:var(--foil-hi);box-shadow:0 0 12px rgba(243,220,154,.35)}
+#shelf .tagline{margin-left:auto}
+@media (max-width:640px){#shelf .bar{gap:6px}.exbtn{margin-left:6px;padding:2px 7px 3px;font-size:11px;letter-spacing:.04em;gap:0}.exbtn span{display:none}#shelf .sndbtn{margin-left:6px}.mokulink+.mokulink{margin-left:8px}}
+#exlibris{position:fixed;inset:0;z-index:90;display:grid;place-items:center;padding:16px;background:rgba(8,5,3,.72);backdrop-filter:blur(3px)}
+#exlibris[hidden],#toast[hidden]{display:none}
+.exin{position:relative;width:min(560px,100%);max-height:min(88vh,760px);overflow:auto;padding:26px clamp(16px,4vw,30px) 22px;border-radius:6px;color:#2b221c;
+  background:#efe5ce radial-gradient(ellipse at 50% 20%,rgba(255,252,240,.6),rgba(255,252,240,0) 70%);box-shadow:0 30px 80px rgba(0,0,0,.7),inset 0 0 0 1px rgba(147,49,31,.35),inset 0 0 0 7px #efe5ce,inset 0 0 0 8px rgba(147,49,31,.25);text-align:center}
+.exx{position:absolute;top:8px;right:10px;width:34px;height:34px;border:0;background:none;font-size:22px;color:#8a7a68;cursor:pointer}
+.exk{font-family:var(--en-sc,serif);font-size:11px;letter-spacing:.4em;color:#93311f}
+.exin h2{margin:2px 0 10px;font-family:var(--jp-display,var(--jp-body));font-weight:400;font-size:26px;letter-spacing:.3em;text-indent:.3em}
+.exr{margin:0 0 10px;display:flex;flex-direction:column;gap:2px}
+.exr b{font-family:var(--jp-display,var(--jp-body));font-weight:400;font-size:19px;letter-spacing:.14em;color:#93311f}
+.exr span,.exv,.exn,.exf{font-size:13px;line-height:1.8;color:#5f5144}
+.exbar{height:5px;border-radius:99px;background:rgba(110,95,80,.2);overflow:hidden;margin:0 auto 16px;max-width:320px}
+.exbar i{display:block;height:100%;background:linear-gradient(90deg,#b5523c,#93311f)}
+.exg{display:grid;grid-template-columns:repeat(5,1fr);gap:10px 8px}
+@media (max-width:480px){.exg{grid-template-columns:repeat(4,1fr)}}
+.exb{position:relative;display:flex;flex-direction:column;align-items:center;gap:3px;padding:8px 2px 6px;border:1px solid rgba(110,95,80,.25);border-radius:4px;background:rgba(255,250,236,.5);cursor:pointer;font-family:var(--jp-body);color:#2b221c}
+.exb i{display:block;width:22px;height:74px;background-size:100% 100%;border-radius:2px;box-shadow:2px 2px 5px rgba(0,0,0,.35);filter:grayscale(.85) brightness(.9);opacity:.55}
+.exb.on i{filter:none;opacity:1}
+.exb b{font-weight:400;font-size:12.5px;letter-spacing:.06em}
+.exb small{font-size:10px;color:#8a7a68}
+.exb em{position:absolute;top:26px;left:50%;margin-left:4px;width:26px;height:26px;display:grid;place-items:center;font-style:normal;font-size:14px;color:#fbefe0;background:#93311f;border-radius:4px;transform:rotate(-8deg);box-shadow:0 2px 5px rgba(0,0,0,.35)}
+.exb:hover{border-color:#93311f}
+.exv{margin:16px 0 0}.exv b{font-family:var(--jp-display,var(--jp-body));font-weight:400;font-size:17px;color:#93311f}
+.exn{margin:8px 0 0}.exf{margin:10px 0 0;font-size:11px;color:#8a7a68}
+#toast{position:fixed;left:50%;top:max(62px,calc(env(safe-area-inset-top,0px) + 54px));z-index:95;transform:translate(-50%,-12px);width:max-content;opacity:0;transition:opacity .35s,transform .35s;
+  display:flex;flex-direction:column;gap:2px;align-items:center;max-width:min(92vw,420px);padding:11px 20px;border-radius:6px;text-align:center;pointer-events:none;
+  background:rgba(24,17,11,.94);border:1px solid rgba(243,220,154,.45);box-shadow:0 12px 34px rgba(0,0,0,.6);color:var(--cream);font-family:var(--jp-body)}
+#toast.on{opacity:1;transform:translate(-50%,0)}
+#toast b{font-weight:400;font-size:14.5px;letter-spacing:.08em;color:var(--foil-hi)}
+#toast span{font-size:12px;letter-spacing:.06em;opacity:.85}
+@media (prefers-reduced-motion:reduce){#toast{transition:none}}

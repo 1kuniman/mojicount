@@ -493,6 +493,7 @@ function layout(){
     const sh=(n,dir)=>{let a=[];const m=Math.min(4+n*1.2,13);for(let j=1;j<=m;j++)a.push(`${dir*j*.8}px ${j*.75}px 0 ${j%3===0?"#bfae88":j%2?"#efe6cf":"#dccfae"}`);a.push(`${dir*(m*.8+1)}px ${m*.75+1.5}px 3px rgba(0,0,0,.45)`);return a.join(",")||"none"};
     stackR.style.boxShadow=sh(tR,1);stackL.style.boxShadow=sh(tL,-1);stackL.style.visibility=tL>0?"visible":"hidden";stackR.style.visibility=tR>0&&k>0?"visible":"hidden"}
   if(typeof omiVisible==="function")omiVisible();
+  if(typeof shioriSeen==="function")shioriSeen();
   pager.className="";if(k===0&&landed){pager.textContent="表紙に触れて、ひらく";pager.className="hint"}else if(k===1&&!isMob()){pager.textContent="右の頁でめくる・左の頁でもどる";pager.className="hint"}else if(k===1&&isMob()){pager.textContent="右側をタップで、めくる";pager.className="hint"}else pager.textContent=label();flipVisible()}
 function inkIn(i){const f=book.querySelector(`.face[data-f="${i}"]`);if(!f||reduced)return;f.classList.remove("inkin");void f.offsetWidth;f.classList.add("inkin");setTimeout(()=>f.classList.remove("inkin"),1400)}
 function flipVisible(){if(cur!=="tsuki"||!S.tarot.revealed)return;(isMob()?[k]:[2*k-1,2*k]).forEach(i=>{const f=book.querySelector(`.face[data-f="${i}"]`);if(!f)return;
@@ -648,6 +649,7 @@ function buildShelfRow(){
       <div class="sp" style="background-image:url(assets/${p.id}-spine.webp)"><div class="lab t"><span>${B.title}</span></div><div class="lab g"><span>${B.tag}</span></div><i class="lit"></i></div>
     </div></div>`});
   rowEl.innerHTML=html;pulled=null;buildGuide([...placed].sort((a2,b2)=>a2.x-b2.x).map(p=>p.id));
+  if(typeof shioriPaint==="function")shioriPaint();
   if(cur&&!desk.classList.contains("off")){const b=bk(cur);if(b){b.classList.add("out1","out2","fly");b.parentNode.style.zIndex=40}}
 }
 const _bk=0;
