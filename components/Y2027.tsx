@@ -54,6 +54,14 @@ export function YSecs({ except }: { except?: string }) {
           </Link>
         </li>
       ))}
+      {except !== "kichijitsu" && (
+        <li>
+          <Link href="/2027/kichijitsu/">
+            <b>2027年の吉日カレンダー</b>
+            <small>天赦日・一粒万倍日・寅の日・巳の日と、財布を買う日</small>
+          </Link>
+        </li>
+      )}
     </ul>
   );
 }

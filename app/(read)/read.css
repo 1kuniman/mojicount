@@ -227,3 +227,21 @@ article li::before{content:"◆";position:absolute;left:0;top:.05em;font-size:.6
 .me+.lead{margin-top:28px}
 .mine{text-indent:0;text-align:center;margin:10px 0 0}
 .mine span{display:inline-block;font-family:var(--hand);font-size:12.5px;letter-spacing:.14em;color:#fbefe0;background:var(--rubric);border-radius:999px;padding:3px 14px}
+
+/* ---------- 2027年の吉日 ---------- */
+.kcal-note{margin:10px 0 0;font-size:13.5px;color:var(--ink-faint)}
+.kcal .kline{display:block;line-height:1.9}
+.kcal .kline b{display:inline-block;min-width:6.2em;font-weight:400;font-family:var(--display);font-size:.92em;color:var(--ink-faint);letter-spacing:.04em}
+.kcal .k-strong{color:var(--rubric)}
+.knext{margin:26px 0 0;padding:16px 20px 12px;border:1px solid rgba(147,49,31,.28);border-radius:4px;background:rgba(255,250,236,.5)}
+.knext .chap{margin:0 0 6px;text-align:center}
+.knext .kn-today{margin:0 0 8px;text-align:center;line-height:1.8}
+.knext .kn-today b{margin:0 .3em;font-weight:400;font-family:var(--display);color:var(--rubric);font-size:1.12em}
+.knext dl{margin:0;border-top:1px solid rgba(43,34,28,.14)}
+.knext dl>div{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:8px 2px;border-bottom:1px solid rgba(43,34,28,.1)}
+.knext dl>div:last-child{border-bottom:0}
+.knext dt{font-family:var(--display);font-size:14px;color:var(--ink-faint);letter-spacing:.04em}
+.knext dd{margin:0;text-align:right;white-space:nowrap}
+.knext dd small{margin-left:.7em;font-size:12.5px;color:var(--rubric)}
+.knext .best dt{color:var(--rubric)}
+@media (max-width:480px){.knext dl>div{flex-direction:column;gap:0}.knext dd{text-align:left}}

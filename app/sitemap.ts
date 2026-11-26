@@ -3,6 +3,7 @@ import { BOOKS, bookContent, bookPath, itemPath } from "@/lib/books";
 import { SITE_URL } from "@/lib/site";
 import { SECS, itemDoc, secDoc, secPath, topDoc, yItemPath, Y_PATH } from "@/lib/y2027";
 import LM from "@/content/lastmod.json";
+import { K_ITEMS, K_PATH, K_PUBLISHED, kPath } from "@/lib/kichi";
 
 export const dynamic = "force-static";
 
@@ -14,7 +15,6 @@ const SIG: Record<string, string> = {
   "tpl:item": "2026-11-12", // 案内を本文直後へ・本ごとの文面
   "tpl:item:ki": "2026-11-14", // 見出し下に2027年版へのリンク
   "tpl:item:hoshi": "2026-11-14",
-  "tpl:y2027": "2026-11-22", // わたしの2027年
   "tpl:ysec": "2026-11-22", // 計算機
   "tpl:book:ki": "2026-11-22",
   "tpl:book:hoshi": "2026-11-22",
@@ -22,6 +22,8 @@ const SIG: Record<string, string> = {
   "tpl:yitem": "2026-11-12", // 結婚・転職に結びつけた案内
   "tpl:mokuroku": "2026-11-23", // 香りの書・心の書を追加
   "tpl:privacy": "2026-11-23", // しおり・蔵書票の保存を追記
+  "tpl:kichi": K_PUBLISHED, // 2027年の吉日カレンダー
+  "tpl:y2027": "2026-11-26", // 吉日カレンダーへの入り口
 };
 const lm = { ...(LM as Record<string, string>), ...SIG };
 const FALLBACK = "2026-10-31";
@@ -56,6 +58,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
       u(secPath(s), 0.9, latest("tpl:ysec", ...ydoc(s.docKey))),
       ...s.items.filter((it) => itemDoc(s, it)).map((it) => u(yItemPath(s, it), 0.8, latest("tpl:yitem", ...ydoc(`${s.id}:${it.key}`)))),
     ]),
+    u(K_PATH, 0.9, latest("tpl:kichi", "y2027-kichijitsu.json:hub")),
+    ...K_ITEMS.map((it) => u(kPath(it), 0.8, latest("tpl:kichi", `y2027-kichijitsu.json:items.${it.slug}`))),
     u("/about/", 0.3, latest("tpl:about")),
     u("/privacy/", 0.2, latest("tpl:privacy")),
     u("/contact/", 0.2, latest("tpl:contact")),
